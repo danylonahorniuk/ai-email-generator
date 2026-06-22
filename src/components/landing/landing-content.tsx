@@ -72,9 +72,9 @@ export function LandingContent({ user }: LandingContentProps) {
                 </div>
               </div>
             </div>
-          </div>
 
           {/* Right — fills rest of viewport */}
+
           <div className="flex-1 bg-orange-50/50 hidden lg:flex items-center justify-center px-10 py-12 relative">
 
             <div className="absolute top-8 left-[30%] flex flex-col items-center pointer-events-none select-none z-10">
