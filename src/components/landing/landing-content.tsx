@@ -92,7 +92,7 @@ export function LandingContent({ user }: LandingContentProps) {
 
               {/* Outer cream container */}
               <div className="relative rounded-3xl bg-orange-50/70 border border-orange-100 p-3 pt-5">
-                <div className="grid grid-cols-2 gap-2 relative">
+                <div className="grid grid-cols-2 gap-5 relative">
 
                   {/* Idea card */}
                   <div className="rounded-2xl bg-white border border-gray-100 shadow-sm p-5">
@@ -119,8 +119,8 @@ export function LandingContent({ user }: LandingContentProps) {
                     </button>
                   </div>
 
-                  {/* Orange sparkle button between panels */}
-                  <div className="absolute left-1/2 top-[42%] -translate-x-1/2 -translate-y-1/2 z-10">
+                  {/* Orange sparkle button — at left edge of result card */}
+                  <div className="absolute left-1/2 top-[38%] -translate-x-3 -translate-y-1/2 z-10">
                     <div className="h-11 w-11 rounded-full bg-orange-600 shadow-lg flex items-center justify-center ring-4 ring-orange-100">
                       <Sparkles className="h-5 w-5 text-white" />
                     </div>
