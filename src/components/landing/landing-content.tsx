@@ -26,7 +26,7 @@ export function LandingContent({ user }: LandingContentProps) {
       {/* ── HERO ── */}
       <section className="bg-white pt-14 pb-20 overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-10 lg:gap-14 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
             {/* Left */}
             <div>
@@ -75,32 +75,26 @@ export function LandingContent({ user }: LandingContentProps) {
 
             {/* Right — mockup */}
             <div className="relative hidden lg:block">
+              {/* Outer container with cream bg */}
+              <div className="relative rounded-3xl bg-orange-50/60 border border-orange-100 p-4">
 
-              {/* "Почніть з чого-небудь" annotation */}
-              <div className="absolute -top-7 left-[28%] flex flex-col items-center pointer-events-none select-none z-10">
-                <span className="text-xs text-orange-500 italic" style={{ fontFamily: 'Georgia, serif' }}>Почніть з чого-небудь</span>
-                <svg width="20" height="22" viewBox="0 0 20 22" fill="none" className="mt-0.5 text-orange-400">
-                  <path d="M10 2 C14 8, 14 15, 10 20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-                  <path d="M10 20 L7 16 M10 20 L13 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
-              </div>
+                {/* "Почніть з чого-небудь" annotation */}
+                <div className="absolute -top-6 left-[22%] flex flex-col items-center pointer-events-none select-none">
+                  <span className="text-[11px] text-orange-500 italic" style={{ fontFamily: 'cursive' }}>Почніть з чого-небудь</span>
+                  <svg width="24" height="20" viewBox="0 0 24 20" fill="none" className="mt-0.5 text-orange-400">
+                    <path d="M12 2 C8 8, 6 14, 10 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+                    <path d="M10 18 L8 14 M10 18 L14 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                </div>
 
-              {/* "ПОДАЛЬШИЙ КОНТАКТ" stamp — top right of whole mockup */}
-              <div className="absolute -top-4 right-2 border-2 border-orange-400 rounded px-2.5 py-1 rotate-2 pointer-events-none select-none z-10 bg-white">
-                <span className="text-[10px] font-bold text-orange-500 uppercase tracking-wider">Подальший контакт</span>
-              </div>
-
-              {/* Outer cream container */}
-              <div className="relative rounded-3xl bg-orange-50/70 border border-orange-100 p-2 pt-6">
-                <div className="grid grid-cols-2 gap-3 relative">
-
+                <div className="grid grid-cols-2 gap-0 relative">
                   {/* Idea card */}
-                  <div className="rounded-2xl bg-white border border-gray-100 shadow-sm p-5">
+                  <div className="rounded-2xl bg-white border border-gray-100 shadow-sm p-4 mr-1">
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-sm font-semibold text-gray-800">{t.hero.previewYourIdea}</span>
-                      <span className="text-xs text-gray-400">109/300</span>
+                      <span className="text-[10px] text-gray-400">109/300</span>
                     </div>
-                    <div className="rounded-xl bg-gray-50 border border-gray-100 p-3.5 text-sm text-gray-500 leading-relaxed mb-4" style={{ minHeight: '100px' }}>
+                    <div className="rounded-lg bg-gray-50 border border-gray-100 p-3 text-xs text-gray-500 leading-relaxed mb-4 min-h-[88px]">
                       Написати follow-up потенційному клієнту після дзвінка. Згадайте, що я прикріпив пропозицію, і запитайте, чи є в нього запитання.
                     </div>
                     {[
@@ -109,51 +103,53 @@ export function LandingContent({ user }: LandingContentProps) {
                       ['Довжина', 'Короткий'],
                       [t.hero.previewPurpose, 'Подальший контакт'],
                     ].map(([label, val]) => (
-                      <div key={label} className="flex items-center justify-between py-2.5 border-b border-gray-50 last:border-0">
-                        <span className="text-sm text-gray-400">{label}</span>
-                        <span className="text-sm text-gray-700 font-medium flex items-center gap-1.5">{val} <ChevronDown className="h-3.5 w-3.5 text-gray-400" /></span>
+                      <div key={label} className="flex items-center justify-between py-2 border-b border-gray-50 last:border-0">
+                        <span className="text-xs text-gray-400">{label}</span>
+                        <span className="text-xs text-gray-700 font-medium flex items-center gap-1">{val} <ChevronDown className="h-3 w-3 text-gray-400" /></span>
                       </div>
                     ))}
-                    <button className="mt-5 w-full rounded-xl bg-orange-600 text-white text-sm font-semibold py-3 flex items-center justify-center gap-2 hover:bg-orange-700 transition-colors">
-                      {t.hero.previewGenerateBtn} <ArrowRight className="h-4 w-4" />
+                    <button className="mt-4 w-full rounded-xl bg-orange-600 text-white text-sm font-medium py-2.5 flex items-center justify-center gap-1.5 hover:bg-orange-700 transition-colors">
+                      {t.hero.previewGenerateBtn} <ArrowRight className="h-3.5 w-3.5" />
                     </button>
                   </div>
 
-                  {/* Orange sparkle button — at left edge of result card */}
-                  <div className="absolute left-1/2 top-[38%] -translate-x-3 -translate-y-1/2 z-10">
-                    <div className="h-11 w-11 rounded-full bg-orange-600 shadow-lg flex items-center justify-center ring-4 ring-orange-100">
-                      <Sparkles className="h-5 w-5 text-white" />
+                  {/* Orange sparkle button between panels */}
+                  <div className="absolute left-1/2 top-[44%] -translate-x-1/2 -translate-y-1/2 z-10">
+                    <div className="h-10 w-10 rounded-full bg-orange-600 shadow-lg flex items-center justify-center">
+                      <Sparkles className="h-4.5 w-4.5 text-white h-5 w-5" />
                     </div>
                   </div>
 
                   {/* Result card */}
-                  <div className="rounded-2xl bg-white border border-gray-100 shadow-sm p-5">
+                  <div className="rounded-2xl bg-white border border-gray-100 shadow-sm p-4 ml-1 relative overflow-hidden">
+                    {/* "ПОДАЛЬШИЙ КОНТАКТ" stamp */}
+                    <div className="absolute top-3 right-3 border-2 border-orange-400 rounded px-2 py-0.5 rotate-3 pointer-events-none select-none">
+                      <span className="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Подальший контакт</span>
+                    </div>
+
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-sm font-semibold text-gray-800">{t.hero.previewYourEmail}</span>
-                      <span className="flex items-center gap-1.5 text-xs text-green-600 font-medium">
-                        {t.hero.previewGenStatus}
-                        <span className="h-2 w-2 rounded-full bg-green-500 inline-block" />
+                      <span className="flex items-center gap-1 text-xs text-green-600 font-medium">
+                        {t.hero.previewGenStatus} <span className="h-2 w-2 rounded-full bg-green-500 inline-block" />
                       </span>
                     </div>
-                    <div className="text-sm mb-3">
-                      <span className="text-gray-500">{t.hero.previewSubject}: </span>
-                      <span className="font-semibold text-gray-800">Після нашої розмови</span>
+                    <div className="text-xs font-semibold text-gray-800 mb-3">
+                      <span className="text-gray-500 font-normal">{t.hero.previewSubject}: </span>Після нашої розмови
                     </div>
-                    <div className="text-sm text-gray-600 leading-relaxed space-y-2">
+                    <div className="text-xs text-gray-600 leading-relaxed space-y-2">
                       <p>Привіт, Саро,</p>
                       <p>Дякую, що знайшли час поспілкуватись зі мною сьогодні.</p>
                       <p>Я прикріпив пропозицію, про яку ми говорили. Будь ласка, дайте знати, якщо у вас є запитання або якщо я можу щось уточнити.</p>
                       <p>З повагою,<br />Алекс</p>
                     </div>
-                    <div className="mt-5 grid grid-cols-2 gap-2">
+                    <div className="mt-4 grid grid-cols-2 gap-1.5">
                       {['Копіювати', 'Згенерувати ще раз', 'Зробити ввічливішим', 'Зробити коротшим'].map(btn => (
-                        <button key={btn} className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 px-2 hover:bg-gray-50 transition-colors">
+                        <button key={btn} className="rounded-lg border border-gray-200 text-[10px] text-gray-600 py-1.5 px-2 hover:bg-gray-50 flex items-center justify-center gap-1">
                           {btn}
                         </button>
                       ))}
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>
