@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json()
-    const { purpose, tone, recipientName, senderName, keyPoints, language } = body
+    const { purpose, tone, length, recipientName, senderName, keyPoints, language } = body
 
     if (!purpose?.trim()) {
       return NextResponse.json({ error: 'Email purpose is required' }, { status: 400 })
@@ -23,9 +23,15 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid tone value' }, { status: 400 })
     }
 
+    const validLengths = ['short', 'medium', 'long']
+    if (length && !validLengths.includes(length)) {
+      return NextResponse.json({ error: 'Invalid length value' }, { status: 400 })
+    }
+
     const params: EmailGenerationParams = {
       purpose: purpose.trim(),
       tone,
+      length: length || 'medium',
       recipientName: recipientName?.trim(),
       senderName: senderName?.trim(),
       keyPoints: keyPoints?.trim(),

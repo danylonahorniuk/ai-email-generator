@@ -181,13 +181,13 @@ export default async function HomePage() {
               { value: '20+', label: 'Languages' },
               { value: '4.9★', label: 'Average rating' },
             ].map((stat, i) => (
-              <>
-                {i > 0 && <div key={`sep-${i}`} className="w-px h-10 bg-gray-200 hidden sm:block" />}
-                <div key={stat.label}>
+              <div key={stat.label} className="flex items-center gap-8">
+                {i > 0 && <div className="w-px h-10 bg-gray-200 hidden sm:block" />}
+                <div>
                   <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
                   <div className="text-sm text-gray-500">{stat.label}</div>
                 </div>
-              </>
+              </div>
             ))}
           </div>
         </div>

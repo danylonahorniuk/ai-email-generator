@@ -1,5 +1,6 @@
 export interface EmailGenerationParams {
   tone: 'professional' | 'friendly' | 'formal' | 'casual'
+  length: 'short' | 'medium' | 'long'
   purpose: string
   recipientName?: string
   senderName?: string
@@ -36,10 +37,13 @@ async function generateWithClaude(params: EmailGenerationParams): Promise<Genera
   const Anthropic = (await import('@anthropic-ai/sdk')).default
   const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
+  const lengthGuide = { short: '3-5 sentences', medium: '2-3 paragraphs', long: '4-5 paragraphs' }
+
   const prompt = `Generate a ${params.tone} email for the following purpose: ${params.purpose}.
 ${params.recipientName ? `Recipient: ${params.recipientName}` : ''}
 ${params.senderName ? `Sender: ${params.senderName}` : ''}
 ${params.keyPoints ? `Key points to include: ${params.keyPoints}` : ''}
+Length: ${lengthGuide[params.length ?? 'medium']}
 ${params.language ? `Language: ${params.language}` : 'Language: English'}
 
 Respond with a JSON object containing:
@@ -80,17 +84,15 @@ function generateMock(params: EmailGenerationParams): GeneratedEmail {
   const greeting = toneGreetings[params.tone] || 'Dear'
   const closing = toneClosings[params.tone] || 'Best regards'
 
+  const lengthBody: Record<string, string> = {
+    short: `I'm reaching out regarding: ${params.purpose}.\n\n${params.keyPoints ? params.keyPoints + '\n\n' : ''}Looking forward to hearing from you.`,
+    medium: `I hope you're doing well. I'm reaching out regarding: ${params.purpose}.\n\n${params.keyPoints ? `Here are the key points:\n${params.keyPoints}\n\n` : ''}I'd love to connect further and discuss how we can move forward. Please feel free to reach out at any time.`,
+    long: `I hope this message finds you well. I wanted to take a moment to reach out regarding: ${params.purpose}.\n\n${params.keyPoints ? `Here are the key points I wanted to address:\n${params.keyPoints}\n\n` : ''}I believe this is an important matter that deserves our full attention. I'd love to schedule a call or meeting at your earliest convenience to discuss this in more detail.\n\nPlease don't hesitate to reach out if you have any questions or need any additional information. I'm happy to provide whatever is needed.\n\nLooking forward to hearing from you soon.`,
+  }
+
   return {
     subject: `Re: ${params.purpose}`,
-    body: `${greeting} ${recipient},
-
-I hope you're doing well. I'm reaching out regarding: ${params.purpose}.
-
-${params.keyPoints ? `Here are the key points I wanted to address:\n${params.keyPoints}\n` : ''}
-I'd love to connect further and discuss how we can move forward together. Please feel free to reach out at any time.
-
-${closing},
-${sender}`,
+    body: `${greeting} ${recipient},\n\n${lengthBody[params.length ?? 'medium']}\n\n${closing},\n${sender}`,
   }
 }
 

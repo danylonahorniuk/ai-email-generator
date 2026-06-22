@@ -19,6 +19,12 @@ const TONE_OPTIONS = [
   { value: 'casual', label: 'Casual' },
 ]
 
+const LENGTH_OPTIONS = [
+  { value: 'short', label: 'Short (3–5 sentences)' },
+  { value: 'medium', label: 'Medium (2–3 paragraphs)' },
+  { value: 'long', label: 'Long (4–5 paragraphs)' },
+]
+
 const LANGUAGE_OPTIONS = [
   { value: 'English', label: 'English' },
   { value: 'Ukrainian', label: 'Ukrainian' },
@@ -34,6 +40,7 @@ export function EmailGenerator() {
   const [form, setForm] = useState({
     purpose: '',
     tone: 'professional',
+    length: 'medium',
     recipientName: '',
     senderName: '',
     keyPoints: '',
@@ -122,12 +129,18 @@ export function EmailGenerator() {
               onChange={e => updateField('tone', e.target.value)}
             />
             <Select
-              label="Language"
-              options={LANGUAGE_OPTIONS}
-              value={form.language}
-              onChange={e => updateField('language', e.target.value)}
+              label="Length"
+              options={LENGTH_OPTIONS}
+              value={form.length}
+              onChange={e => updateField('length', e.target.value)}
             />
           </div>
+          <Select
+            label="Language"
+            options={LANGUAGE_OPTIONS}
+            value={form.language}
+            onChange={e => updateField('language', e.target.value)}
+          />
 
           <div className="grid grid-cols-2 gap-4">
             <Input
