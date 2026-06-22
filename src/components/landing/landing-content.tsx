@@ -3,9 +3,10 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/lib/i18n/language-context'
-import { ArrowRight, Star, ChevronDown, Zap, Shield, Globe, Clock, Sparkles, Users } from 'lucide-react'
+import { ArrowRight, Star, ChevronDown, Zap, Shield, Globe, Clock, Sparkles, Users, ShoppingBag, Heart, Headphones, UserCheck, Copy, RefreshCw, Wand2, Scissors } from 'lucide-react'
 
 const FEATURE_ICONS = [Zap, Sparkles, Globe, Shield, Clock, Users]
+const INDUSTRY_ICONS = [ShoppingBag, Heart, Headphones, UserCheck]
 
 const testimonials = [
   { name: 'Sarah K.', role: 'Sales Manager', text: 'I used to spend 30 minutes writing follow-up emails. Now it takes 30 seconds. Game changer.', rating: 5 },
@@ -25,20 +26,17 @@ export function LandingContent({ user }: LandingContentProps) {
       {/* ── HERO ── */}
       <section className="bg-white pt-14 pb-20 overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 lg:gap-14 items-center">
 
             {/* Left */}
             <div>
-              <div className="inline-block text-xs font-semibold text-orange-600 uppercase tracking-widest mb-5 border border-orange-200 rounded-full px-3 py-1 bg-orange-50">
-                {t.hero.heroLabel}
-              </div>
-
-              <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-bold text-gray-900 leading-[1.12] mb-6">
+              <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-bold text-gray-900 leading-[1.12] mb-6">
                 {t.hero.title}{' '}
                 <span className="text-orange-600">{t.hero.titleAccent}</span>
+                {t.hero.titleEnd ? <>{' '}{t.hero.titleEnd}</> : null}
               </h1>
 
-              <p className="text-lg text-gray-500 leading-relaxed mb-8 max-w-lg">
+              <p className="text-lg text-gray-500 leading-relaxed mb-8 max-w-md">
                 {t.hero.subtitle}
               </p>
 
@@ -59,71 +57,112 @@ export function LandingContent({ user }: LandingContentProps) {
               <p className="text-sm text-gray-400 mb-10">{t.hero.noCreditCard}</p>
 
               <div>
-                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-3">
+                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-4">
                   {t.hero.industriesLabel}
                 </p>
-                <div className="flex flex-wrap gap-2">
-                  {(t.hero.industries as string[]).map((ind: string) => (
-                    <span key={ind} className="rounded-full border border-gray-200 px-3 py-1 text-sm text-gray-600 bg-gray-50">
-                      {ind}
-                    </span>
-                  ))}
+                <div className="flex flex-wrap gap-4">
+                  {(t.hero.industries as string[]).map((ind: string, i: number) => {
+                    const Icon = INDUSTRY_ICONS[i % INDUSTRY_ICONS.length]
+                    return (
+                      <div key={ind} className="flex items-center gap-2 text-sm text-gray-600">
+                        <Icon className="h-4 w-4 text-gray-400" />
+                        <span>{ind}</span>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             </div>
 
             {/* Right — mockup */}
-            <div className="relative hidden lg:block">
-              <div className="grid grid-cols-2 gap-3">
-                {/* Idea card */}
-                <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-4">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-semibold text-gray-700">{t.hero.previewYourIdea}</span>
-                    <span className="text-[10px] text-gray-400">109/300</span>
+            <div className="relative hidden lg:flex items-start gap-4">
+
+              {/* Annotation top */}
+              <div className="absolute -top-8 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-10">
+                <span className="font-['Georgia',serif] italic text-orange-500 text-sm whitespace-nowrap">Почніть з чого-небудь</span>
+                <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="mt-0.5">
+                  <path d="M20 2 C10 8, 5 18, 12 26" stroke="#f97316" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+                  <path d="M12 26 L8 22 M12 26 L16 22" stroke="#f97316" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              </div>
+
+              {/* Stamp top-right */}
+              <div className="absolute -top-6 -right-2 z-10 rotate-6">
+                <div className="border-2 border-orange-400 rounded px-2 py-0.5">
+                  <span className="text-[9px] font-bold text-orange-500 uppercase tracking-widest">Подальший контакт</span>
+                </div>
+              </div>
+
+              {/* Idea card */}
+              <div className="rounded-2xl border border-gray-200 bg-white shadow-md p-5 flex-1">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-sm font-semibold text-gray-800">{t.hero.previewYourIdea}</span>
+                  <span className="text-[11px] text-gray-400">109/300</span>
+                </div>
+                <div className="rounded-xl bg-gray-50 border border-gray-100 p-3.5 text-[13px] text-gray-500 leading-relaxed mb-4 min-h-[96px]">
+                  Написати follow-up потенційному клієнту після дзвінка. Згадати про пропозицію і запитати чи є питання.
+                </div>
+                {[
+                  [t.hero.previewTone, 'Професійний'],
+                  ['Мова', 'Українська'],
+                  ['Довжина', 'Короткий'],
+                  [t.hero.previewPurpose, 'Подальший контакт'],
+                ].map(([label, val]) => (
+                  <div key={label} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
+                    <span className="text-xs text-gray-400">{label}</span>
+                    <span className="text-xs text-gray-700 font-medium flex items-center gap-1">{val} <ChevronDown className="h-3 w-3" /></span>
                   </div>
-                  <div className="rounded-lg bg-gray-50 border border-gray-100 p-3 text-xs text-gray-500 leading-relaxed mb-3 min-h-[72px]">
-                    Написати follow-up потенційному клієнту після дзвінка. Згадати про пропозицію і запитати чи є питання.
-                  </div>
-                  {[
-                    [t.hero.previewTone, 'Професійний'],
-                    ['Мова', 'Українська'],
-                    ['Довжина', 'Короткий'],
-                    [t.hero.previewPurpose, 'Подальший контакт'],
-                  ].map(([label, val]) => (
-                    <div key={label} className="flex items-center justify-between py-1.5 border-b border-gray-50 last:border-0">
-                      <span className="text-[11px] text-gray-400">{label}</span>
-                      <span className="text-[11px] text-gray-700 font-medium flex items-center gap-1">{val} <ChevronDown className="h-2.5 w-2.5" /></span>
-                    </div>
-                  ))}
-                  <button className="mt-3 w-full rounded-lg bg-orange-600 text-white text-xs font-medium py-2 flex items-center justify-center gap-1">
-                    {t.hero.previewGenerateBtn} <ArrowRight className="h-3 w-3" />
-                  </button>
+                ))}
+                <button className="mt-4 w-full rounded-xl bg-orange-600 text-white text-sm font-medium py-2.5 flex items-center justify-center gap-2">
+                  {t.hero.previewGenerateBtn} <ArrowRight className="h-4 w-4" />
+                </button>
+              </div>
+
+              {/* Sparkle button between cards */}
+              <div className="flex-none self-center -mx-2 z-10">
+                <div className="h-11 w-11 rounded-full bg-orange-500 shadow-lg flex items-center justify-center">
+                  <Sparkles className="h-5 w-5 text-white" />
+                </div>
+              </div>
+
+              {/* Result card */}
+              <div className="rounded-2xl border border-gray-200 bg-white shadow-md p-5 flex-1 relative">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-sm font-semibold text-gray-800">{t.hero.previewYourEmail}</span>
+                  <span className="flex items-center gap-1.5 text-[11px] text-green-600 font-medium">
+                    <span className="h-2 w-2 rounded-full bg-green-500 inline-block" />
+                    {t.hero.previewGenStatus}
+                  </span>
+                </div>
+                <div className="text-xs font-semibold text-gray-800 mb-3">
+                  {t.hero.previewSubject}: Після нашої розмови
+                </div>
+                <div className="text-[13px] text-gray-500 leading-relaxed">
+                  Привіт, Саро,<br /><br />
+                  Дякую що знайшли час поспілкуватись зі мною сьогодні. Я прикріплю пропозицію, про яку ми говорили. Будь ласка, дайте знати, якщо у вас є запитання або якщо я можу щось уточнити.<br /><br />
+                  З повагою,<br />Алекс
                 </div>
 
-                {/* Result card */}
-                <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-4">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-semibold text-gray-700">{t.hero.previewYourEmail}</span>
-                    <span className="flex items-center gap-1 text-[10px] text-green-600 font-medium">
-                      <span className="h-1.5 w-1.5 rounded-full bg-green-500 inline-block" />
-                      {t.hero.previewGenStatus}
-                    </span>
+                {/* Stamp bottom-right */}
+                <div className="absolute bottom-14 right-3 -rotate-6">
+                  <div className="border-2 border-orange-300 rounded px-2 py-0.5">
+                    <span className="text-[9px] font-bold text-orange-400 uppercase tracking-widest">Відповідь клієнта</span>
                   </div>
-                  <div className="text-[11px] font-semibold text-gray-800 mb-1">
-                    {t.hero.previewSubject}: Після нашої розмови
-                  </div>
-                  <div className="text-[11px] text-gray-500 leading-relaxed mt-2">
-                    Привіт, Саро,<br /><br />
-                    Дякую що знайшли час поспілкуватись зі мною сьогодні. Я прикріплю пропозицію...
-                  </div>
-                  <div className="mt-4 space-y-1.5">
-                    <button className="w-full rounded-lg border border-gray-200 text-[11px] text-gray-600 py-1.5 hover:bg-gray-50">
-                      {t.hero.previewCopy}
-                    </button>
-                    <button className="w-full rounded-lg border border-gray-200 text-[11px] text-gray-600 py-1.5 hover:bg-gray-50">
-                      {t.hero.previewRegen}
-                    </button>
-                  </div>
+                </div>
+
+                <div className="mt-5 grid grid-cols-2 gap-2">
+                  <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
+                    <Copy className="h-3.5 w-3.5" /> {t.hero.previewCopy}
+                  </button>
+                  <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
+                    <RefreshCw className="h-3.5 w-3.5" /> {t.hero.previewRegen}
+                  </button>
+                  <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
+                    <Wand2 className="h-3.5 w-3.5" /> Ввічливіше
+                  </button>
+                  <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
+                    <Scissors className="h-3.5 w-3.5" /> Коротше
+                  </button>
                 </div>
               </div>
 
