@@ -6,10 +6,12 @@ import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { useLanguage } from '@/lib/i18n/language-context'
 import { Mail } from 'lucide-react'
 
 export default function LoginPage() {
   const router = useRouter()
+  const { t } = useLanguage()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -19,16 +21,9 @@ export default function LoginPage() {
     e.preventDefault()
     setError('')
     setLoading(true)
-
     const supabase = createClient()
     const { error } = await supabase.auth.signInWithPassword({ email, password })
-
-    if (error) {
-      setError(error.message)
-      setLoading(false)
-      return
-    }
-
+    if (error) { setError(error.message); setLoading(false); return }
     router.push('/dashboard')
     router.refresh()
   }
@@ -43,45 +38,19 @@ export default function LoginPage() {
             </div>
             MailMind<span className="text-violet-600">AI</span>
           </Link>
-          <h1 className="text-2xl font-bold text-gray-900">Welcome back</h1>
-          <p className="mt-2 text-gray-600">Sign in to your account</p>
+          <h1 className="text-2xl font-bold text-gray-900">{t.auth.welcomeBack}</h1>
+          <p className="mt-2 text-gray-600">{t.auth.signInSubtitle}</p>
         </div>
-
         <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
           <form onSubmit={handleSubmit} className="space-y-5">
-            <Input
-              label="Email"
-              type="email"
-              placeholder="you@example.com"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              required
-            />
-            <Input
-              label="Password"
-              type="password"
-              placeholder="••••••••"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              required
-            />
-
-            {error && (
-              <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-600">
-                {error}
-              </div>
-            )}
-
-            <Button type="submit" loading={loading} className="w-full" size="lg">
-              Sign in
-            </Button>
+            <Input label={t.auth.email} type="email" placeholder="you@example.com" value={email} onChange={e => setEmail(e.target.value)} required />
+            <Input label={t.auth.password} type="password" placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} required />
+            {error && <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-600">{error}</div>}
+            <Button type="submit" loading={loading} className="w-full" size="lg">{t.auth.signIn}</Button>
           </form>
-
           <p className="mt-6 text-center text-sm text-gray-600">
-            Don&apos;t have an account?{' '}
-            <Link href="/signup" className="font-medium text-violet-600 hover:text-violet-700">
-              Sign up free
-            </Link>
+            {t.auth.noAccount}{' '}
+            <Link href="/signup" className="font-medium text-violet-600 hover:text-violet-700">{t.auth.signUpFree}</Link>
           </p>
         </div>
       </div>

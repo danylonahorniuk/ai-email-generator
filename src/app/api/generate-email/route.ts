@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
       recipientName: recipientName?.trim(),
       senderName: senderName?.trim(),
       keyPoints: keyPoints?.trim(),
-      language: language || 'English',
+      language: language || 'Ukrainian',
     }
 
     const email = await generateEmail(params)

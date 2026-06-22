@@ -65,34 +65,55 @@ Only respond with the JSON object, no extra text.`
   return JSON.parse(cleaned) as GeneratedEmail
 }
 
+const MOCK_TEMPLATES: Record<string, {
+  greetings: Record<string, string>
+  closings: Record<string, string>
+  short: (purpose: string, keyPoints?: string) => string
+  medium: (purpose: string, keyPoints?: string) => string
+  long: (purpose: string, keyPoints?: string) => string
+  subject: (purpose: string) => string
+}> = {
+  Ukrainian: {
+    greetings: { professional: 'Шановний/а', friendly: 'Привіт', formal: 'Вельмишановний/а', casual: 'Гей' },
+    closings: { professional: 'З повагою', friendly: 'До зустрічі', formal: 'З найщирішою повагою', casual: 'Дякую' },
+    subject: (p) => `Щодо: ${p}`,
+    short: (p, k) => `Звертаюся до вас з приводу: ${p}.\n\n${k ? k + '\n\n' : ''}Очікую на вашу відповідь.`,
+    medium: (p, k) => `Сподіваюся, у вас все добре. Пишу щодо: ${p}.\n\n${k ? `Ключові моменти:\n${k}\n\n` : ''}Буду радий/а обговорити деталі та рухатися вперед разом. Звертайтеся будь-коли.`,
+    long: (p, k) => `Сподіваюся, цей лист застане вас у доброму здоров'ї. Хочу звернутися з приводу: ${p}.\n\n${k ? `Ключові моменти:\n${k}\n\n` : ''}Вважаю, що це питання заслуговує на особливу увагу. Буду радий/а організувати дзвінок або зустріч у зручний для вас час.\n\nЯкщо у вас виникнуть запитання або знадобиться додаткова інформація — будь ласка, не соромтеся звертатися.\n\nЧекаю на вашу відповідь.`,
+  },
+  English: {
+    greetings: { professional: 'Dear', friendly: 'Hi', formal: 'Dear', casual: 'Hey' },
+    closings: { professional: 'Best regards', friendly: 'Cheers', formal: 'Yours sincerely', casual: 'Thanks' },
+    subject: (p) => `Re: ${p}`,
+    short: (p, k) => `I'm reaching out regarding: ${p}.\n\n${k ? k + '\n\n' : ''}Looking forward to hearing from you.`,
+    medium: (p, k) => `I hope you're doing well. I'm reaching out regarding: ${p}.\n\n${k ? `Here are the key points:\n${k}\n\n` : ''}I'd love to connect further and discuss how we can move forward. Please feel free to reach out at any time.`,
+    long: (p, k) => `I hope this message finds you well. I wanted to reach out regarding: ${p}.\n\n${k ? `Key points:\n${k}\n\n` : ''}I believe this matter deserves our full attention. I'd love to schedule a call at your earliest convenience.\n\nPlease don't hesitate to reach out if you have any questions.\n\nLooking forward to hearing from you soon.`,
+  },
+  Russian: {
+    greetings: { professional: 'Уважаемый/ая', friendly: 'Привет', formal: 'Глубокоуважаемый/ая', casual: 'Эй' },
+    closings: { professional: 'С уважением', friendly: 'До встречи', formal: 'С искренним уважением', casual: 'Спасибо' },
+    subject: (p) => `По поводу: ${p}`,
+    short: (p, k) => `Обращаюсь к вам по вопросу: ${p}.\n\n${k ? k + '\n\n' : ''}Жду вашего ответа.`,
+    medium: (p, k) => `Надеюсь, у вас всё хорошо. Пишу по поводу: ${p}.\n\n${k ? `Ключевые моменты:\n${k}\n\n` : ''}Буду рад/а обсудить детали и двигаться вперёд вместе. Обращайтесь в любое время.`,
+    long: (p, k) => `Надеюсь, это письмо застанет вас в добром здравии. Хочу обратиться по вопросу: ${p}.\n\n${k ? `Ключевые моменты:\n${k}\n\n` : ''}Считаю, что этот вопрос заслуживает особого внимания. Буду рад/а организовать звонок в удобное для вас время.\n\nЕсли у вас возникнут вопросы — пожалуйста, не стесняйтесь обращаться.\n\nЖду вашего ответа.`,
+  },
+}
+
 function generateMock(params: EmailGenerationParams): GeneratedEmail {
-  const toneGreetings: Record<string, string> = {
-    professional: 'Dear',
-    friendly: 'Hi',
-    formal: 'Dear',
-    casual: 'Hey',
-  }
-  const toneClosings: Record<string, string> = {
-    professional: 'Best regards',
-    friendly: 'Cheers',
-    formal: 'Yours sincerely',
-    casual: 'Thanks',
-  }
+  const lang = params.language && MOCK_TEMPLATES[params.language] ? params.language : 'Ukrainian'
+  const t = MOCK_TEMPLATES[lang]
 
-  const recipient = params.recipientName || '[Recipient]'
-  const sender = params.senderName || '[Your Name]'
-  const greeting = toneGreetings[params.tone] || 'Dear'
-  const closing = toneClosings[params.tone] || 'Best regards'
+  const recipient = params.recipientName || (lang === 'Ukrainian' ? '[Отримувач]' : lang === 'Russian' ? '[Получатель]' : '[Recipient]')
+  const sender = params.senderName || (lang === 'Ukrainian' ? '[Ваше ім\'я]' : lang === 'Russian' ? '[Ваше имя]' : '[Your Name]')
+  const greeting = t.greetings[params.tone] || t.greetings.professional
+  const closing = t.closings[params.tone] || t.closings.professional
 
-  const lengthBody: Record<string, string> = {
-    short: `I'm reaching out regarding: ${params.purpose}.\n\n${params.keyPoints ? params.keyPoints + '\n\n' : ''}Looking forward to hearing from you.`,
-    medium: `I hope you're doing well. I'm reaching out regarding: ${params.purpose}.\n\n${params.keyPoints ? `Here are the key points:\n${params.keyPoints}\n\n` : ''}I'd love to connect further and discuss how we can move forward. Please feel free to reach out at any time.`,
-    long: `I hope this message finds you well. I wanted to take a moment to reach out regarding: ${params.purpose}.\n\n${params.keyPoints ? `Here are the key points I wanted to address:\n${params.keyPoints}\n\n` : ''}I believe this is an important matter that deserves our full attention. I'd love to schedule a call or meeting at your earliest convenience to discuss this in more detail.\n\nPlease don't hesitate to reach out if you have any questions or need any additional information. I'm happy to provide whatever is needed.\n\nLooking forward to hearing from you soon.`,
-  }
+  const length = params.length ?? 'medium'
+  const body = t[length](params.purpose, params.keyPoints)
 
   return {
-    subject: `Re: ${params.purpose}`,
-    body: `${greeting} ${recipient},\n\n${lengthBody[params.length ?? 'medium']}\n\n${closing},\n${sender}`,
+    subject: t.subject(params.purpose),
+    body: `${greeting} ${recipient},\n\n${body}\n\n${closing},\n${sender}`,
   }
 }
 
