@@ -20,7 +20,7 @@ export function LanguageSwitcher() {
           onClick={() => setLocale(l.value)}
           className={`flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium transition-all ${
             locale === l.value
-              ? 'bg-violet-600 text-white'
+              ? 'bg-orange-600 text-white'
               : 'text-gray-500 hover:text-gray-800'
           }`}
         >

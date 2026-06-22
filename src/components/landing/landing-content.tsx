@@ -3,9 +3,9 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/lib/i18n/language-context'
-import { Zap, Shield, Globe, Clock, ChevronDown, Star, ArrowRight, Mail, Sparkles, Users } from 'lucide-react'
+import { ArrowRight, Star, ChevronDown, Zap, Shield, Globe, Clock, Sparkles, Users } from 'lucide-react'
 
-const ICONS = [Zap, Sparkles, Globe, Shield, Clock, Users]
+const FEATURE_ICONS = [Zap, Sparkles, Globe, Shield, Clock, Users]
 
 const testimonials = [
   { name: 'Sarah K.', role: 'Sales Manager', text: 'I used to spend 30 minutes writing follow-up emails. Now it takes 30 seconds. Game changer.', rating: 5 },
@@ -22,86 +22,121 @@ export function LandingContent({ user }: LandingContentProps) {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-violet-50 via-white to-indigo-50 pt-20 pb-24 sm:pt-28 sm:pb-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-violet-100 px-4 py-1.5 text-sm font-medium text-violet-700 mb-6">
-            <Sparkles className="h-3.5 w-3.5" />
-            {t.hero.badge}
-          </div>
+      {/* ── HERO ── */}
+      <section className="bg-white pt-14 pb-20 overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-          <h1 className="mx-auto max-w-4xl text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 leading-tight">
-            {t.hero.title}{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">
-              {t.hero.titleAccent}
-            </span>{' '}
-            {t.hero.titleEnd}
-          </h1>
-
-          <p className="mt-6 mx-auto max-w-2xl text-lg sm:text-xl text-gray-600 leading-relaxed">
-            {t.hero.subtitle}
-          </p>
-
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href={user ? '/dashboard' : '/signup'}>
-              <Button size="lg" className="w-full sm:w-auto">
-                <Zap className="h-5 w-5" />
-                {user ? t.hero.ctaDashboard : t.hero.cta}
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href="/pricing">
-              <Button variant="secondary" size="lg" className="w-full sm:w-auto">
-                {t.hero.viewPricing}
-              </Button>
-            </Link>
-          </div>
-
-          <p className="mt-4 text-sm text-gray-500">{t.hero.noCreditCard}</p>
-
-          {/* App preview card */}
-          <div className="mt-16 mx-auto max-w-2xl rounded-2xl border border-gray-200 bg-white shadow-2xl overflow-hidden">
-            <div className="bg-gray-50 border-b border-gray-100 px-4 py-3 flex items-center gap-2">
-              <div className="flex gap-1.5">
-                <div className="h-3 w-3 rounded-full bg-red-400" />
-                <div className="h-3 w-3 rounded-full bg-yellow-400" />
-                <div className="h-3 w-3 rounded-full bg-green-400" />
+            {/* Left */}
+            <div>
+              <div className="inline-block text-xs font-semibold text-orange-600 uppercase tracking-widest mb-5 border border-orange-200 rounded-full px-3 py-1 bg-orange-50">
+                {t.hero.heroLabel}
               </div>
-              <span className="text-xs text-gray-400 ml-2">{t.hero.previewBadge}</span>
+
+              <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-bold text-gray-900 leading-[1.12] mb-6">
+                {t.hero.title}{' '}
+                <span className="text-orange-600">{t.hero.titleAccent}</span>
+              </h1>
+
+              <p className="text-lg text-gray-500 leading-relaxed mb-8 max-w-lg">
+                {t.hero.subtitle}
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-3 mb-4">
+                <Link href={user ? '/dashboard' : '/signup'}>
+                  <Button size="lg" className="w-full sm:w-auto">
+                    {user ? t.hero.ctaDashboard : t.hero.cta}
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
+                <Link href="/#how-it-works">
+                  <Button variant="ghost" size="lg" className="w-full sm:w-auto text-gray-600">
+                    {t.hero.howItWorksBtn} →
+                  </Button>
+                </Link>
+              </div>
+
+              <p className="text-sm text-gray-400 mb-10">{t.hero.noCreditCard}</p>
+
+              <div>
+                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-3">
+                  {t.hero.industriesLabel}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {(t.hero.industries as string[]).map((ind: string) => (
+                    <span key={ind} className="rounded-full border border-gray-200 px-3 py-1 text-sm text-gray-600 bg-gray-50">
+                      {ind}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
-            <div className="p-6 text-left space-y-4">
+
+            {/* Right — mockup */}
+            <div className="relative hidden lg:block">
               <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-lg bg-violet-50 border border-violet-100 px-3 py-2">
-                  <div className="text-xs text-violet-500 mb-1">{t.hero.previewTone}</div>
-                  <div className="text-sm font-medium text-gray-800">Professional</div>
+                {/* Idea card */}
+                <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-xs font-semibold text-gray-700">{t.hero.previewYourIdea}</span>
+                    <span className="text-[10px] text-gray-400">109/300</span>
+                  </div>
+                  <div className="rounded-lg bg-gray-50 border border-gray-100 p-3 text-xs text-gray-500 leading-relaxed mb-3 min-h-[72px]">
+                    Написати follow-up потенційному клієнту після дзвінка. Згадати про пропозицію і запитати чи є питання.
+                  </div>
+                  {[
+                    [t.hero.previewTone, 'Професійний'],
+                    ['Мова', 'Українська'],
+                    ['Довжина', 'Короткий'],
+                    [t.hero.previewPurpose, 'Подальший контакт'],
+                  ].map(([label, val]) => (
+                    <div key={label} className="flex items-center justify-between py-1.5 border-b border-gray-50 last:border-0">
+                      <span className="text-[11px] text-gray-400">{label}</span>
+                      <span className="text-[11px] text-gray-700 font-medium flex items-center gap-1">{val} <ChevronDown className="h-2.5 w-2.5" /></span>
+                    </div>
+                  ))}
+                  <button className="mt-3 w-full rounded-lg bg-orange-600 text-white text-xs font-medium py-2 flex items-center justify-center gap-1">
+                    {t.hero.previewGenerateBtn} <ArrowRight className="h-3 w-3" />
+                  </button>
                 </div>
-                <div className="rounded-lg bg-violet-50 border border-violet-100 px-3 py-2">
-                  <div className="text-xs text-violet-500 mb-1">{t.hero.previewPurpose}</div>
-                  <div className="text-sm font-medium text-gray-800">Follow-up meeting</div>
+
+                {/* Result card */}
+                <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-xs font-semibold text-gray-700">{t.hero.previewYourEmail}</span>
+                    <span className="flex items-center gap-1 text-[10px] text-green-600 font-medium">
+                      <span className="h-1.5 w-1.5 rounded-full bg-green-500 inline-block" />
+                      {t.hero.previewGenStatus}
+                    </span>
+                  </div>
+                  <div className="text-[11px] font-semibold text-gray-800 mb-1">
+                    {t.hero.previewSubject}: Після нашої розмови
+                  </div>
+                  <div className="text-[11px] text-gray-500 leading-relaxed mt-2">
+                    Привіт, Саро,<br /><br />
+                    Дякую що знайшли час поспілкуватись зі мною сьогодні. Я прикріплю пропозицію...
+                  </div>
+                  <div className="mt-4 space-y-1.5">
+                    <button className="w-full rounded-lg border border-gray-200 text-[11px] text-gray-600 py-1.5 hover:bg-gray-50">
+                      {t.hero.previewCopy}
+                    </button>
+                    <button className="w-full rounded-lg border border-gray-200 text-[11px] text-gray-600 py-1.5 hover:bg-gray-50">
+                      {t.hero.previewRegen}
+                    </button>
+                  </div>
                 </div>
               </div>
-              <div className="rounded-lg bg-gray-50 border border-gray-100 p-4 space-y-2">
-                <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">{t.hero.previewGenerated}</div>
-                <div className="text-sm font-semibold text-gray-800">{t.hero.previewSubject}: Following Up on Our Discussion</div>
-                <div className="text-sm text-gray-600 leading-relaxed">
-                  Dear Sarah, I hope this message finds you well. I wanted to follow up on our conversation...
-                </div>
-              </div>
-              <div className="flex gap-2">
-                <div className="flex-1 h-8 rounded-lg bg-violet-600 flex items-center justify-center">
-                  <span className="text-xs text-white font-medium">{t.hero.previewCopy}</span>
-                </div>
-                <div className="flex-1 h-8 rounded-lg bg-gray-100 flex items-center justify-center">
-                  <span className="text-xs text-gray-600 font-medium">{t.hero.previewRegen}</span>
-                </div>
-              </div>
+
+              {/* Decorative accent */}
+              <div className="absolute -top-4 -right-4 h-24 w-24 rounded-full bg-orange-100 -z-10" />
+              <div className="absolute -bottom-4 -left-4 h-16 w-16 rounded-full bg-orange-50 -z-10" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="border-y border-gray-100 bg-gray-50 py-8">
+      {/* ── STATS ── */}
+      <section className="border-y border-gray-100 bg-gray-50 py-7">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center justify-center gap-8 text-center">
             {[
@@ -111,7 +146,7 @@ export function LandingContent({ user }: LandingContentProps) {
               { value: '4.9★', label: t.stats.rating },
             ].map((stat, i) => (
               <div key={stat.label} className="flex items-center gap-8">
-                {i > 0 && <div className="w-px h-10 bg-gray-200 hidden sm:block" />}
+                {i > 0 && <div className="w-px h-8 bg-gray-200 hidden sm:block" />}
                 <div>
                   <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
                   <div className="text-sm text-gray-500">{stat.label}</div>
@@ -122,23 +157,44 @@ export function LandingContent({ user }: LandingContentProps) {
         </div>
       </section>
 
-      {/* Features */}
-      <section id="features" className="py-24 bg-white">
+      {/* ── HOW IT WORKS ── */}
+      <section id="how-it-works" className="py-24 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">{t.howItWorks.title}</h2>
+            <p className="mt-3 text-lg text-gray-500">{t.howItWorks.subtitle}</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {(t.howItWorks.steps as { number: string; title: string; desc: string }[]).map((step) => (
+              <div key={step.number} className="relative">
+                <div className="text-6xl font-bold text-orange-100 leading-none mb-4 select-none">
+                  {step.number}
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h3>
+                <p className="text-gray-500 leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FEATURES ── */}
+      <section id="features" className="py-24 bg-gray-50 border-t border-gray-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">{t.features.title}</h2>
-            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">{t.features.subtitle}</p>
+            <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">{t.features.subtitle}</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {t.features.items.map((feature, i) => {
-              const Icon = ICONS[i]
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {(t.features.items as { title: string; description: string }[]).map((feature, i) => {
+              const Icon = FEATURE_ICONS[i]
               return (
-                <div key={feature.title} className="group rounded-2xl border border-gray-100 p-6 hover:border-violet-200 hover:shadow-lg transition-all duration-300">
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 group-hover:bg-violet-100 transition-colors">
-                    <Icon className="h-6 w-6 text-violet-600" />
+                <div key={feature.title} className="rounded-2xl border border-gray-200 bg-white p-6 hover:border-orange-200 hover:shadow-md transition-all duration-200">
+                  <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50">
+                    <Icon className="h-5 w-5 text-orange-600" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                  <h3 className="text-base font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">{feature.description}</p>
                 </div>
               )
             })}
@@ -146,24 +202,29 @@ export function LandingContent({ user }: LandingContentProps) {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-24 bg-gradient-to-br from-violet-50 to-indigo-50">
+      {/* ── TESTIMONIALS ── */}
+      <section className="py-24 bg-white border-t border-gray-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">{t.testimonials.title}</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map(tm => (
-              <div key={tm.name} className="rounded-2xl bg-white border border-gray-100 p-6 shadow-sm">
+              <div key={tm.name} className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
                 <div className="flex gap-0.5 mb-4">
                   {Array.from({ length: tm.rating }).map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    <Star key={i} className="h-4 w-4 fill-orange-400 text-orange-400" />
                   ))}
                 </div>
-                <p className="text-gray-700 leading-relaxed mb-4">&ldquo;{tm.text}&rdquo;</p>
-                <div>
-                  <div className="font-semibold text-gray-900">{tm.name}</div>
-                  <div className="text-sm text-gray-500">{tm.role}</div>
+                <p className="text-gray-700 leading-relaxed mb-5 text-sm">&ldquo;{tm.text}&rdquo;</p>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-orange-100 text-sm font-semibold text-orange-700">
+                    {tm.name[0]}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900 text-sm">{tm.name}</div>
+                    <div className="text-xs text-gray-400">{tm.role}</div>
+                  </div>
                 </div>
               </div>
             ))}
@@ -171,55 +232,90 @@ export function LandingContent({ user }: LandingContentProps) {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section id="faq" className="py-24 bg-white">
+      {/* ── FAQ ── */}
+      <section id="faq" className="py-24 bg-gray-50 border-t border-gray-100">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">{t.faq.title}</h2>
           </div>
-          <div className="space-y-4">
-            {t.faq.items.map(({ q, a }) => (
-              <details key={q} className="group rounded-xl border border-gray-200 overflow-hidden">
+          <div className="space-y-3">
+            {(t.faq.items as { q: string; a: string }[]).map(({ q, a }) => (
+              <details key={q} className="group rounded-xl border border-gray-200 bg-white overflow-hidden">
                 <summary className="flex items-center justify-between px-6 py-4 cursor-pointer list-none hover:bg-gray-50 transition-colors">
-                  <span className="font-medium text-gray-900">{q}</span>
-                  <ChevronDown className="h-5 w-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0" />
+                  <span className="font-medium text-gray-900 text-sm">{q}</span>
+                  <ChevronDown className="h-4 w-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0" />
                 </summary>
-                <div className="px-6 pb-4 text-gray-600 leading-relaxed">{a}</div>
+                <div className="px-6 pb-5 text-sm text-gray-500 leading-relaxed">{a}</div>
               </details>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 bg-gradient-to-r from-violet-600 to-indigo-600">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">{t.cta.title}</h2>
-          <p className="text-violet-200 text-lg mb-10">{t.cta.subtitle}</p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href={user ? '/dashboard' : '/signup'}>
-              <Button size="lg" variant="secondary">
-                <Zap className="h-5 w-5 text-violet-600" />
-                {user ? t.cta.buttonDashboard : t.cta.button}
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href="/pricing">
-              <Button size="lg" variant="ghost" className="text-white hover:text-white hover:bg-white/10">
-                {t.cta.viewPlans}
-              </Button>
-            </Link>
+      {/* ── CTA (dark) ── */}
+      <section className="bg-gray-900 py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="text-xs font-semibold text-orange-500 uppercase tracking-widest mb-4">
+                {t.cta.subtitle}
+              </p>
+              <h2 className="text-4xl font-bold text-white mb-6 leading-tight">
+                {t.cta.title.split(' ').slice(0, -2).join(' ')}{' '}
+                <span className="text-orange-500">{t.cta.title.split(' ').slice(-2).join(' ')}</span>
+              </h2>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link href={user ? '/dashboard' : '/signup'}>
+                  <Button size="lg" className="w-full sm:w-auto">
+                    {user ? t.cta.buttonDashboard : t.cta.button}
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
+                <Link href="/pricing">
+                  <Button variant="ghost" size="lg" className="w-full sm:w-auto text-gray-400 hover:text-white hover:bg-white/10">
+                    {t.cta.viewPlans}
+                  </Button>
+                </Link>
+              </div>
+              <p className="mt-4 text-sm text-gray-500">{t.hero.noCreditCard}</p>
+            </div>
+
+            {/* Dark mockup */}
+            <div className="hidden lg:block">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="flex gap-1.5">
+                    <div className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
+                    <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
+                    <div className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
+                  </div>
+                  <span className="text-xs text-gray-500 ml-1">MailMindAI</span>
+                </div>
+                <div className="space-y-2 mb-3">
+                  <div className="text-xs text-gray-400">Кому: ваш наступний клієнт</div>
+                  <div className="text-xs text-gray-400">Тема: Після нашої розмови</div>
+                </div>
+                <div className="rounded-lg bg-white/5 border border-white/10 p-3 text-xs text-gray-400 leading-relaxed min-h-[80px]">
+                  Починайте із вашої ідеї...
+                </div>
+                <div className="mt-3 flex justify-end">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-600">
+                    <ArrowRight className="h-4 w-4 text-white" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-12">
+      {/* ── FOOTER ── */}
+      <footer className="bg-gray-950 text-gray-500 py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-2 text-white font-bold">
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-violet-600">
-                <Mail className="h-3.5 w-3.5 text-white" />
+            <div className="flex items-center gap-2 text-white font-bold text-sm">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-orange-600">
+                <Zap className="h-3.5 w-3.5 text-white" />
               </div>
               MailMindAI
             </div>
@@ -228,7 +324,7 @@ export function LandingContent({ user }: LandingContentProps) {
               <Link href="/#features" className="hover:text-white transition-colors">{t.nav.features}</Link>
               <Link href="/#faq" className="hover:text-white transition-colors">FAQ</Link>
             </div>
-            <p className="text-sm">{t.footer.rights}</p>
+            <p className="text-xs">{t.footer.rights}</p>
           </div>
         </div>
       </footer>
