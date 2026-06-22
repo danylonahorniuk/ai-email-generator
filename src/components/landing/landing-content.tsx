@@ -127,6 +127,12 @@ export function LandingContent({ user }: LandingContentProps) {
 
               {/* Result card */}
               <div className="rounded-2xl border border-gray-200 bg-white shadow-md p-5 flex-1 relative">
+                {/* Stamp outside bottom-right of card */}
+                <div className="absolute -bottom-4 -right-6 -rotate-6 z-10">
+                  <div className="border-2 border-green-500 rounded px-2 py-0.5">
+                    <span className="text-[9px] font-bold text-green-600 uppercase tracking-widest">Відповідь клієнта</span>
+                  </div>
+                </div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-sm font-semibold text-gray-800">{t.hero.previewYourEmail}</span>
                   <span className="flex items-center gap-1.5 text-[11px] text-green-600 font-medium">
@@ -141,13 +147,6 @@ export function LandingContent({ user }: LandingContentProps) {
                   Привіт, Саро,<br /><br />
                   Дякую що знайшли час поспілкуватись зі мною сьогодні. Я прикріплю пропозицію, про яку ми говорили. Будь ласка, дайте знати, якщо у вас є запитання або якщо я можу щось уточнити.<br /><br />
                   З повагою,<br />Алекс
-                </div>
-
-                {/* Stamp bottom-right */}
-                <div className="absolute bottom-14 right-3 -rotate-6">
-                  <div className="border-2 border-orange-300 rounded px-2 py-0.5">
-                    <span className="text-[9px] font-bold text-orange-400 uppercase tracking-widest">Відповідь клієнта</span>
-                  </div>
                 </div>
 
                 <div className="mt-5 grid grid-cols-2 gap-2">
