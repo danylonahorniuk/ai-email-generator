@@ -26,7 +26,7 @@ export function LandingContent({ user }: LandingContentProps) {
       {/* ── HERO ── */}
       <section className="bg-white pt-14 pb-20 overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-10 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-10 lg:gap-14 items-center">
 
             {/* Left */}
             <div>
@@ -91,8 +91,8 @@ export function LandingContent({ user }: LandingContentProps) {
               </div>
 
               {/* Outer cream container */}
-              <div className="relative rounded-3xl bg-orange-50/70 border border-orange-100 p-3 pt-5">
-                <div className="grid grid-cols-2 gap-5 relative">
+              <div className="relative rounded-3xl bg-orange-50/70 border border-orange-100 p-2 pt-6">
+                <div className="grid grid-cols-2 gap-3 relative">
 
                   {/* Idea card */}
                   <div className="rounded-2xl bg-white border border-gray-100 shadow-sm p-5">
