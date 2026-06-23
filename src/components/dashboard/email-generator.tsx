@@ -102,7 +102,7 @@ export function EmailGenerator() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {/* Form */}
-      <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+      <div className="bg-white rounded-2xl border border-gray-200 shadow-md p-6">
         <h2 className="text-lg font-semibold text-gray-900 mb-6">{t.dashboard.formTitle}</h2>
         <form onSubmit={handleGenerate} className="space-y-5">
           <Textarea
@@ -165,7 +165,7 @@ export function EmailGenerator() {
       </div>
 
       {/* Result */}
-      <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 flex flex-col">
+      <div className="bg-white rounded-2xl border border-gray-200 shadow-md p-6 flex flex-col">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-lg font-semibold text-gray-900">{t.dashboard.resultTitle}</h2>
           {result && (
@@ -187,8 +187,8 @@ export function EmailGenerator() {
         {loading && (
           <div className="flex-1 flex items-center justify-center">
             <div className="text-center space-y-4">
-              <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-violet-100 animate-pulse">
-                <Sparkles className="h-8 w-8 text-violet-600" />
+              <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-orange-100 animate-pulse">
+                <Sparkles className="h-8 w-8 text-orange-500" />
               </div>
               <p className="text-gray-600 font-medium">{t.dashboard.craftingTitle}</p>
               <p className="text-sm text-gray-400">{t.dashboard.craftingSubtitle}</p>
@@ -210,8 +210,8 @@ export function EmailGenerator() {
 
         {!loading && result && (
           <div className="flex-1 space-y-4">
-            <div className="rounded-lg bg-violet-50 border border-violet-100 px-4 py-3">
-              <div className="text-xs font-medium text-violet-500 uppercase tracking-wide mb-1">{t.dashboard.subject}</div>
+            <div className="rounded-lg bg-orange-50 border border-orange-100 px-4 py-3">
+              <div className="text-xs font-medium text-orange-500 uppercase tracking-wide mb-1">{t.dashboard.subject}</div>
               <div className="text-sm font-semibold text-gray-900">{result.subject}</div>
             </div>
             <div className="rounded-lg bg-gray-50 border border-gray-100 px-4 py-4">
