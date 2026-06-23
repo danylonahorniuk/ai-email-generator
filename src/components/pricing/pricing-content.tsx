@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { CheckCircle2, Zap } from 'lucide-react'
 import { CheckoutModal } from './checkout-modal'
+import { ContactModal } from '@/components/landing/contact-modal'
 
 const PLANS = [
   {
@@ -65,6 +66,7 @@ interface Props {
 export function PricingContent({ user }: Props) {
   const { t, locale } = useLanguage()
   const [checkoutPlan, setCheckoutPlan] = useState<null | { name: string; price: string; period: string; features: string[] }>(null)
+  const [contactOpen, setContactOpen] = useState(false)
 
   function handleUpgrade(plan: typeof PLANS[0]) {
     if (!user) return
@@ -149,9 +151,9 @@ export function PricingContent({ user }: Props) {
           <p className="text-gray-500">{t.pricing.guaranteeText}</p>
           <p className="mt-6 text-sm text-gray-500">
             {t.pricing.contact}{' '}
-            <a href="mailto:support@mailmindai.com" className="text-orange-600 hover:text-orange-700 hover:underline">
+            <button onClick={() => setContactOpen(true)} className="text-orange-600 hover:text-orange-700 hover:underline transition-colors">
               {t.pricing.contactLink}
-            </a>
+            </button>
           </p>
         </div>
       </section>
@@ -161,6 +163,7 @@ export function PricingContent({ user }: Props) {
         onClose={() => setCheckoutPlan(null)}
         plan={checkoutPlan}
       />
+      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
     </main>
   )
 }
