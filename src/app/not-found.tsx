@@ -21,14 +21,6 @@ export default function NotFound() {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center max-w-md">
 
-        {/* Logo */}
-        <Link href="/" className="inline-flex items-center gap-2.5 font-bold text-xl text-gray-900 mb-12">
-          <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-orange-500 bg-white overflow-hidden flex-none shadow-sm">
-            <Image src="/logo.png" alt="QuillAI" width={64} height={64} className="scale-150 object-contain" />
-          </div>
-          <span className="tracking-tight">Quill<span className="text-orange-600">AI</span></span>
-        </Link>
-
         <h1 className="text-4xl font-bold text-gray-900 mb-4 leading-tight">
           Схоже, ця сторінка<br />
           <span className="text-orange-500">загубилась десь у листах</span>
