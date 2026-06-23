@@ -80,22 +80,22 @@ export function PricingContent({ user }: Props) {
 
   return (
     <main className="flex-1">
-      <section className="bg-gray-100 border-b border-gray-200 py-20">
+      <section className="bg-gray-100 border-b border-gray-200 py-12 lg:py-20">
         <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">{t.pricing.title}</h1>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto">{t.pricing.subtitle}</p>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">{t.pricing.title}</h1>
+          <p className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto">{t.pricing.subtitle}</p>
         </div>
       </section>
 
-      <section className="py-20 bg-white">
+      <section className="py-12 lg:py-20 bg-white">
         <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-start">
             {PLANS.map(plan => (
               <div
                 key={plan.key}
-                className={`rounded-2xl border p-8 relative ${
+                className={`rounded-2xl border p-6 lg:p-8 relative ${
                   plan.highlighted
-                    ? 'border-orange-400 shadow-xl ring-2 ring-orange-400 bg-white -translate-y-4'
+                    ? 'border-orange-400 shadow-xl ring-2 ring-orange-400 bg-white md:-translate-y-4'
                     : 'border-gray-200 bg-white shadow-md'
                 }`}
               >
@@ -145,9 +145,9 @@ export function PricingContent({ user }: Props) {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-100 border-t border-gray-200">
+      <section className="py-10 lg:py-16 bg-gray-100 border-t border-gray-200">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">{t.pricing.guarantee}</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">{t.pricing.guarantee}</h2>
           <p className="text-gray-500">{t.pricing.guaranteeText}</p>
           <p className="mt-6 text-sm text-gray-500">
             {t.pricing.contact}{' '}
