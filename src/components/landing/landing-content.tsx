@@ -307,27 +307,27 @@ export function LandingContent({ user }: LandingContentProps) {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section className="py-24 bg-white border-t border-gray-100">
+      <section className="py-24 bg-gray-900 border-t border-gray-800">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">{t.testimonials.title}</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">{t.testimonials.title}</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {testimonials.map(tm => (
-              <div key={tm.name} className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+              <div key={tm.name} className="rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition-colors duration-200">
                 <div className="flex gap-0.5 mb-4">
                   {Array.from({ length: tm.rating }).map((_, i) => (
                     <Star key={i} className="h-4 w-4 fill-orange-400 text-orange-400" />
                   ))}
                 </div>
-                <p className="text-gray-700 leading-relaxed mb-5 text-sm">&ldquo;{tm.text}&rdquo;</p>
+                <p className="text-gray-300 leading-relaxed mb-5 text-sm">&ldquo;{tm.text}&rdquo;</p>
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-orange-100 text-sm font-semibold text-orange-700">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-orange-500/20 text-sm font-semibold text-orange-400">
                     {tm.name[0]}
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-900 text-sm">{tm.name}</div>
-                    <div className="text-xs text-gray-400">{tm.role}</div>
+                    <div className="font-semibold text-white text-sm">{tm.name}</div>
+                    <div className="text-xs text-gray-500">{tm.role}</div>
                   </div>
                 </div>
               </div>
