@@ -84,13 +84,13 @@ export function LandingContent({ user }: LandingContentProps) {
 
             {/* Left */}
             <div>
-              <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-bold text-gray-900 leading-[1.12] mb-6">
+              <h1 className="text-3xl sm:text-5xl lg:text-[52px] font-bold text-gray-900 leading-[1.12] mb-4 lg:mb-6">
                 {t.hero.title}{' '}
                 <span className="text-orange-600">{t.hero.titleAccent}</span>
                 {t.hero.titleEnd ? <>{' '}{t.hero.titleEnd}</> : null}
               </h1>
 
-              <p className="text-lg text-gray-500 leading-relaxed mb-8 max-w-md">
+              <p className="text-base lg:text-lg text-gray-500 leading-relaxed mb-6 lg:mb-8 max-w-md">
                 {t.hero.subtitle}
               </p>
 
