@@ -408,59 +408,31 @@ export function LandingContent({ user }: LandingContentProps) {
         </div>
       </section>
 
-      {/* ── CTA (dark) ── */}
-      <section className="bg-gray-900 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-xs font-semibold text-orange-500 uppercase tracking-widest mb-4">
-                {t.cta.subtitle}
-              </p>
-              <h2 className="text-4xl font-bold text-white mb-6 leading-tight">
-                {t.cta.title.split(' ').slice(0, -2).join(' ')}{' '}
-                <span className="text-orange-500">{t.cta.title.split(' ').slice(-2).join(' ')}</span>
-              </h2>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link href={user ? '/dashboard' : '/signup'}>
-                  <Button size="lg" className="w-full sm:w-auto">
-                    {user ? t.cta.buttonDashboard : t.cta.button}
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
-                <Link href="/pricing">
-                  <Button variant="ghost" size="lg" className="w-full sm:w-auto text-gray-400 hover:text-white hover:bg-white/10">
-                    {t.cta.viewPlans}
-                  </Button>
-                </Link>
-              </div>
-              <p className="mt-4 text-sm text-gray-500">{t.hero.noCreditCard}</p>
+      {/* ── CTA ── */}
+      <section className="bg-white py-16 border-t border-gray-100">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl bg-gray-900 px-10 py-14 text-center shadow-2xl">
+            <p className="text-xs font-semibold text-orange-500 uppercase tracking-widest mb-4">
+              {t.cta.subtitle}
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 leading-tight">
+              {t.cta.title.split(' ').slice(0, -2).join(' ')}{' '}
+              <span className="text-orange-500">{t.cta.title.split(' ').slice(-2).join(' ')}</span>
+            </h2>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link href={user ? '/dashboard' : '/signup'}>
+                <Button size="lg">
+                  {user ? t.cta.buttonDashboard : t.cta.button}
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+              <Link href="/pricing">
+                <Button variant="ghost" size="lg" className="text-gray-400 hover:text-white hover:bg-white/10">
+                  {t.cta.viewPlans}
+                </Button>
+              </Link>
             </div>
-
-            {/* Dark mockup */}
-            <div className="hidden lg:block">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="flex gap-1.5">
-                    <div className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
-                    <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
-                    <div className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
-                  </div>
-                  <span className="text-xs text-gray-500 ml-1">MailMindAI</span>
-                </div>
-                <div className="space-y-2 mb-3">
-                  <div className="text-xs text-gray-400">Кому: ваш наступний клієнт</div>
-                  <div className="text-xs text-gray-400">Тема: Після нашої розмови</div>
-                </div>
-                <div className="rounded-lg bg-white/5 border border-white/10 p-3 text-xs text-gray-400 leading-relaxed min-h-[80px]">
-                  Починайте із вашої ідеї...
-                </div>
-                <div className="mt-3 flex justify-end">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-600">
-                    <ArrowRight className="h-4 w-4 text-white" />
-                  </div>
-                </div>
-              </div>
-            </div>
+            <p className="mt-5 text-sm text-gray-500">{t.hero.noCreditCard}</p>
           </div>
         </div>
       </section>
