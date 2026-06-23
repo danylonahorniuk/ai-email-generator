@@ -411,27 +411,28 @@ export function LandingContent({ user }: LandingContentProps) {
       {/* ── CTA ── */}
       <section className="bg-gray-100 py-16 border-t border-gray-200">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-gradient-to-br from-orange-500 to-orange-600 px-10 py-14 text-center shadow-md">
-            <p className="text-xs font-semibold text-orange-100 uppercase tracking-widest mb-4">
+          <div className="rounded-3xl bg-white border border-gray-200 px-10 py-14 text-center shadow-sm">
+            <p className="text-xs font-semibold text-orange-500 uppercase tracking-widest mb-4">
               {t.cta.subtitle}
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 leading-tight">
-              {t.cta.title}
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+              {t.cta.title.split(' ').slice(0, -2).join(' ')}{' '}
+              <span className="text-orange-500">{t.cta.title.split(' ').slice(-2).join(' ')}</span>
             </h2>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link href={user ? '/dashboard' : '/signup'}>
-                <Button size="lg" className="bg-white text-orange-600 hover:bg-orange-50 focus:ring-white shadow-sm">
+                <Button size="lg">
                   {user ? t.cta.buttonDashboard : t.cta.button}
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
               <Link href="/pricing">
-                <Button variant="ghost" size="lg" className="text-white hover:bg-white/15">
+                <Button variant="ghost" size="lg" className="text-gray-500 hover:text-gray-900">
                   {t.cta.viewPlans}
                 </Button>
               </Link>
             </div>
-            <p className="mt-5 text-sm text-orange-100">{t.hero.noCreditCard}</p>
+            <p className="mt-5 text-sm text-gray-400">{t.hero.noCreditCard}</p>
           </div>
         </div>
       </section>
