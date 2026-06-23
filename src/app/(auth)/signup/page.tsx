@@ -29,11 +29,17 @@ function SignupForm() {
     if (password.length < 6) { setError(t.auth.passwordShort); return }
     setLoading(true)
     const supabase = createClient()
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email, password,
       options: { emailRedirectTo: `${window.location.origin}${redirect}` },
     })
     if (error) { setError(error.message); setLoading(false); return }
+    if (data.session) {
+      // email confirmation вимкнено — юзер вже залогінений
+      router.push(redirect)
+      router.refresh()
+      return
+    }
     setSuccess(true)
     setLoading(false)
   }
