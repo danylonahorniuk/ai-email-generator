@@ -81,14 +81,14 @@ export function PricingContent({ user }: Props) {
   return (
     <main className="flex-1">
       <section className="bg-gray-100 border-b border-gray-200 py-20">
-        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 text-center">
+        <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">{t.pricing.title}</h1>
           <p className="text-lg text-gray-500 max-w-2xl mx-auto">{t.pricing.subtitle}</p>
         </div>
       </section>
 
       <section className="py-20 bg-white">
-        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
             {PLANS.map(plan => (
               <div
