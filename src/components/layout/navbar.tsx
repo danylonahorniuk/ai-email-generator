@@ -162,7 +162,7 @@ export function Navbar({ user }: NavbarProps) {
       />
 
       {/* Mobile sidebar panel */}
-      <div className={`fixed top-0 right-0 z-50 h-full w-72 md:hidden bg-gray-900 flex flex-col transition-transform duration-300 ease-in-out ${mobileOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={`fixed top-0 right-0 z-50 h-full w-72 md:hidden flex flex-col transition-transform duration-300 ease-in-out ${mobileOpen ? 'translate-x-0' : 'translate-x-full'}`} style={{ backgroundColor: '#111827' }}>
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-gray-800">
           <span className="font-bold text-white text-lg">Quill<span className="text-orange-500">AI</span></span>
