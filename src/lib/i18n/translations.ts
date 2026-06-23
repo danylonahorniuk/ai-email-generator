@@ -83,11 +83,17 @@ export const translations = {
       ],
     },
     cta: {
-      title: 'Готові писати розумніші листи?',
-      subtitle: 'Приєднуйтесь до тисяч професіоналів, які вже використовують MailMindAI.',
-      button: 'Почати безкоштовно',
+      title: 'Готові писати листи швидше?',
+      titleAccent: 'швидше?',
+      subtitle: 'Спробуйте MailMindAI та перетворюйте чернетки думок на готові листи за секунди.',
+      button: 'Спробувати безкоштовно',
       buttonDashboard: 'Перейти до дашборду',
       viewPlans: 'Переглянути плани',
+      stats: [
+        { value: '3 сек', label: 'Середній час генерації' },
+        { value: '3 мови', label: 'Пишіть для будь-якої аудиторії' },
+        { value: 'Редагування', label: 'Змінюйте тон і деталі' },
+      ],
     },
     footer: {
       rights: '© 2026 MailMindAI. Всі права захищені.',
@@ -254,11 +260,17 @@ export const translations = {
       ],
     },
     cta: {
-      title: 'Ready to write smarter emails?',
-      subtitle: 'Join thousands of professionals already using MailMindAI.',
-      button: 'Get started free',
+      title: 'Ready to write emails faster?',
+      titleAccent: 'faster?',
+      subtitle: 'Try MailMindAI and turn rough ideas into ready-to-send emails in seconds.',
+      button: 'Try for free',
       buttonDashboard: 'Go to Dashboard',
       viewPlans: 'View plans',
+      stats: [
+        { value: '3 sec', label: 'Average generation time' },
+        { value: '3 languages', label: 'Write for any audience' },
+        { value: 'Editing', label: 'Adjust tone and details' },
+      ],
     },
     footer: {
       rights: '© 2026 MailMindAI. All rights reserved.',
@@ -425,11 +437,17 @@ export const translations = {
       ],
     },
     cta: {
-      title: 'Готовы писать умнее?',
-      subtitle: 'Присоединяйтесь к тысячам профессионалов, уже использующих MailMindAI.',
-      button: 'Начать бесплатно',
+      title: 'Готовы писать письма быстрее?',
+      titleAccent: 'быстрее?',
+      subtitle: 'Попробуйте MailMindAI и превращайте черновики мыслей в готовые письма за секунды.',
+      button: 'Попробовать бесплатно',
       buttonDashboard: 'Перейти в дашборд',
       viewPlans: 'Посмотреть планы',
+      stats: [
+        { value: '3 сек', label: 'Среднее время генерации' },
+        { value: '3 языка', label: 'Пишите для любой аудитории' },
+        { value: 'Редактирование', label: 'Меняйте тон и детали' },
+      ],
     },
     footer: {
       rights: '© 2026 MailMindAI. Все права защищены.',
