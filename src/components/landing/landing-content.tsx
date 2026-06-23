@@ -106,44 +106,11 @@ export function LandingContent({ user }: LandingContentProps) {
                 </Link>
               </div>
 
-              <p className="text-sm text-gray-400 mb-10">{t.hero.noCreditCard}</p>
-
-              <div>
-                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-4">
-                  {t.hero.industriesLabel}
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  {(t.hero.industries as string[]).map((ind: string, i: number) => {
-                    const Icon = INDUSTRY_ICONS[i % INDUSTRY_ICONS.length]
-                    return (
-                      <div key={ind} className="flex items-center gap-2 text-sm text-gray-600">
-                        <Icon className="h-4 w-4 text-gray-400" />
-                        <span>{ind}</span>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
+              <p className="text-sm text-gray-400">{t.hero.noCreditCard}</p>
             </div>
 
             {/* Right — mockup */}
             <div className="relative hidden lg:flex items-start gap-4">
-
-              {/* Annotation top */}
-              <div className="absolute -top-8 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-10">
-                <span className="font-['Georgia',serif] italic text-orange-500 text-sm whitespace-nowrap">Почніть з чого-небудь</span>
-                <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="mt-0.5">
-                  <path d="M20 2 C10 8, 5 18, 12 26" stroke="#f97316" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-                  <path d="M12 26 L8 22 M12 26 L16 22" stroke="#f97316" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
-              </div>
-
-              {/* Stamp top-right */}
-              <div className="absolute -top-6 -right-2 z-10 rotate-6">
-                <div className="border-2 border-orange-400 rounded px-2 py-0.5">
-                  <span className="text-[9px] font-bold text-orange-500 uppercase tracking-widest">Подальший контакт</span>
-                </div>
-              </div>
 
               {/* Idea card */}
               <div className="rounded-2xl border border-gray-200 bg-white shadow-md p-5 flex-1">
@@ -179,12 +146,6 @@ export function LandingContent({ user }: LandingContentProps) {
 
               {/* Result card */}
               <div className="rounded-2xl border border-gray-200 bg-white shadow-md p-5 flex-1 relative">
-                {/* Stamp outside bottom-right of card */}
-                <div className="absolute -bottom-4 -right-6 -rotate-6 z-10">
-                  <div className="border-2 border-green-500 rounded px-2 py-0.5">
-                    <span className="text-[9px] font-bold text-green-600 uppercase tracking-widest">Відповідь клієнта</span>
-                  </div>
-                </div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-sm font-semibold text-gray-800">{t.hero.previewYourEmail}</span>
                   <span className="flex items-center gap-1.5 text-[11px] text-green-600 font-medium">
