@@ -60,11 +60,11 @@ export function Navbar({ user }: NavbarProps) {
         <div className="flex h-[72px] items-center justify-between">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 font-bold text-gray-900">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-orange-500 bg-white overflow-hidden flex-none">
+          <Link href="/" className="flex items-center gap-2 lg:gap-2.5 font-bold text-gray-900">
+            <div className="flex h-10 w-10 lg:h-14 lg:w-14 items-center justify-center rounded-full border-2 border-orange-500 bg-white overflow-hidden flex-none">
               <Image src="/logo.png" alt="Quill" width={64} height={64} className="scale-150 object-contain" />
             </div>
-            <span className="text-xl tracking-tight">Quill<span className="text-orange-600">AI</span></span>
+            <span className="text-lg lg:text-xl tracking-tight">Quill<span className="text-orange-600">AI</span></span>
           </Link>
 
           {/* Nav links */}

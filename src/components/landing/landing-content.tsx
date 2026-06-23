@@ -388,22 +388,21 @@ export function LandingContent({ user }: LandingContentProps) {
 
       {/* ── FOOTER ── */}
       <footer className="bg-gray-950 text-gray-400">
-        <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8 py-14">
-          <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-10">
+        <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
 
-            {/* Brand col */}
-            <div>
-              <div className="flex items-center gap-2.5 font-bold text-white mb-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-orange-500 bg-white overflow-hidden flex-none">
-                  <Image src="/logo.png" alt="Quill" width={64} height={64} className="scale-150 object-contain" />
-                </div>
-                <span className="text-xl tracking-tight">Quill<span className="text-orange-500">AI</span></span>
-              </div>
-              <p className="text-sm leading-relaxed max-w-xs">
-                {t.hero.subtitle}
-              </p>
+          {/* Brand row — full width on mobile */}
+          <div className="flex items-center gap-2.5 font-bold text-white mb-4">
+            <div className="flex h-10 w-10 lg:h-14 lg:w-14 items-center justify-center rounded-full border-2 border-orange-500 bg-white overflow-hidden flex-none">
+              <Image src="/logo.png" alt="Quill" width={64} height={64} className="scale-150 object-contain" />
             </div>
+            <span className="text-lg lg:text-xl tracking-tight">Quill<span className="text-orange-500">AI</span></span>
+          </div>
+          <p className="text-sm leading-relaxed max-w-xs mb-8 lg:mb-10">
+            {t.hero.subtitle}
+          </p>
 
+          {/* Links — 2 cols on mobile, keeps shape on desktop */}
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-8">
             {/* Product col */}
             <div>
               <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Продукт</p>
@@ -429,7 +428,7 @@ export function LandingContent({ user }: LandingContentProps) {
 
         {/* Bottom bar */}
         <div className="border-t border-gray-800">
-          <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8 py-4 lg:py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
             <p className="text-xs">{t.footer.rights}</p>
             <p className="text-xs">Made with ♥ in Ukraine</p>
           </div>
