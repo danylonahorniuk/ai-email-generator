@@ -175,20 +175,24 @@ export function LandingContent({ user }: LandingContentProps) {
 
 
       {/* ── HOW IT WORKS ── */}
-      <section id="how-it-works" className="py-24 bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section id="how-it-works" className="py-24 bg-gray-900 relative overflow-hidden">
+        {/* Decorative blobs */}
+        <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-orange-600/10 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-orange-600/10 blur-3xl pointer-events-none" />
+
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">{t.howItWorks.title}</h2>
-            <p className="mt-3 text-lg text-gray-500">{t.howItWorks.subtitle}</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">{t.howItWorks.title}</h2>
+            <p className="mt-3 text-lg text-gray-400">{t.howItWorks.subtitle}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {(t.howItWorks.steps as { number: string; title: string; desc: string }[]).map((step) => (
-              <div key={step.number} className="relative">
-                <div className="text-6xl font-bold text-orange-100 leading-none mb-4 select-none">
+              <div key={step.number} className="relative rounded-2xl border border-white/10 bg-white/5 p-8 hover:bg-white/10 transition-colors duration-200">
+                <div className="text-5xl font-bold text-orange-500/30 leading-none mb-4 select-none">
                   {step.number}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h3>
-                <p className="text-gray-500 leading-relaxed">{step.desc}</p>
+                <h3 className="text-xl font-semibold text-white mb-2">{step.title}</h3>
+                <p className="text-gray-400 leading-relaxed">{step.desc}</p>
               </div>
             ))}
           </div>
