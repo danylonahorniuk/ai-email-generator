@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { ArrowRight, Star, ChevronDown, Zap, Shield, Globe, Clock, Sparkles, Users, ShoppingBag, Heart, Headphones, UserCheck, Copy, RefreshCw, Wand2, Scissors, TrendingUp, Send, CheckCircle2 } from 'lucide-react'
+import { ContactModal } from './contact-modal'
 
 const FEATURE_ICONS = [Zap, Sparkles, Globe, Shield, Clock, Users]
 const INDUSTRY_ICONS = [ShoppingBag, Heart, Headphones, UserCheck]
@@ -69,9 +70,11 @@ interface LandingContentProps {
 
 export function LandingContent({ user }: LandingContentProps) {
   const { t } = useLanguage()
+  const [contactOpen, setContactOpen] = useState(false)
 
   return (
     <>
+      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
       {/* ── HERO ── */}
       <section className="bg-white pt-14 pb-20 overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -390,7 +393,9 @@ export function LandingContent({ user }: LandingContentProps) {
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">{t.faq.title}</h2>
               <p className="text-gray-500 leading-relaxed mb-8">{(t.faq as any).subtitle}</p>
-              <CopyEmail email="danyakenobi@gmail.com" />
+              <Button size="md" onClick={() => setContactOpen(true)}>
+                Написати нам <ArrowRight className="h-4 w-4" />
+              </Button>
             </div>
 
             {/* Right */}
