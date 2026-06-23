@@ -176,14 +176,9 @@ export function LandingContent({ user }: LandingContentProps) {
                       )}
                       {i === 1 && (
                         <div className="flex flex-wrap gap-2">
-                          {[
-                            { icon: '🙂', label: 'Дружній' },
-                            { icon: '🌐', label: 'Українська' },
-                            { icon: '≡', label: 'Короткий' },
-                          ].map(opt => (
-                            <div key={opt.label} className="flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 shadow-sm">
-                              <span>{opt.icon}</span>
-                              <span>{opt.label}</span>
+                          {['Дружній', 'Українська', 'Короткий'].map(label => (
+                            <div key={label} className="flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 shadow-sm">
+                              <span>{label}</span>
                               <ChevronDown className="h-3.5 w-3.5 text-gray-400 ml-0.5" />
                             </div>
                           ))}
