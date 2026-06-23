@@ -154,49 +154,71 @@ export function Navbar({ user }: NavbarProps) {
         </div>
       </div>
 
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="md:hidden border-t border-gray-100 bg-white px-4 py-4 flex flex-col gap-3">
+      {/* Mobile sidebar overlay */}
+      <div
+        className={`fixed inset-0 z-40 md:hidden transition-opacity duration-300 ${mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        onClick={() => setMobileOpen(false)}
+        style={{ background: 'rgba(0,0,0,0.45)' }}
+      />
+
+      {/* Mobile sidebar panel */}
+      <div className={`fixed top-0 right-0 z-50 h-full w-72 md:hidden bg-gray-950 flex flex-col transition-transform duration-300 ease-in-out ${mobileOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 py-5 border-b border-gray-800">
+          <span className="font-bold text-white text-lg">Quill<span className="text-orange-500">AI</span></span>
+          <button onClick={() => setMobileOpen(false)} className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors">
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        {/* Nav links */}
+        <nav className="flex flex-col px-4 py-4 gap-1">
           {navLinks.map(link => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-gray-700 hover:text-orange-600 py-1"
+              className="text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg px-3 py-2.5 transition-colors"
               onClick={() => setMobileOpen(false)}
             >
               {link.label}
             </Link>
           ))}
-          <div className="border-t border-gray-100 pt-3 flex flex-col gap-2">
-            <LanguageSwitcher />
-            {user ? (
-              <>
-                <div className="flex items-center gap-2 py-1">
-                  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-orange-600 text-xs font-semibold text-white">
-                    {initials}
-                  </div>
-                  <span className="text-sm text-gray-600 truncate">{user.email}</span>
+        </nav>
+
+        {/* Divider */}
+        <div className="mx-4 border-t border-gray-800" />
+
+        {/* Account + language */}
+        <div className="flex flex-col px-4 py-4 gap-3">
+          <div className="px-3"><LanguageSwitcher /></div>
+
+          {user ? (
+            <>
+              <div className="flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-900">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-orange-600 text-xs font-semibold text-white flex-none">
+                  {initials}
                 </div>
-                <Link href="/profile" onClick={() => setMobileOpen(false)}>
-                  <Button variant="outline" size="sm" className="w-full">{t.nav.profile}</Button>
-                </Link>
-                <Button variant="ghost" size="sm" onClick={handleSignOut} className="w-full text-red-600 hover:bg-red-50 hover:text-red-700">
-                  {t.nav.signOut}
-                </Button>
-              </>
-            ) : (
-              <>
-                <Link href="/login" onClick={() => setMobileOpen(false)}>
-                  <Button variant="outline" size="sm" className="w-full">{t.nav.signIn}</Button>
-                </Link>
-                <Link href="/signup" onClick={() => setMobileOpen(false)}>
-                  <Button size="sm" className="w-full">{t.nav.getStarted}</Button>
-                </Link>
-              </>
-            )}
-          </div>
+                <span className="text-sm text-gray-300 truncate">{user.email}</span>
+              </div>
+              <Link href="/profile" onClick={() => setMobileOpen(false)}>
+                <Button variant="outline" size="sm" className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white">{t.nav.profile}</Button>
+              </Link>
+              <button onClick={() => { setMobileOpen(false); handleSignOut() }} className="flex items-center gap-2 px-3 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-gray-800 rounded-lg transition-colors">
+                <LogOut className="h-4 w-4" /> {t.nav.signOut}
+              </button>
+            </>
+          ) : (
+            <div className="flex flex-col gap-2">
+              <Link href="/login" onClick={() => setMobileOpen(false)}>
+                <Button variant="outline" size="sm" className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white">{t.nav.signIn}</Button>
+              </Link>
+              <Link href="/signup" onClick={() => setMobileOpen(false)}>
+                <Button size="sm">{t.nav.getStarted}</Button>
+              </Link>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </header>
   )
 }
