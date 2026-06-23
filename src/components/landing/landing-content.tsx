@@ -206,37 +206,36 @@ export function LandingContent({ user }: LandingContentProps) {
       </section>
 
       {/* ── FEATURES ── */}
-      <section id="features" className="py-24 bg-gray-100 border-t border-gray-200">
+      <section id="features" className="py-16 lg:py-24 bg-gray-100 border-t border-gray-200">
         <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">{t.features.title}</h2>
-            <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">{t.features.subtitle}</p>
+          <div className="text-center mb-8 lg:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">{t.features.title}</h2>
+            <p className="mt-3 text-base lg:text-lg text-gray-500 max-w-2xl mx-auto">{t.features.subtitle}</p>
           </div>
 
           {/* Bento grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:auto-rows-[minmax(160px,auto)]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4 lg:auto-rows-[minmax(160px,auto)]">
             {(t.features.items as { title: string; description: string }[]).map((feature, i) => {
               const Icon = FEATURE_ICONS[i]
-              // wide: 0, 3, 5 → col-span-2; narrow: 1, 2, 4 → col-span-1
               const wide = i === 0 || i === 3 || i === 5
               const featured = i === 0
               return (
                 <div
                   key={feature.title}
                   className={[
-                    'rounded-2xl border p-6 lg:p-7 flex flex-col justify-between transition-all duration-200 hover:shadow-md',
+                    'rounded-2xl border p-5 lg:p-7 flex flex-col gap-3 transition-all duration-200 hover:shadow-md',
                     wide ? 'lg:col-span-2' : 'lg:col-span-1',
                     featured
                       ? 'bg-orange-50 border-orange-200 hover:border-orange-300'
                       : 'bg-white border-gray-200 hover:border-orange-200',
                   ].join(' ')}
                 >
-                  <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-orange-100">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-orange-100 flex-none">
                     <Icon className="h-5 w-5 text-orange-600" />
                   </div>
                   <div>
-                    <h3 className="text-base font-semibold mb-1.5 text-gray-900">{feature.title}</h3>
-                    <p className="text-sm leading-relaxed text-gray-500">{feature.description}</p>
+                    <h3 className="text-sm lg:text-base font-semibold mb-1 text-gray-900">{feature.title}</h3>
+                    <p className="text-xs lg:text-sm leading-relaxed text-gray-500">{feature.description}</p>
                   </div>
                 </div>
               )
