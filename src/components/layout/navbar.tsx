@@ -157,74 +157,81 @@ export function Navbar({ user }: NavbarProps) {
 
     </header>
 
-    {/* Mobile sidebar — outside header to avoid backdrop-blur stacking context issue */}
-    {mobileOpen && (
-        <div className="fixed inset-0 z-50 md:hidden flex justify-end">
-          {/* Backdrop */}
-          <div
-            className="absolute inset-0"
-            style={{ background: 'rgba(0,0,0,0.4)' }}
-            onClick={() => setMobileOpen(false)}
-          />
-          {/* Panel */}
-          <div className="relative z-10 w-72 h-full bg-white flex flex-col shadow-2xl">
-            {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
-              <span className="font-bold text-gray-900 text-lg">Quill<span className="text-orange-600">AI</span></span>
-              <button onClick={() => setMobileOpen(false)} className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-
-            {/* Nav links */}
-            <nav className="flex flex-col px-3 py-3 gap-0.5">
-              {navLinks.map(link => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm font-medium text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 py-2.5 transition-colors"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-
-            <div className="mx-4 border-t border-gray-100" />
-
-            {/* Account + language */}
-            <div className="flex flex-col px-4 py-4 gap-3">
-              <LanguageSwitcher />
-
-              {user ? (
-                <>
-                  <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-100">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-orange-600 text-xs font-semibold text-white flex-none">
-                      {initials}
-                    </div>
-                    <span className="text-sm text-gray-600 truncate">{user.email}</span>
-                  </div>
-                  <Link href="/profile" onClick={() => setMobileOpen(false)}>
-                    <Button variant="outline" size="sm">{t.nav.profile}</Button>
-                  </Link>
-                  <button onClick={() => { setMobileOpen(false); handleSignOut() }} className="flex items-center gap-2 px-3 py-2 text-sm text-red-500 hover:bg-red-50 rounded-lg transition-colors">
-                    <LogOut className="h-4 w-4" /> {t.nav.signOut}
-                  </button>
-                </>
-              ) : (
-                <div className="flex flex-col gap-2">
-                  <Link href="/login" onClick={() => setMobileOpen(false)}>
-                    <Button variant="outline" size="sm">{t.nav.signIn}</Button>
-                  </Link>
-                  <Link href="/signup" onClick={() => setMobileOpen(false)}>
-                    <Button size="sm">{t.nav.getStarted}</Button>
-                  </Link>
-                </div>
-              )}
-            </div>
-          </div>
+    {/* Mobile sidebar — always rendered, animated via CSS */}
+    <div
+      className="fixed inset-0 z-50 md:hidden flex justify-end"
+      style={{
+        pointerEvents: mobileOpen ? 'auto' : 'none',
+        transition: 'background 280ms ease',
+        background: mobileOpen ? 'rgba(0,0,0,0.4)' : 'rgba(0,0,0,0)',
+      }}
+      onClick={() => setMobileOpen(false)}
+    >
+      {/* Panel */}
+      <div
+        className="relative w-72 h-full bg-white flex flex-col shadow-2xl"
+        style={{
+          transform: mobileOpen ? 'translateX(0)' : 'translateX(100%)',
+          transition: 'transform 300ms ease-in-out',
+        }}
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+          <span className="font-bold text-gray-900 text-lg">Quill<span className="text-orange-600">AI</span></span>
+          <button onClick={() => setMobileOpen(false)} className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
+            <X className="h-5 w-5" />
+          </button>
         </div>
-      )}
+
+        {/* Nav links */}
+        <nav className="flex flex-col px-3 py-3 gap-0.5">
+          {navLinks.map(link => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg px-3 py-2.5 transition-colors"
+              onClick={() => setMobileOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="mx-4 border-t border-gray-100" />
+
+        {/* Account + language */}
+        <div className="flex flex-col px-4 py-4 gap-3">
+          <div className="self-start"><LanguageSwitcher /></div>
+
+          {user ? (
+            <>
+              <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-100">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-orange-600 text-xs font-semibold text-white flex-none">
+                  {initials}
+                </div>
+                <span className="text-sm text-gray-600 truncate">{user.email}</span>
+              </div>
+              <Link href="/profile" onClick={() => setMobileOpen(false)} className="self-start">
+                <Button variant="outline" size="sm">{t.nav.profile}</Button>
+              </Link>
+              <button onClick={() => { setMobileOpen(false); handleSignOut() }} className="self-start flex items-center gap-2 px-3 py-2 text-sm text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                <LogOut className="h-4 w-4" /> {t.nav.signOut}
+              </button>
+            </>
+          ) : (
+            <div className="flex flex-col gap-2 items-start">
+              <Link href="/login" onClick={() => setMobileOpen(false)}>
+                <Button variant="outline" size="sm">{t.nav.signIn}</Button>
+              </Link>
+              <Link href="/signup" onClick={() => setMobileOpen(false)}>
+                <Button size="sm">{t.nav.getStarted}</Button>
+              </Link>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
     </>
   )
 }
