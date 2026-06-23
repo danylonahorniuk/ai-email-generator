@@ -444,7 +444,7 @@ export function LandingContent({ user }: LandingContentProps) {
               </div>
 
               {/* Right — email mockup */}
-              <div className="hidden lg:flex items-center px-6 py-6 bg-orange-50/40 border-l border-orange-100">
+              <div className="hidden lg:flex items-center px-6 py-6 bg-white border-l border-orange-100">
                 <div className="w-full rounded-xl bg-white border border-gray-200 shadow-sm p-4">
                   <div className="flex justify-end mb-2">
                     <span className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700">
