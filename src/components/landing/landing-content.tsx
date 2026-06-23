@@ -276,14 +276,14 @@ export function LandingContent({ user }: LandingContentProps) {
       </section>
 
       {/* ── FAQ ── */}
-      <section id="faq" className="py-24 bg-white border-t border-gray-100">
+      <section id="faq" className="py-16 lg:py-24 bg-white border-t border-gray-100">
         <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8 lg:gap-16">
 
             {/* Left */}
             <div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">{t.faq.title}</h2>
-              <p className="text-gray-500 leading-relaxed mb-8">{(t.faq as any).subtitle}</p>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 lg:mb-4">{t.faq.title}</h2>
+              <p className="text-sm lg:text-base text-gray-500 leading-relaxed mb-6 lg:mb-8">{(t.faq as any).subtitle}</p>
               <Button size="md" onClick={() => setContactOpen(true)}>
                 Написати нам <ArrowRight className="h-4 w-4" />
               </Button>
