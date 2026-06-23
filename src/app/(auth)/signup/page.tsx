@@ -50,13 +50,13 @@ function SignupForm() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-gray-50 flex items-center justify-center p-4">
         <div className="w-full max-w-md text-center">
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-10">
+          <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 sm:p-10">
             <div className="flex justify-center mb-4">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
                 <CheckCircle2 className="h-8 w-8 text-green-600" />
               </div>
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">{t.auth.checkEmail}</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">{t.auth.checkEmail}</h2>
             <p className="text-gray-600 mb-6">{t.auth.confirmSent} <strong>{email}</strong>. {t.auth.confirmClick}</p>
             <Link href={`/login${redirect !== '/dashboard' ? `?redirect=${redirect}` : ''}`}>
               <Button variant="outline" className="w-full">{t.auth.backToSignIn}</Button>
@@ -70,17 +70,17 @@ function SignupForm() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-gray-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2.5 font-bold text-xl text-gray-900 mb-6">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-orange-500 bg-white overflow-hidden flex-none">
+        <div className="text-center mb-6 sm:mb-8">
+          <Link href="/" className="inline-flex items-center gap-2.5 font-bold text-xl text-gray-900 mb-4 sm:mb-6">
+            <div className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full border-2 border-orange-500 bg-white overflow-hidden flex-none">
               <Image src="/logo.png" alt="QuillAI" width={64} height={64} className="scale-150 object-contain" />
             </div>
             <span className="text-xl tracking-tight">Quill<span className="text-orange-600">AI</span></span>
           </Link>
-          <h1 className="text-2xl font-bold text-gray-900">{t.auth.createAccount}</h1>
-          <p className="mt-2 text-gray-600">{t.auth.startFree}</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t.auth.createAccount}</h1>
+          <p className="mt-2 text-sm sm:text-base text-gray-600">{t.auth.startFree}</p>
         </div>
-        <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-8">
+        <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-6 sm:p-8">
           <form onSubmit={handleSubmit} className="space-y-5">
             <Input label={t.auth.email} type="email" placeholder="you@example.com" value={email} onChange={e => setEmail(e.target.value)} required />
             <Input label={t.auth.password} type="password" placeholder={t.auth.passwordMin} value={password} onChange={e => setPassword(e.target.value)} required />
