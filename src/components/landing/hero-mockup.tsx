@@ -164,109 +164,119 @@ export function HeroMockup() {
   const isTypingEmail = phase === 'typing-email' || phase === 'erasing-email'
   const showEmailContent = phase === 'typing-email' || phase === 'reading' || (phase === 'erasing-email' && emailLen > 0)
 
-  return (
-    <div className="relative hidden lg:flex items-start gap-4">
+  const IdeaCard = ({ compact }: { compact?: boolean }) => (
+    <div className={`rounded-2xl border border-gray-200 bg-white shadow-md flex-1 ${compact ? 'p-4' : 'p-5'}`}>
+      <div className="flex items-center justify-between mb-3">
+        <span className="text-sm font-semibold text-gray-800">{t.hero.previewYourIdea}</span>
+        <span className="text-[11px] text-gray-400">{ideaLen}/300</span>
+      </div>
+      <div className={`rounded-xl bg-gray-50 border border-gray-100 p-3 text-[13px] text-gray-500 leading-relaxed mb-3 ${compact ? 'min-h-[72px]' : 'min-h-[96px]'}`}>
+        {ideaText || <span className="text-gray-300">Опишіть ситуацію...</span>}
+        {isTypingIdea && <span className="animate-pulse text-orange-500 font-light">|</span>}
+      </div>
+      {[
+        [t.hero.previewTone, sc.tone],
+        ['Мова', sc.lang],
+        ['Довжина', sc.length],
+        [t.hero.previewPurpose, sc.purpose],
+      ].map(([label, val]) => (
+        <div key={label} className="flex items-center justify-between py-1.5 border-b border-gray-100 last:border-0">
+          <span className="text-xs text-gray-400">{label}</span>
+          <span className="text-xs text-gray-700 font-medium flex items-center gap-1">
+            {val} <ChevronDown className="h-3 w-3" />
+          </span>
+        </div>
+      ))}
+      <button className={`mt-3 w-full rounded-xl text-white text-sm font-medium py-2.5 flex items-center justify-center gap-2 transition-all ${isGenerating ? 'bg-orange-400 cursor-wait' : 'bg-orange-600'}`}>
+        {isGenerating ? `Генерується${dots}` : t.hero.previewGenerateBtn}
+        {!isGenerating && <ArrowRight className="h-4 w-4" />}
+      </button>
+    </div>
+  )
 
-      {/* Idea card */}
-      <div className="rounded-2xl border border-gray-200 bg-white shadow-md p-5 flex-1">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-sm font-semibold text-gray-800">{t.hero.previewYourIdea}</span>
-          <span className="text-[11px] text-gray-400">{ideaLen}/300</span>
+  const ResultCard = ({ compact }: { compact?: boolean }) => (
+    <div className={`rounded-2xl border border-gray-200 bg-white shadow-md flex-1 relative ${compact ? 'p-4' : 'p-5'}`}>
+      <div className="flex items-center justify-between mb-3">
+        <span className="text-sm font-semibold text-gray-800">{t.hero.previewYourEmail}</span>
+        {showEmailContent ? (
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-[11px] font-medium text-green-700">
+            <CheckCircle2 className="h-3 w-3" /> Готово до відправки
+          </span>
+        ) : isGenerating ? (
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-orange-200 bg-orange-50 px-2.5 py-0.5 text-[11px] font-medium text-orange-600">
+            <span className="h-1.5 w-1.5 rounded-full bg-orange-400 animate-pulse inline-block" /> Генерується{dots}
+          </span>
+        ) : null}
+      </div>
+      {isGenerating ? (
+        <div className="space-y-2.5 mt-1">
+          <div className="h-2.5 w-1/2 rounded-full bg-gray-100 animate-pulse" />
+          <div className="h-2.5 w-full rounded-full bg-gray-100 animate-pulse" style={{ animationDelay: '0.1s' }} />
+          <div className="h-2.5 w-5/6 rounded-full bg-gray-100 animate-pulse" style={{ animationDelay: '0.2s' }} />
+          <div className="h-2.5 w-full rounded-full bg-gray-100 animate-pulse" style={{ animationDelay: '0.15s' }} />
+          <div className="h-2.5 w-3/4 rounded-full bg-gray-100 animate-pulse" style={{ animationDelay: '0.25s' }} />
         </div>
-        <div className="rounded-xl bg-gray-50 border border-gray-100 p-3.5 text-[13px] text-gray-500 leading-relaxed mb-4 min-h-[96px]">
-          {ideaText || <span className="text-gray-300">Опишіть ситуацію...</span>}
-          {isTypingIdea && <span className="animate-pulse text-orange-500 font-light">|</span>}
-        </div>
-        {[
-          [t.hero.previewTone, sc.tone],
-          ['Мова', sc.lang],
-          ['Довжина', sc.length],
-          [t.hero.previewPurpose, sc.purpose],
-        ].map(([label, val]) => (
-          <div key={label} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
-            <span className="text-xs text-gray-400">{label}</span>
-            <span className="text-xs text-gray-700 font-medium flex items-center gap-1">
-              {val} <ChevronDown className="h-3 w-3" />
-            </span>
+      ) : showEmailContent ? (
+        <>
+          <div className="text-xs font-semibold text-gray-800 mb-2">
+            {t.hero.previewSubject}: {sc.subject}
           </div>
-        ))}
-        <button className={`mt-4 w-full rounded-xl text-white text-sm font-medium py-2.5 flex items-center justify-center gap-2 transition-all ${isGenerating ? 'bg-orange-400 cursor-wait' : 'bg-orange-600'}`}>
-          {isGenerating ? `Генерується${dots}` : t.hero.previewGenerateBtn}
-          {!isGenerating && <ArrowRight className="h-4 w-4" />}
+          <div className="text-[13px] text-gray-500 leading-relaxed whitespace-pre-line">
+            {emailBodyText}
+            {isTypingEmail && <span className="animate-pulse text-orange-500 font-light">|</span>}
+          </div>
+        </>
+      ) : (
+        <div className="space-y-2.5 mt-1 opacity-15">
+          <div className="h-2.5 w-1/2 rounded-full bg-gray-300" />
+          <div className="h-2.5 w-full rounded-full bg-gray-300" />
+          <div className="h-2.5 w-5/6 rounded-full bg-gray-300" />
+          <div className="h-2.5 w-full rounded-full bg-gray-300" />
+          <div className="h-2.5 w-3/4 rounded-full bg-gray-300" />
+        </div>
+      )}
+      <div className="mt-4 grid grid-cols-2 gap-2">
+        <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
+          <Copy className="h-3.5 w-3.5" /> {t.hero.previewCopy}
+        </button>
+        <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
+          <RefreshCw className="h-3.5 w-3.5" /> {t.hero.previewRegen}
+        </button>
+        <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
+          <Wand2 className="h-3.5 w-3.5" /> Ввічливіше
+        </button>
+        <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
+          <Scissors className="h-3.5 w-3.5" /> Коротше
         </button>
       </div>
+    </div>
+  )
 
-      {/* Sparkle button between cards */}
-      <div className="flex-none self-center -mx-2 z-10">
-        <div className={`h-11 w-11 rounded-full bg-orange-500 shadow-lg flex items-center justify-center transition-all duration-300 ${isGenerating ? 'animate-pulse scale-110' : ''}`}>
-          <Sparkles className="h-5 w-5 text-white" />
-        </div>
+  const SparkleBtn = ({ vertical }: { vertical?: boolean }) => (
+    <div className={`flex-none z-10 ${vertical ? 'flex justify-center' : 'self-center -mx-2'}`}>
+      <div className={`h-10 w-10 rounded-full bg-orange-500 shadow-lg flex items-center justify-center transition-all duration-300 ${isGenerating ? 'animate-pulse scale-110' : ''}`}>
+        <Sparkles className="h-5 w-5 text-white" />
+      </div>
+    </div>
+  )
+
+  return (
+    <div className="relative">
+      {/* Mobile: stacked */}
+      <div className="flex flex-col gap-3 lg:hidden">
+        <IdeaCard compact />
+        <SparkleBtn vertical />
+        <ResultCard compact />
       </div>
 
-      {/* Result card */}
-      <div className="rounded-2xl border border-gray-200 bg-white shadow-md p-5 flex-1 relative">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-sm font-semibold text-gray-800">{t.hero.previewYourEmail}</span>
-          {showEmailContent ? (
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-[11px] font-medium text-green-700">
-              <CheckCircle2 className="h-3 w-3" /> Готово до відправки
-            </span>
-          ) : isGenerating ? (
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-orange-200 bg-orange-50 px-2.5 py-0.5 text-[11px] font-medium text-orange-600">
-              <span className="h-1.5 w-1.5 rounded-full bg-orange-400 animate-pulse inline-block" /> Генерується{dots}
-            </span>
-          ) : null}
-        </div>
-
-        {isGenerating ? (
-          <div className="space-y-2.5 mt-1">
-            <div className="h-2.5 w-1/2 rounded-full bg-gray-100 animate-pulse" />
-            <div className="h-2.5 w-full rounded-full bg-gray-100 animate-pulse" style={{ animationDelay: '0.1s' }} />
-            <div className="h-2.5 w-5/6 rounded-full bg-gray-100 animate-pulse" style={{ animationDelay: '0.2s' }} />
-            <div className="h-2.5 w-full rounded-full bg-gray-100 animate-pulse" style={{ animationDelay: '0.15s' }} />
-            <div className="h-2.5 w-3/4 rounded-full bg-gray-100 animate-pulse" style={{ animationDelay: '0.25s' }} />
-            <div className="h-2.5 w-2/3 rounded-full bg-gray-100 animate-pulse" style={{ animationDelay: '0.05s' }} />
-          </div>
-        ) : showEmailContent ? (
-          <>
-            <div className="text-xs font-semibold text-gray-800 mb-3">
-              {t.hero.previewSubject}: {sc.subject}
-            </div>
-            <div className="text-[13px] text-gray-500 leading-relaxed whitespace-pre-line">
-              {emailBodyText}
-              {isTypingEmail && <span className="animate-pulse text-orange-500 font-light">|</span>}
-            </div>
-          </>
-        ) : (
-          <div className="space-y-2.5 mt-1 opacity-15">
-            <div className="h-2.5 w-1/2 rounded-full bg-gray-300" />
-            <div className="h-2.5 w-full rounded-full bg-gray-300" />
-            <div className="h-2.5 w-5/6 rounded-full bg-gray-300" />
-            <div className="h-2.5 w-full rounded-full bg-gray-300" />
-            <div className="h-2.5 w-3/4 rounded-full bg-gray-300" />
-            <div className="h-2.5 w-2/3 rounded-full bg-gray-300" />
-          </div>
-        )}
-
-        <div className="mt-5 grid grid-cols-2 gap-2">
-          <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
-            <Copy className="h-3.5 w-3.5" /> {t.hero.previewCopy}
-          </button>
-          <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
-            <RefreshCw className="h-3.5 w-3.5" /> {t.hero.previewRegen}
-          </button>
-          <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
-            <Wand2 className="h-3.5 w-3.5" /> Ввічливіше
-          </button>
-          <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
-            <Scissors className="h-3.5 w-3.5" /> Коротше
-          </button>
-        </div>
+      {/* Desktop: side-by-side */}
+      <div className="hidden lg:flex items-start gap-4">
+        <IdeaCard />
+        <SparkleBtn />
+        <ResultCard />
+        <div className="absolute -top-4 -right-4 h-24 w-24 rounded-full bg-orange-100 -z-10" />
+        <div className="absolute -bottom-4 -left-4 h-16 w-16 rounded-full bg-orange-50 -z-10" />
       </div>
-
-      {/* Decorative accent */}
-      <div className="absolute -top-4 -right-4 h-24 w-24 rounded-full bg-orange-100 -z-10" />
-      <div className="absolute -bottom-4 -left-4 h-16 w-16 rounded-full bg-orange-50 -z-10" />
     </div>
   )
 }
