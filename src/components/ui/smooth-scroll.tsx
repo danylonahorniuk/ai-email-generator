@@ -30,6 +30,23 @@ export function SmoothScroll() {
       const anchor = (e.target as HTMLElement).closest('a')
       if (!anchor) return
       const href = anchor.getAttribute('href') ?? ''
+
+      // Лого — скрол на самий верх якщо вже на головній
+      if (href === '/' && window.location.pathname === '/') {
+        e.preventDefault()
+        const start = window.scrollY
+        let startTime: number | null = null
+        function toTop(now: number) {
+          if (!startTime) startTime = now
+          const elapsed = now - startTime
+          const progress = Math.min(elapsed / 1000, 1)
+          window.scrollTo(0, start * (1 - easeInOutQuart(progress)))
+          if (elapsed < 1000) requestAnimationFrame(toTop)
+        }
+        requestAnimationFrame(toTop)
+        return
+      }
+
       const hashIdx = href.indexOf('#')
       if (hashIdx === -1) return
       const id = href.slice(hashIdx + 1)
