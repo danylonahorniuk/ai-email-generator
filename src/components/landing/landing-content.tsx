@@ -13,6 +13,9 @@ const testimonials = [
   { name: 'Sarah K.', role: 'Sales Manager', text: 'I used to spend 30 minutes writing follow-up emails. Now it takes 30 seconds. Game changer.', rating: 5 },
   { name: 'Дмитро В.', role: 'Freelance Designer', text: 'Моя комунікація з клієнтами покращилась суттєво. Опції тону — саме те що треба.', rating: 5 },
   { name: 'Lisa M.', role: 'Startup Founder', text: 'MailMindAI handles investor outreach, team updates, and partner emails. Indispensable.', rating: 5 },
+  { name: 'Олена Ш.', role: 'HR Manager', text: 'Рекрутингові листи стали в рази ефективніші. Кандидати відповідають частіше, бо текст живий і природний.', rating: 5 },
+  { name: 'Marco R.', role: 'Account Executive', text: 'Cold outreach response rates went up 40% after switching to MailMindAI. The tone options are brilliant.', rating: 5 },
+  { name: 'Андрій К.', role: 'Product Manager', text: 'Нарешті інструмент який не пише як робот. Листи партнерам і інвесторам — тепер задоволення, а не мука.', rating: 5 },
 ]
 
 interface LandingContentProps {
