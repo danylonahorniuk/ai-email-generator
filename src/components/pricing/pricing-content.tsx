@@ -65,14 +65,14 @@ export function PricingContent({ user }: Props) {
 
   return (
     <main className="flex-1">
-      <section className="bg-gradient-to-br from-violet-50 via-white to-indigo-50 py-20">
+      <section className="bg-gray-100 border-b border-gray-200 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">{t.pricing.title}</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">{t.pricing.subtitle}</p>
+          <p className="text-lg text-gray-500 max-w-2xl mx-auto">{t.pricing.subtitle}</p>
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
             {PLANS.map(plan => (
@@ -80,13 +80,13 @@ export function PricingContent({ user }: Props) {
                 key={plan.key}
                 className={`rounded-2xl border p-8 relative ${
                   plan.highlighted
-                    ? 'border-violet-500 shadow-xl ring-2 ring-violet-500 bg-white'
-                    : 'border-gray-200 bg-white shadow-sm'
+                    ? 'border-orange-400 shadow-xl ring-2 ring-orange-400 bg-white'
+                    : 'border-gray-200 bg-white shadow-md'
                 }`}
               >
                 {plan.highlighted && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-600 px-4 py-1 text-xs font-semibold text-white">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-orange-500 px-4 py-1 text-xs font-semibold text-white">
                       <Zap className="h-3 w-3" /> {t.pricing.popular}
                     </span>
                   </div>
@@ -102,7 +102,7 @@ export function PricingContent({ user }: Props) {
                 <ul className="space-y-3 mb-8">
                   {plan.features[locale].map(f => (
                     <li key={f} className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-violet-500 flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="h-5 w-5 text-orange-500 flex-shrink-0 mt-0.5" />
                       <span className="text-sm text-gray-700">{f}</span>
                     </li>
                   ))}
@@ -118,13 +118,13 @@ export function PricingContent({ user }: Props) {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50 border-t border-gray-100">
+      <section className="py-16 bg-gray-100 border-t border-gray-200">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">{t.pricing.guarantee}</h2>
-          <p className="text-gray-600">{t.pricing.guaranteeText}</p>
+          <p className="text-gray-500">{t.pricing.guaranteeText}</p>
           <p className="mt-6 text-sm text-gray-500">
             {t.pricing.contact}{' '}
-            <a href="mailto:support@mailmindai.com" className="text-violet-600 hover:underline">
+            <a href="mailto:support@mailmindai.com" className="text-orange-600 hover:text-orange-700 hover:underline">
               {t.pricing.contactLink}
             </a>
           </p>
