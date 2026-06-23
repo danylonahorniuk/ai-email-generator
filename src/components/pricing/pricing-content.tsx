@@ -1,9 +1,11 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { CheckCircle2, Zap } from 'lucide-react'
+import { CheckoutModal } from './checkout-modal'
 
 const PLANS = [
   {
@@ -62,6 +64,17 @@ interface Props {
 
 export function PricingContent({ user }: Props) {
   const { t, locale } = useLanguage()
+  const [checkoutPlan, setCheckoutPlan] = useState<null | { name: string; price: string; period: string; features: string[] }>(null)
+
+  function handleUpgrade(plan: typeof PLANS[0]) {
+    if (!user) return
+    setCheckoutPlan({
+      name: plan.name,
+      price: plan.price,
+      period: plan.period[locale],
+      features: plan.features[locale],
+    })
+  }
 
   return (
     <main className="flex-1">
@@ -107,11 +120,23 @@ export function PricingContent({ user }: Props) {
                     </li>
                   ))}
                 </ul>
-                <Link href={user ? '/dashboard' : plan.href}>
-                  <Button className="w-full" size="lg" variant={plan.highlighted ? 'primary' : 'outline'}>
-                    {user && plan.key === 'free' ? t.pricing.currentPlan : CTA[plan.key as keyof typeof CTA][locale]}
+
+                {user && plan.key !== 'free' ? (
+                  <Button
+                    className="w-full"
+                    size="lg"
+                    variant={plan.highlighted ? 'primary' : 'outline'}
+                    onClick={() => handleUpgrade(plan)}
+                  >
+                    {CTA[plan.key as keyof typeof CTA][locale]}
                   </Button>
-                </Link>
+                ) : (
+                  <Link href={user ? '/dashboard' : plan.href}>
+                    <Button className="w-full" size="lg" variant={plan.highlighted ? 'primary' : 'outline'}>
+                      {user && plan.key === 'free' ? t.pricing.currentPlan : CTA[plan.key as keyof typeof CTA][locale]}
+                    </Button>
+                  </Link>
+                )}
               </div>
             ))}
           </div>
@@ -130,6 +155,12 @@ export function PricingContent({ user }: Props) {
           </p>
         </div>
       </section>
+
+      <CheckoutModal
+        open={!!checkoutPlan}
+        onClose={() => setCheckoutPlan(null)}
+        plan={checkoutPlan}
+      />
     </main>
   )
 }
