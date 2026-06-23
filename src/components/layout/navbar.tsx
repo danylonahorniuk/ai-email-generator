@@ -7,7 +7,8 @@ import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { LanguageSwitcher } from './language-switcher'
 import { useLanguage } from '@/lib/i18n/language-context'
-import { Mail, Menu, X, ChevronDown, User, LogOut, LayoutDashboard } from 'lucide-react'
+import { Menu, X, ChevronDown, User, LogOut, LayoutDashboard } from 'lucide-react'
+import Image from 'next/image'
 
 interface NavbarProps {
   user?: { email?: string | null } | null
@@ -56,14 +57,14 @@ export function Navbar({ user }: NavbarProps) {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur-md shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-[72px] items-center justify-between">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 font-bold text-gray-900">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-600">
-              <Mail className="h-4 w-4 text-white" />
+          <Link href="/" className="flex items-center gap-2.5 font-bold text-gray-900">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-orange-500 bg-white overflow-hidden flex-none">
+              <Image src="/logo.png" alt="Quill" width={64} height={64} className="scale-150 object-contain" />
             </div>
-            <span>MailMind<span className="text-orange-600">AI</span></span>
+            <span className="text-xl tracking-tight">Quill<span className="text-orange-600">AI</span></span>
           </Link>
 
           {/* Nav links */}

@@ -6,7 +6,8 @@ import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useLanguage } from '@/lib/i18n/language-context'
-import { Mail, CheckCircle2 } from 'lucide-react'
+import { CheckCircle2 } from 'lucide-react'
+import Image from 'next/image'
 
 export default function SignupPage() {
   const { t } = useLanguage()
@@ -57,10 +58,8 @@ export default function SignupPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 font-bold text-xl text-gray-900 mb-6">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-600">
-              <Mail className="h-5 w-5 text-white" />
-            </div>
-            MailMind<span className="text-orange-600">AI</span>
+            <Image src="/logo.png" alt="QuillAI" width={36} height={36} className="rounded-xl" />
+            Quill<span className="text-orange-600">AI</span>
           </Link>
           <h1 className="text-2xl font-bold text-gray-900">{t.auth.createAccount}</h1>
           <p className="mt-2 text-gray-600">{t.auth.startFree}</p>

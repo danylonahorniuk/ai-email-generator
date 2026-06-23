@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/lib/i18n/language-context'
 import { ArrowRight, Star, ChevronDown, Zap, Shield, Globe, Clock, Sparkles, Users, ShoppingBag, Heart, Headphones, UserCheck, Copy, RefreshCw, Wand2, Scissors, TrendingUp, Send, CheckCircle2 } from 'lucide-react'
 import { ContactModal } from './contact-modal'
+import Image from 'next/image'
 
 const FEATURE_ICONS = [Zap, Sparkles, Globe, Shield, Clock, Users]
 const INDUSTRY_ICONS = [ShoppingBag, Heart, Headphones, UserCheck]
@@ -13,9 +14,9 @@ const INDUSTRY_ICONS = [ShoppingBag, Heart, Headphones, UserCheck]
 const testimonials = [
   { name: 'Sarah K.', role: 'Sales Manager', text: 'I used to spend 30 minutes writing follow-up emails. Now it takes 30 seconds. Game changer.', rating: 5 },
   { name: 'Дмитро В.', role: 'Freelance Designer', text: 'Моя комунікація з клієнтами покращилась суттєво. Опції тону — саме те що треба.', rating: 5 },
-  { name: 'Lisa M.', role: 'Startup Founder', text: 'MailMindAI handles investor outreach, team updates, and partner emails. Indispensable.', rating: 5 },
+  { name: 'Lisa M.', role: 'Startup Founder', text: 'QuillAI handles investor outreach, team updates, and partner emails. Indispensable.', rating: 5 },
   { name: 'Олена Ш.', role: 'HR Manager', text: 'Рекрутингові листи стали в рази ефективніші. Кандидати відповідають частіше, бо текст живий і природний.', rating: 5 },
-  { name: 'Marco R.', role: 'Account Executive', text: 'Cold outreach response rates went up 40% after switching to MailMindAI. The tone options are brilliant.', rating: 5 },
+  { name: 'Marco R.', role: 'Account Executive', text: 'Cold outreach response rates went up 40% after switching to QuillAI. The tone options are brilliant.', rating: 5 },
   { name: 'Андрій К.', role: 'Product Manager', text: 'Нарешті інструмент який не пише як робот. Листи партнерам і інвесторам — тепер задоволення, а не мука.', rating: 5 },
 ]
 
@@ -381,7 +382,7 @@ export function LandingContent({ user }: LandingContentProps) {
                   <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-orange-600">
                     <Sparkles className="h-4 w-4 text-white" />
                   </div>
-                  <span className="font-bold text-gray-900">MailMind<span className="text-orange-600">AI</span></span>
+                  <span className="font-bold text-gray-900">Quill<span className="text-orange-600">AI</span></span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight mb-3">
                   {t.cta.title.split((t.cta as any).titleAccent)[0]}
@@ -419,7 +420,7 @@ export function LandingContent({ user }: LandingContentProps) {
                   <div className="text-[13px] text-gray-500 leading-relaxed mb-5">
                     Доброго дня, Олено!<br /><br />
                     Дякуємо за інтерес до нашого рішення. Воно допомагає командам економити час на рутинних листах.<br /><br />
-                    З повагою, Команда MailMindAI
+                    З повагою, Команда QuillAI
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
@@ -467,11 +468,11 @@ export function LandingContent({ user }: LandingContentProps) {
 
             {/* Brand col */}
             <div>
-              <div className="flex items-center gap-2 font-bold text-white mb-4">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-600">
-                  <Zap className="h-4 w-4 text-white" />
+              <div className="flex items-center gap-2.5 font-bold text-white mb-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-orange-500 bg-white overflow-hidden flex-none">
+                  <Image src="/logo.png" alt="Quill" width={64} height={64} className="scale-150 object-contain" />
                 </div>
-                MailMind<span className="text-orange-500">AI</span>
+                <span className="text-xl tracking-tight">Quill<span className="text-orange-500">AI</span></span>
               </div>
               <p className="text-sm leading-relaxed max-w-xs">
                 {t.hero.subtitle}

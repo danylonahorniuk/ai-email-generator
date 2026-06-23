@@ -11,7 +11,7 @@ export async function POST(req: Request) {
   }
 
   const { error } = await resend.emails.send({
-    from: 'MailMindAI Contact <onboarding@resend.dev>',
+    from: 'QuillAI Contact <onboarding@resend.dev>',
     to: 'danyakenobi@gmail.com',
     subject: `Нове повідомлення від ${name}`,
     text: `Від: ${name} <${email}>\n\n${message}`,
