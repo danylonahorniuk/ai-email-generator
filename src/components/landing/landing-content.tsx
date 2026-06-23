@@ -409,9 +409,9 @@ export function LandingContent({ user }: LandingContentProps) {
       </section>
 
       {/* ── CTA ── */}
-      <section className="bg-white py-16 border-t border-gray-100">
+      <section className="bg-gray-50 py-16 border-t border-gray-200">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-gray-900 px-10 py-14 text-center shadow-2xl">
+          <div className="rounded-3xl bg-gradient-to-br from-gray-800 to-gray-900 px-10 py-14 text-center shadow-lg ring-1 ring-white/5">
             <p className="text-xs font-semibold text-orange-500 uppercase tracking-widest mb-4">
               {t.cta.subtitle}
             </p>
