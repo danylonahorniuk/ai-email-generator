@@ -113,7 +113,7 @@ export function EmailGenerator() {
             rows={3}
             required
           />
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Select
               label={t.dashboard.tone}
               options={TONE_OPTIONS}
@@ -133,7 +133,7 @@ export function EmailGenerator() {
             value={form.language}
             onChange={e => updateField('language', e.target.value)}
           />
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Input
               label={t.dashboard.recipient}
               placeholder="Sarah Johnson"
@@ -166,10 +166,10 @@ export function EmailGenerator() {
 
       {/* Result */}
       <div className="bg-white rounded-2xl border border-gray-200 shadow-md p-6 flex flex-col">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
           <h2 className="text-lg font-semibold text-gray-900">{t.dashboard.resultTitle}</h2>
           {result && (
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <Button variant="ghost" size="sm" onClick={() => setResult(null)}>
                 <RotateCcw className="h-4 w-4" /> {t.dashboard.clear}
               </Button>
