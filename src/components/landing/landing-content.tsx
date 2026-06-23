@@ -7,6 +7,7 @@ import { useLanguage } from '@/lib/i18n/language-context'
 import { ArrowRight, Star, ChevronDown, Zap, Shield, Globe, Clock, Sparkles, Users, ShoppingBag, Heart, Headphones, UserCheck, Copy, RefreshCw, Wand2, Scissors, TrendingUp, Send, CheckCircle2 } from 'lucide-react'
 import { ContactModal } from './contact-modal'
 import Image from 'next/image'
+import { HeroMockup } from './hero-mockup'
 
 const FEATURE_ICONS = [Zap, Sparkles, Globe, Shield, Clock, Users]
 const INDUSTRY_ICONS = [ShoppingBag, Heart, Headphones, UserCheck]
@@ -110,78 +111,8 @@ export function LandingContent({ user }: LandingContentProps) {
               <p className="text-sm text-gray-400">{t.hero.noCreditCard}</p>
             </div>
 
-            {/* Right — mockup */}
-            <div className="relative hidden lg:flex items-start gap-4">
-
-              {/* Idea card */}
-              <div className="rounded-2xl border border-gray-200 bg-white shadow-md p-5 flex-1">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm font-semibold text-gray-800">{t.hero.previewYourIdea}</span>
-                  <span className="text-[11px] text-gray-400">109/300</span>
-                </div>
-                <div className="rounded-xl bg-gray-50 border border-gray-100 p-3.5 text-[13px] text-gray-500 leading-relaxed mb-4 min-h-[96px]">
-                  Написати follow-up потенційному клієнту після дзвінка. Згадати про пропозицію і запитати чи є питання.
-                </div>
-                {[
-                  [t.hero.previewTone, 'Професійний'],
-                  ['Мова', 'Українська'],
-                  ['Довжина', 'Короткий'],
-                  [t.hero.previewPurpose, 'Подальший контакт'],
-                ].map(([label, val]) => (
-                  <div key={label} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
-                    <span className="text-xs text-gray-400">{label}</span>
-                    <span className="text-xs text-gray-700 font-medium flex items-center gap-1">{val} <ChevronDown className="h-3 w-3" /></span>
-                  </div>
-                ))}
-                <button className="mt-4 w-full rounded-xl bg-orange-600 text-white text-sm font-medium py-2.5 flex items-center justify-center gap-2">
-                  {t.hero.previewGenerateBtn} <ArrowRight className="h-4 w-4" />
-                </button>
-              </div>
-
-              {/* Sparkle button between cards */}
-              <div className="flex-none self-center -mx-2 z-10">
-                <div className="h-11 w-11 rounded-full bg-orange-500 shadow-lg flex items-center justify-center">
-                  <Sparkles className="h-5 w-5 text-white" />
-                </div>
-              </div>
-
-              {/* Result card */}
-              <div className="rounded-2xl border border-gray-200 bg-white shadow-md p-5 flex-1 relative">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm font-semibold text-gray-800">{t.hero.previewYourEmail}</span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-[11px] font-medium text-green-700">
-                    <CheckCircle2 className="h-3 w-3" /> Готово до відправки
-                  </span>
-                </div>
-                <div className="text-xs font-semibold text-gray-800 mb-3">
-                  {t.hero.previewSubject}: Після нашої розмови
-                </div>
-                <div className="text-[13px] text-gray-500 leading-relaxed">
-                  Привіт, Саро,<br /><br />
-                  Дякую що знайшли час поспілкуватись зі мною сьогодні. Я прикріплю пропозицію, про яку ми говорили. Будь ласка, дайте знати, якщо у вас є запитання або якщо я можу щось уточнити.<br /><br />
-                  З повагою,<br />Алекс
-                </div>
-
-                <div className="mt-5 grid grid-cols-2 gap-2">
-                  <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
-                    <Copy className="h-3.5 w-3.5" /> {t.hero.previewCopy}
-                  </button>
-                  <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
-                    <RefreshCw className="h-3.5 w-3.5" /> {t.hero.previewRegen}
-                  </button>
-                  <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
-                    <Wand2 className="h-3.5 w-3.5" /> Ввічливіше
-                  </button>
-                  <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
-                    <Scissors className="h-3.5 w-3.5" /> Коротше
-                  </button>
-                </div>
-              </div>
-
-              {/* Decorative accent */}
-              <div className="absolute -top-4 -right-4 h-24 w-24 rounded-full bg-orange-100 -z-10" />
-              <div className="absolute -bottom-4 -left-4 h-16 w-16 rounded-full bg-orange-50 -z-10" />
-            </div>
+            {/* Right — animated mockup */}
+            <HeroMockup />
           </div>
         </div>
       </section>
