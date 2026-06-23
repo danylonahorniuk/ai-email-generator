@@ -182,7 +182,6 @@ export function LandingContent({ user }: LandingContentProps) {
 
             {/* Left */}
             <div className="lg:sticky lg:top-24">
-              <p className="text-xs font-bold text-orange-600 uppercase tracking-widest mb-4">{(t.howItWorks as any).label}</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight mb-6">{t.howItWorks.title}</h2>
               <p className="text-gray-500 leading-relaxed mb-4">{t.howItWorks.subtitle}</p>
               <p className="text-gray-500 leading-relaxed mb-10">{(t.howItWorks as any).subtitle2}</p>
@@ -204,7 +203,7 @@ export function LandingContent({ user }: LandingContentProps) {
             </div>
 
             {/* Right — steps */}
-            <div className="flex flex-col divide-y divide-gray-100">
+            <div className="flex flex-col divide-y divide-gray-100 lg:pt-16">
               {(t.howItWorks.steps as { number: string; title: string; desc: string }[]).map((step, i) => (
                 <div key={step.number} className="py-8 first:pt-0 last:pb-0">
                   <div className="flex gap-6 items-start">
