@@ -64,7 +64,7 @@ export function CheckoutModal({ open, onClose, plan }: CheckoutModalProps) {
         ) : (
           <>
             {/* Header */}
-            <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-5 text-white">
+            <div className="bg-gray-900 px-6 py-5 text-white">
               <button onClick={handleClose} className="absolute right-4 top-4 p-1 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors">
                 <X className="h-5 w-5" />
               </button>
