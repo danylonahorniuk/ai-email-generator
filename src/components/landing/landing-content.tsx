@@ -79,7 +79,7 @@ export function LandingContent({ user }: LandingContentProps) {
       <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
       {/* ── HERO ── */}
       <section className="bg-gray-50 min-h-[calc(100vh-64px)] flex items-center overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 lg:gap-14 items-center">
 
             {/* Left */}
@@ -120,7 +120,7 @@ export function LandingContent({ user }: LandingContentProps) {
 
       {/* ── HOW IT WORKS ── */}
       <section id="how-it-works" className="py-24 bg-gradient-to-b from-orange-50 to-white overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-16 items-start">
 
             {/* Left */}
@@ -207,7 +207,7 @@ export function LandingContent({ user }: LandingContentProps) {
 
       {/* ── FEATURES ── */}
       <section id="features" className="py-24 bg-gray-100 border-t border-gray-200">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">{t.features.title}</h2>
             <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">{t.features.subtitle}</p>
@@ -247,7 +247,7 @@ export function LandingContent({ user }: LandingContentProps) {
 
       {/* ── TESTIMONIALS ── */}
       <section id="testimonials" className="py-24 bg-orange-50 border-t border-orange-100">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">{t.testimonials.title}</h2>
             <p className="text-gray-500 max-w-xl mx-auto">{(t.testimonials as any).subtitle}</p>
@@ -278,7 +278,7 @@ export function LandingContent({ user }: LandingContentProps) {
 
       {/* ── FAQ ── */}
       <section id="faq" className="py-24 bg-white border-t border-gray-100">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-16">
 
             {/* Left */}
@@ -389,7 +389,7 @@ export function LandingContent({ user }: LandingContentProps) {
 
       {/* ── FOOTER ── */}
       <footer className="bg-gray-950 text-gray-400">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-14">
           <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-10">
 
             {/* Brand col */}
@@ -430,7 +430,7 @@ export function LandingContent({ user }: LandingContentProps) {
 
         {/* Bottom bar */}
         <div className="border-t border-gray-800">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-xs">{t.footer.rights}</p>
             <p className="text-xs">Made with ♥ in Ukraine</p>
           </div>
