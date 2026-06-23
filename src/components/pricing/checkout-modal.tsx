@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { X, CreditCard, Lock, CheckCircle2, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
@@ -18,6 +19,7 @@ interface CheckoutModalProps {
 }
 
 export function CheckoutModal({ open, onClose, plan }: CheckoutModalProps) {
+  const router = useRouter()
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle')
   const [card, setCard] = useState({ number: '', expiry: '', cvv: '', name: '' })
 
@@ -59,7 +61,7 @@ export function CheckoutModal({ open, onClose, plan }: CheckoutModalProps) {
             <h3 className="text-2xl font-bold text-gray-900 mb-2">Вітаємо!</h3>
             <p className="text-gray-500 mb-2">Ви успішно підключили план <span className="font-semibold text-gray-800">{plan.name}</span>.</p>
             <p className="text-sm text-gray-400 mb-8">Деталі підписки надіслано на вашу електронну пошту.</p>
-            <Button size="lg" className="w-full" onClick={handleClose}>Перейти до дашборду</Button>
+            <Button size="lg" className="w-full" onClick={() => { handleClose(); router.push('/dashboard') }}>Перейти до дашборду</Button>
           </div>
         ) : (
           <>
