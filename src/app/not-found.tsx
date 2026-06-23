@@ -15,18 +15,18 @@ export default function NotFound() {
 
       {/* Giant 404 watermark */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center select-none">
-        <span className="text-[28vw] font-black text-gray-100 leading-none tracking-tighter">404</span>
+        <span className="text-[28vw] font-black text-orange-100 leading-none tracking-tighter">404</span>
       </div>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center max-w-md">
 
-        <h1 className="text-4xl font-bold text-gray-900 mb-4 leading-tight">
+        <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-4 leading-tight">
           Схоже, ця сторінка<br />
           <span className="text-orange-500">загубилась десь у листах</span>
         </h1>
 
-        <p className="text-gray-500 mb-10 leading-relaxed">
+        <p className="text-sm sm:text-base text-gray-500 mb-8 sm:mb-10 leading-relaxed">
           Сторінка яку ви шукаєте не існує або була переміщена. Повертайтесь на головну.
         </p>
 
