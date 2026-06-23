@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/lib/i18n/language-context'
@@ -17,6 +17,30 @@ const testimonials = [
   { name: 'Marco R.', role: 'Account Executive', text: 'Cold outreach response rates went up 40% after switching to MailMindAI. The tone options are brilliant.', rating: 5 },
   { name: 'Андрій К.', role: 'Product Manager', text: 'Нарешті інструмент який не пише як робот. Листи партнерам і інвесторам — тепер задоволення, а не мука.', rating: 5 },
 ]
+
+function FaqAccordion({ items }: { items: { q: string; a: string }[] }) {
+  const [open, setOpen] = useState<number | null>(null)
+  return (
+    <div className="space-y-3">
+      {items.map(({ q, a }, i) => (
+        <div key={q} className="rounded-xl border border-gray-200 bg-gray-50 overflow-hidden">
+          <button
+            onClick={() => setOpen(open === i ? null : i)}
+            className="flex w-full items-center justify-between px-6 py-4 text-left hover:bg-gray-100 transition-colors"
+          >
+            <span className="font-medium text-gray-900 text-sm">{q}</span>
+            <ChevronDown className={`h-4 w-4 text-gray-400 flex-shrink-0 transition-transform duration-300 ${open === i ? 'rotate-180' : ''}`} />
+          </button>
+          <div className={`grid transition-all duration-300 ease-in-out ${open === i ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+            <div className="overflow-hidden">
+              <div className="px-6 pb-5 pt-4 text-sm text-gray-500 leading-relaxed border-t border-gray-200">{a}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
 
 interface LandingContentProps {
   user?: { email?: string | null } | null
@@ -351,17 +375,7 @@ export function LandingContent({ user }: LandingContentProps) {
             </div>
 
             {/* Right */}
-            <div className="space-y-3">
-              {(t.faq.items as { q: string; a: string }[]).map(({ q, a }) => (
-                <details key={q} name="faq" className="group rounded-xl border border-gray-200 bg-gray-50 overflow-hidden">
-                  <summary className="flex items-center justify-between px-6 py-4 cursor-pointer list-none hover:bg-gray-100 transition-colors">
-                    <span className="font-medium text-gray-900 text-sm">{q}</span>
-                    <ChevronDown className="h-4 w-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0" />
-                  </summary>
-                  <div className="px-6 pb-5 text-sm text-gray-500 leading-relaxed border-t border-gray-200 pt-4">{a}</div>
-                </details>
-              ))}
-            </div>
+            <FaqAccordion items={t.faq.items as { q: string; a: string }[]} />
           </div>
         </div>
       </section>
