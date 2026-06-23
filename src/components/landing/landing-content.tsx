@@ -162,15 +162,10 @@ export function LandingContent({ user }: LandingContentProps) {
 
                       {/* Step mockup */}
                       {i === 0 && (
-                        <div className="rounded-xl border border-gray-200 bg-white shadow-sm p-4">
-                          <p className="text-sm text-gray-700 leading-relaxed">
-                            Треба нагадати клієнту про оплату, але{' '}
-                            <em className="not-italic underline decoration-orange-400">ввічливо</em>{' '}
-                            й{' '}
-                            <em className="not-italic underline decoration-orange-400">без тиску</em>.
-                          </p>
-                          <div className="flex justify-end mt-3">
-                            <Send className="h-4 w-4 text-gray-300" />
+                        <div className="rounded-xl border border-gray-200 bg-white shadow-md p-4 space-y-2">
+                          <div className="text-xs font-medium text-gray-500">Мета листа *</div>
+                          <div className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-gray-700 leading-relaxed">
+                            Треба нагадати клієнту про оплату, але ввічливо й без тиску.
                           </div>
                         </div>
                       )}
@@ -185,15 +180,20 @@ export function LandingContent({ user }: LandingContentProps) {
                         </div>
                       )}
                       {i === 2 && (
-                        <div className="rounded-xl border border-gray-200 bg-white shadow-sm p-4">
-                          <p className="text-xs font-semibold text-orange-500 mb-2">Нагадування щодо оплати</p>
-                          <p className="text-xs text-gray-600 leading-relaxed mb-3">
-                            Доброго дня!<br />
-                            Нагадуємо, що оплата за рахунком №124 від 02.05.2024 ще не надійшла. Будемо вдячні, якщо зможете здійснити оплату найближчим часом.
-                          </p>
+                        <div className="rounded-xl border border-gray-200 bg-white shadow-md p-4 space-y-3">
+                          <div className="rounded-lg bg-orange-50 border border-orange-100 px-4 py-3">
+                            <div className="text-xs font-medium text-orange-500 uppercase tracking-wide mb-1">Тема</div>
+                            <div className="text-sm font-semibold text-gray-900">Нагадування щодо оплати</div>
+                          </div>
+                          <div className="rounded-lg bg-gray-50 border border-gray-100 px-4 py-3">
+                            <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Лист</div>
+                            <p className="text-sm text-gray-700 leading-relaxed">
+                              Доброго дня!<br />
+                              Нагадуємо, що оплата за рахунком №124 від 02.05.2024 ще не надійшла. Будемо вдячні, якщо зможете здійснити оплату найближчим часом.
+                            </p>
+                          </div>
                           <div className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
-                            <CheckCircle2 className="h-3.5 w-3.5" />
-                            Готово до відправки
+                            <CheckCircle2 className="h-3.5 w-3.5" /> Готово до відправки
                           </div>
                         </div>
                       )}
