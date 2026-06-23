@@ -49,9 +49,9 @@ export function ProfileClient({ user }: ProfileClientProps) {
 
   return (
     <div>
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">{t.profile.title}</h1>
-        <p className="mt-1 text-gray-500">{t.profile.subtitle}</p>
+      <div className="mb-6 lg:mb-8">
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t.profile.title}</h1>
+        <p className="mt-1 text-sm sm:text-base text-gray-500">{t.profile.subtitle}</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-6 items-start">
