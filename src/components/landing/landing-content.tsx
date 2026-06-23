@@ -119,25 +119,25 @@ export function LandingContent({ user }: LandingContentProps) {
 
 
       {/* ── HOW IT WORKS ── */}
-      <section id="how-it-works" className="py-24 bg-gradient-to-b from-orange-50 to-white overflow-hidden">
+      <section id="how-it-works" className="py-16 lg:py-24 bg-gradient-to-b from-orange-50 to-white overflow-hidden">
         <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 lg:gap-16 items-start">
 
             {/* Left */}
             <div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight mb-6">{t.howItWorks.title}</h2>
-              <p className="text-gray-500 leading-relaxed mb-4">{t.howItWorks.subtitle}</p>
-              <p className="text-gray-500 leading-relaxed mb-10">{(t.howItWorks as any).subtitle2}</p>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4 lg:mb-6">{t.howItWorks.title}</h2>
+              <p className="text-gray-500 leading-relaxed mb-3 lg:mb-4">{t.howItWorks.subtitle}</p>
+              <p className="text-gray-500 leading-relaxed mb-6 lg:mb-10">{(t.howItWorks as any).subtitle2}</p>
 
-              <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-3 lg:gap-5">
                 {([
                   { icon: Clock, label: (t.howItWorks as any).perks?.[0] },
                   { icon: TrendingUp, label: (t.howItWorks as any).perks?.[1] },
                   { icon: Shield, label: (t.howItWorks as any).perks?.[2] },
                 ] as { icon: React.ElementType; label: string }[]).map(({ icon: Icon, label }) => (
                   <div key={label} className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-orange-100 bg-white shadow-sm">
-                      <Icon className="h-5 w-5 text-orange-500" />
+                    <div className="flex h-9 w-9 lg:h-10 lg:w-10 items-center justify-center rounded-xl border border-orange-100 bg-white shadow-sm flex-none">
+                      <Icon className="h-4 w-4 lg:h-5 lg:w-5 text-orange-500" />
                     </div>
                     <span className="text-sm font-medium text-gray-700">{label}</span>
                   </div>
@@ -148,56 +148,56 @@ export function LandingContent({ user }: LandingContentProps) {
             {/* Right — steps */}
             <div className="flex flex-col lg:pt-12">
               {(t.howItWorks.steps as { number: string; title: string; desc: string }[]).map((step, i, arr) => (
-                <div key={step.number} className="relative flex gap-6 pb-10 last:pb-0">
-                  {/* Connector line */}
-                  <div className="flex flex-col items-center flex-none w-14">
-                    <span className="text-4xl font-bold text-orange-500 leading-none">{step.number}</span>
+                <div key={step.number} className="relative flex gap-4 lg:gap-6 pb-8 lg:pb-10 last:pb-0">
+                  {/* Number + connector */}
+                  <div className="flex flex-col items-center flex-none w-10 lg:w-14">
+                    <span className="text-2xl lg:text-4xl font-bold text-orange-500 leading-none">{step.number}</span>
                     {i < arr.length - 1 && (
-                      <div className="mt-3 w-px flex-1 border-l-2 border-dashed border-orange-200 min-h-[40px]" />
+                      <div className="mt-2 lg:mt-3 w-px flex-1 border-l-2 border-dashed border-orange-200 min-h-[32px] hidden lg:block" />
                     )}
                   </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1">{step.title}</h3>
-                      <p className="text-sm text-gray-500 mb-4">{step.desc}</p>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-1">{step.title}</h3>
+                    <p className="text-sm text-gray-500 mb-3 lg:mb-4">{step.desc}</p>
 
-                      {/* Step mockup */}
-                      {i === 0 && (
-                        <div className="rounded-xl border border-gray-200 bg-white shadow-md p-4 space-y-2">
-                          <div className="text-xs font-medium text-gray-500">Мета листа *</div>
-                          <div className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-gray-700 leading-relaxed">
-                            Треба нагадати клієнту про оплату, але ввічливо й без тиску.
-                          </div>
+                    {/* Step mockup */}
+                    {i === 0 && (
+                      <div className="rounded-xl border border-gray-200 bg-white shadow-md p-3 lg:p-4 space-y-2 overflow-hidden">
+                        <div className="text-xs font-medium text-gray-500">Мета листа *</div>
+                        <div className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-gray-700 leading-relaxed">
+                          Треба нагадати клієнту про оплату, але ввічливо й без тиску.
                         </div>
-                      )}
-                      {i === 1 && (
-                        <div className="flex flex-wrap gap-2">
-                          {['Дружній', 'Українська', 'Короткий'].map(label => (
-                            <div key={label} className="flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 shadow-sm">
-                              <span>{label}</span>
-                              <ChevronDown className="h-3.5 w-3.5 text-gray-400 ml-0.5" />
-                            </div>
-                          ))}
+                      </div>
+                    )}
+                    {i === 1 && (
+                      <div className="flex flex-wrap gap-2">
+                        {['Дружній', 'Українська', 'Короткий'].map(label => (
+                          <div key={label} className="flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 shadow-sm">
+                            <span>{label}</span>
+                            <ChevronDown className="h-3.5 w-3.5 text-gray-400 ml-0.5" />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    {i === 2 && (
+                      <div className="rounded-xl border border-gray-200 bg-white shadow-md p-3 lg:p-4 space-y-3 overflow-hidden">
+                        <div className="rounded-lg bg-orange-50 border border-orange-100 px-3 lg:px-4 py-3">
+                          <div className="text-xs font-medium text-orange-500 uppercase tracking-wide mb-1">Тема</div>
+                          <div className="text-sm font-semibold text-gray-900">Нагадування щодо оплати</div>
                         </div>
-                      )}
-                      {i === 2 && (
-                        <div className="rounded-xl border border-gray-200 bg-white shadow-md p-4 space-y-3">
-                          <div className="rounded-lg bg-orange-50 border border-orange-100 px-4 py-3">
-                            <div className="text-xs font-medium text-orange-500 uppercase tracking-wide mb-1">Тема</div>
-                            <div className="text-sm font-semibold text-gray-900">Нагадування щодо оплати</div>
-                          </div>
-                          <div className="rounded-lg bg-gray-50 border border-gray-100 px-4 py-3">
-                            <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Лист</div>
-                            <p className="text-sm text-gray-700 leading-relaxed">
-                              Доброго дня!<br />
-                              Нагадуємо, що оплата за рахунком №124 від 02.05.2024 ще не надійшла. Будемо вдячні, якщо зможете здійснити оплату найближчим часом.
-                            </p>
-                          </div>
-                          <div className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
-                            <CheckCircle2 className="h-3.5 w-3.5" /> Готово до відправки
-                          </div>
+                        <div className="rounded-lg bg-gray-50 border border-gray-100 px-3 lg:px-4 py-3">
+                          <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">Лист</div>
+                          <p className="text-sm text-gray-700 leading-relaxed">
+                            Доброго дня!<br />
+                            Нагадуємо, що оплата за рахунком №124 від 02.05.2024 ще не надійшла. Будемо вдячні, якщо зможете здійснити оплату найближчим часом.
+                          </p>
                         </div>
-                      )}
-                    </div>
+                        <div className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
+                          <CheckCircle2 className="h-3.5 w-3.5" /> Готово до відправки
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
@@ -214,7 +214,7 @@ export function LandingContent({ user }: LandingContentProps) {
           </div>
 
           {/* Bento grid */}
-          <div className="grid grid-cols-3 gap-4 auto-rows-[minmax(160px,auto)]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:auto-rows-[minmax(160px,auto)]">
             {(t.features.items as { title: string; description: string }[]).map((feature, i) => {
               const Icon = FEATURE_ICONS[i]
               // wide: 0, 3, 5 → col-span-2; narrow: 1, 2, 4 → col-span-1
@@ -224,8 +224,8 @@ export function LandingContent({ user }: LandingContentProps) {
                 <div
                   key={feature.title}
                   className={[
-                    'rounded-2xl border p-7 flex flex-col justify-between transition-all duration-200 hover:shadow-md',
-                    wide ? 'col-span-2' : 'col-span-1',
+                    'rounded-2xl border p-6 lg:p-7 flex flex-col justify-between transition-all duration-200 hover:shadow-md',
+                    wide ? 'lg:col-span-2' : 'lg:col-span-1',
                     featured
                       ? 'bg-orange-50 border-orange-200 hover:border-orange-300'
                       : 'bg-white border-gray-200 hover:border-orange-200',
