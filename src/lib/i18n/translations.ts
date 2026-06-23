@@ -70,6 +70,7 @@ export const translations = {
     },
     testimonials: {
       title: 'Улюблений серед професіоналів',
+      subtitle: 'Тисячі команд та фрилансерів щодня економлять час із MailMindAI.',
     },
     faq: {
       title: 'Часті запитання',
@@ -247,6 +248,7 @@ export const translations = {
     },
     testimonials: {
       title: 'Loved by professionals',
+      subtitle: 'Thousands of teams and freelancers save time every day with MailMindAI.',
     },
     faq: {
       title: 'Frequently asked questions',
@@ -424,6 +426,7 @@ export const translations = {
     },
     testimonials: {
       title: 'Любимый среди профессионалов',
+      subtitle: 'Тысячи команд и фрилансеров экономят время каждый день с MailMindAI.',
     },
     faq: {
       title: 'Часто задаваемые вопросы',

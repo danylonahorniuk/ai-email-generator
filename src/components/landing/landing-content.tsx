@@ -362,7 +362,8 @@ export function LandingContent({ user }: LandingContentProps) {
       <section className="py-24 bg-orange-50 border-t border-orange-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">{t.testimonials.title}</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">{t.testimonials.title}</h2>
+            <p className="text-gray-500 max-w-xl mx-auto">{(t.testimonials as any).subtitle}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {testimonials.map(tm => (
