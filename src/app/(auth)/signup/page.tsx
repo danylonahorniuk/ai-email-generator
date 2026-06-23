@@ -36,6 +36,7 @@ function SignupForm() {
     if (error) { setError(error.message); setLoading(false); return }
     if (data.session) {
       // email confirmation вимкнено — юзер вже залогінений
+      localStorage.setItem('quillai_toast', 'Акаунт створено. Ласкаво просимо!')
       router.push(redirect)
       router.refresh()
       return

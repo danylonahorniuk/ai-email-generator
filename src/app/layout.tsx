@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { LanguageProvider } from '@/lib/i18n/language-context'
+import { ToastNotification } from '@/components/ui/toast-notification'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="uk">
       <body className={`${inter.className} antialiased min-h-full flex flex-col`}>
         <LanguageProvider>{children}</LanguageProvider>
+        <ToastNotification />
       </body>
     </html>
   )
