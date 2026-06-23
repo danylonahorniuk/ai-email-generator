@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/lib/i18n/language-context'
@@ -17,6 +17,27 @@ const testimonials = [
   { name: 'Marco R.', role: 'Account Executive', text: 'Cold outreach response rates went up 40% after switching to MailMindAI. The tone options are brilliant.', rating: 5 },
   { name: 'Андрій К.', role: 'Product Manager', text: 'Нарешті інструмент який не пише як робот. Листи партнерам і інвесторам — тепер задоволення, а не мука.', rating: 5 },
 ]
+
+function CopyEmail({ email }: { email: string }) {
+  const [copied, setCopied] = useState(false)
+  const copy = useCallback(() => {
+    navigator.clipboard.writeText(email)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }, [email])
+  return (
+    <div className="inline-flex items-center gap-3 rounded-xl border border-gray-200 bg-gray-50 px-4 py-3">
+      <span className="text-sm text-gray-700 font-medium">{email}</span>
+      <button
+        onClick={copy}
+        className="flex items-center gap-1.5 rounded-lg bg-orange-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-orange-700 transition-colors"
+      >
+        <Copy className="h-3.5 w-3.5" />
+        {copied ? 'Скопійовано!' : 'Копіювати'}
+      </button>
+    </div>
+  )
+}
 
 function FaqAccordion({ items }: { items: { q: string; a: string }[] }) {
   const [open, setOpen] = useState<number | null>(null)
@@ -369,9 +390,7 @@ export function LandingContent({ user }: LandingContentProps) {
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">{t.faq.title}</h2>
               <p className="text-gray-500 leading-relaxed mb-8">{(t.faq as any).subtitle}</p>
-              <a href="mailto:danyakenobi@gmail.com">
-                <Button size="md">Написати нам <ArrowRight className="h-4 w-4" /></Button>
-              </a>
+              <CopyEmail email="danyakenobi@gmail.com" />
             </div>
 
             {/* Right */}
