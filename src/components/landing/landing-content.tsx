@@ -429,7 +429,7 @@ export function LandingContent({ user }: LandingContentProps) {
                 <p className="text-gray-500 leading-relaxed mb-6 text-sm">{t.cta.subtitle}</p>
                 <div className="flex flex-col sm:flex-row gap-3 mb-4">
                   <Link href={user ? '/dashboard' : '/signup'}>
-                    <Button size="md">
+                    <Button size="md" className="whitespace-nowrap">
                       {user ? t.cta.buttonDashboard : t.cta.button}
                       <ArrowRight className="h-4 w-4" />
                     </Button>
