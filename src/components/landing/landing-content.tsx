@@ -100,7 +100,7 @@ export function LandingContent({ user }: LandingContentProps) {
                   </Button>
                 </Link>
                 <Link href="/#how-it-works">
-                  <Button variant="ghost" size="lg" className="w-full sm:w-auto text-gray-600">
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto">
                     {t.hero.howItWorksBtn} →
                   </Button>
                 </Link>
