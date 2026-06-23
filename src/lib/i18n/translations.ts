@@ -4,6 +4,8 @@ export const translations = {
   ua: {
     nav: {
       features: 'Переваги',
+      howItWorks: 'Як це працює',
+      testimonials: 'Відгуки',
       faq: 'FAQ',
       pricing: 'Тарифи',
       dashboard: 'Дашборд',
@@ -182,6 +184,8 @@ export const translations = {
   en: {
     nav: {
       features: 'Features',
+      howItWorks: 'How it works',
+      testimonials: 'Testimonials',
       faq: 'FAQ',
       pricing: 'Pricing',
       dashboard: 'Dashboard',
@@ -360,6 +364,8 @@ export const translations = {
   ru: {
     nav: {
       features: 'Преимущества',
+      howItWorks: 'Как это работает',
+      testimonials: 'Отзывы',
       faq: 'FAQ',
       pricing: 'Тарифы',
       dashboard: 'Дашборд',

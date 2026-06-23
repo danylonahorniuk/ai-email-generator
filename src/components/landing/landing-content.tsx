@@ -359,7 +359,7 @@ export function LandingContent({ user }: LandingContentProps) {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section className="py-24 bg-orange-50 border-t border-orange-100">
+      <section id="testimonials" className="py-24 bg-orange-50 border-t border-orange-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">{t.testimonials.title}</h2>
@@ -502,21 +502,51 @@ export function LandingContent({ user }: LandingContentProps) {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer className="bg-gray-950 text-gray-500 py-10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-2 text-white font-bold text-sm">
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-orange-600">
-                <Zap className="h-3.5 w-3.5 text-white" />
+      <footer className="bg-gray-950 text-gray-400">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+          <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-10">
+
+            {/* Brand col */}
+            <div>
+              <div className="flex items-center gap-2 font-bold text-white mb-4">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-600">
+                  <Zap className="h-4 w-4 text-white" />
+                </div>
+                MailMind<span className="text-orange-500">AI</span>
               </div>
-              MailMindAI
+              <p className="text-sm leading-relaxed max-w-xs">
+                {t.hero.subtitle}
+              </p>
             </div>
-            <div className="flex gap-6 text-sm">
-              <Link href="/pricing" className="hover:text-white transition-colors">{t.nav.pricing}</Link>
-              <Link href="/#features" className="hover:text-white transition-colors">{t.nav.features}</Link>
-              <Link href="/#faq" className="hover:text-white transition-colors">FAQ</Link>
+
+            {/* Product col */}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Продукт</p>
+              <ul className="space-y-3 text-sm">
+                <li><Link href="/#how-it-works" className="hover:text-white transition-colors">{(t.nav as any).howItWorks}</Link></li>
+                <li><Link href="/#features" className="hover:text-white transition-colors">{t.nav.features}</Link></li>
+                <li><Link href="/#testimonials" className="hover:text-white transition-colors">{(t.nav as any).testimonials}</Link></li>
+                <li><Link href="/pricing" className="hover:text-white transition-colors">{t.nav.pricing}</Link></li>
+              </ul>
             </div>
+
+            {/* Support col */}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Підтримка</p>
+              <ul className="space-y-3 text-sm">
+                <li><Link href="/#faq" className="hover:text-white transition-colors">FAQ</Link></li>
+                <li><Link href="/login" className="hover:text-white transition-colors">{t.nav.signIn}</Link></li>
+                <li><Link href="/signup" className="hover:text-white transition-colors">{t.nav.getStarted}</Link></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="border-t border-gray-800">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-xs">{t.footer.rights}</p>
+            <p className="text-xs">Made with ♥ in Ukraine</p>
           </div>
         </div>
       </footer>
