@@ -188,7 +188,7 @@ export function LandingContent({ user }: LandingContentProps) {
 
 
       {/* ── HOW IT WORKS ── */}
-      <section id="how-it-works" className="py-24 bg-gradient-to-b from-orange-50 to-white overflow-hidden">
+      <section id="how-it-works" className="py-24 bg-gradient-to-b from-white via-orange-50 to-white overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-16 items-start">
 
