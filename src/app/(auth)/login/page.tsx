@@ -29,19 +29,19 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-50 via-white to-indigo-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-gray-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 font-bold text-xl text-gray-900 mb-6">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-600">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-600">
               <Mail className="h-5 w-5 text-white" />
             </div>
-            MailMind<span className="text-violet-600">AI</span>
+            MailMind<span className="text-orange-600">AI</span>
           </Link>
           <h1 className="text-2xl font-bold text-gray-900">{t.auth.welcomeBack}</h1>
           <p className="mt-2 text-gray-600">{t.auth.signInSubtitle}</p>
         </div>
-        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
+        <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-8">
           <form onSubmit={handleSubmit} className="space-y-5">
             <Input label={t.auth.email} type="email" placeholder="you@example.com" value={email} onChange={e => setEmail(e.target.value)} required />
             <Input label={t.auth.password} type="password" placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} required />
@@ -50,7 +50,7 @@ export default function LoginPage() {
           </form>
           <p className="mt-6 text-center text-sm text-gray-600">
             {t.auth.noAccount}{' '}
-            <Link href="/signup" className="font-medium text-violet-600 hover:text-violet-700">{t.auth.signUpFree}</Link>
+            <Link href="/signup" className="font-medium text-orange-600 hover:text-orange-700">{t.auth.signUpFree}</Link>
           </p>
         </div>
       </div>
