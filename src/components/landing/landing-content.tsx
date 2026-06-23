@@ -173,27 +173,6 @@ export function LandingContent({ user }: LandingContentProps) {
         </div>
       </section>
 
-      {/* ── STATS ── */}
-      <section className="border-y border-gray-100 bg-gray-50 py-7">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-center gap-8 text-center">
-            {[
-              { value: '10,000+', label: t.stats.emails },
-              { value: '2,500+', label: t.stats.users },
-              { value: '3', label: t.stats.languages },
-              { value: '4.9★', label: t.stats.rating },
-            ].map((stat, i) => (
-              <div key={stat.label} className="flex items-center gap-8">
-                {i > 0 && <div className="w-px h-8 bg-gray-200 hidden sm:block" />}
-                <div>
-                  <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-                  <div className="text-sm text-gray-500">{stat.label}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── HOW IT WORKS ── */}
       <section id="how-it-works" className="py-24 bg-white">
