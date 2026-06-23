@@ -435,7 +435,7 @@ export function LandingContent({ user }: LandingContentProps) {
                     </Button>
                   </Link>
                   <Link href="/pricing">
-                    <Button variant="ghost" size="md" className="text-gray-500 hover:text-gray-900">
+                    <Button variant="outline" size="md" className="whitespace-nowrap">
                       {t.cta.viewPlans} →
                     </Button>
                   </Link>
