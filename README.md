@@ -1,39 +1,46 @@
-# MailMindAI — AI-Powered Email Generator
+# QuillAI — AI Email Generator
 
 > MVP built as a test task for WebSolutions (Vibe Coder / AI-First Developer position).
 
-**Live demo:** [your-url.vercel.app](https://your-url.vercel.app) _(update after deploy)_
+**Live demo:** [ai-email-generator-nu.vercel.app](https://ai-email-generator-nu.vercel.app)  
+**GitHub:** [github.com/danylonahorniuk/ai-email-generator](https://github.com/danylonahorniuk/ai-email-generator)
 
 ---
 
 ## Features
 
-- **Landing page** — Hero, features grid, testimonials, FAQ accordion, CTA sections, fully responsive
+- **Landing page** — Hero with animated live mockup, How It Works, Features bento grid, Testimonials, FAQ accordion, CTA, Footer — fully responsive (375px → 2560px)
 - **Authentication** — Sign up / Sign in / Sign out via Supabase Auth
-- **Dashboard** — AI email generation form with tone, language, recipient, key points
-- **AI Integration** — Claude API with mock-mode fallback (switch via `AI_MODE` env var)
-- **Pricing page** — Free / Pro / Team tiers with feature lists
-- **Profile page** — Account info, password change, sign out
-- **Error handling** — API validation, auth guards, user-facing error messages
+- **Dashboard** — AI email generation with tone, length, language, recipient, key points fields
+- **AI Integration** — Claude API (Haiku) with mock-mode fallback, switched via `AI_MODE` env var
+- **Pricing page** — Free / Pro / Team tiers with upgrade flow and checkout modal
+- **Profile page** — Account info, plan status, password change, sign out
+- **Multilingual UI** — Ukrainian / English / Russian via custom i18n context
+- **Error handling** — API validation, auth guards, 404 page, user-facing error messages
+
+---
 
 ## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
-| Framework | Next.js 15 (App Router) |
-| Language | TypeScript |
+| Framework | Next.js 16.2 (App Router, Turbopack) |
+| Language | TypeScript 5 (strict) |
 | Styling | Tailwind CSS v4 |
-| Auth & DB | Supabase |
-| AI | Claude API (Anthropic) |
+| Auth & DB | Supabase (Auth + SSR) |
+| AI | Anthropic Claude API (`claude-haiku-4-5-20251001`) |
 | Icons | Lucide React |
+| Email | Resend (contact form) |
 | Deploy | Vercel |
+
+---
 
 ## Getting Started
 
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/yourusername/ai-email-generator.git
+git clone https://github.com/danylonahorniuk/ai-email-generator.git
 cd ai-email-generator
 npm install
 ```
@@ -41,21 +48,23 @@ npm install
 ### 2. Set up Supabase
 
 1. Create a project at [supabase.com](https://supabase.com)
-2. Go to **Settings → API** and copy your URL and anon key
+2. Go to **Settings → API** and copy your Project URL and anon key
+3. Enable Email Auth under **Authentication → Providers**
 
 ### 3. Configure environment variables
 
-Copy `.env.example` to `.env.local` and fill in:
+Create `.env.local` in the project root:
 
 ```env
+# Supabase (required)
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 
-# For real AI: get key at console.anthropic.com
-ANTHROPIC_API_KEY=sk-ant-...
-
-# Switch between "mock" (no API key needed) and "claude"
+# AI mode: "mock" (no key needed) or "claude" (requires key below)
 AI_MODE=mock
+
+# Required only when AI_MODE=claude
+ANTHROPIC_API_KEY=sk-ant-...
 ```
 
 ### 4. Run locally
@@ -66,85 +75,191 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000)
 
-## AI Mode Switching
+---
 
-The architecture cleanly separates AI provider from business logic:
+## AI Mode
+
+The architecture cleanly separates the AI provider from business logic via a single env var:
 
 ```
-AI_MODE=mock    → uses deterministic mock generator (no API key needed)
-AI_MODE=claude  → uses Claude claude-haiku-4-5-20251001 via Anthropic SDK
+AI_MODE=mock    → deterministic mock templates (Ukrainian / English / Russian)
+AI_MODE=claude  → Claude Haiku via Anthropic SDK, real generation
 ```
 
-To switch to real AI: set `AI_MODE=claude` and add `ANTHROPIC_API_KEY` in your `.env.local` or Vercel dashboard.
+To enable real AI generation: set `AI_MODE=claude` and add `ANTHROPIC_API_KEY` in `.env.local` or Vercel dashboard. No other code changes needed.
+
+---
 
 ## Project Structure
 
 ```
 src/
 ├── app/
-│   ├── (auth)/login/       # Login page
-│   ├── (auth)/signup/      # Sign up page
-│   ├── api/generate-email/ # AI generation API route
-│   ├── dashboard/          # Email generator dashboard
-│   ├── pricing/            # Pricing tiers
-│   ├── profile/            # User profile
-│   └── page.tsx            # Landing page
+│   ├── (auth)/
+│   │   ├── login/page.tsx        # Sign in page
+│   │   └── signup/page.tsx       # Sign up page
+│   ├── api/
+│   │   ├── generate-email/       # POST — AI email generation
+│   │   └── contact/              # POST — contact form (Resend)
+│   ├── dashboard/page.tsx        # Email generator (auth-guarded)
+│   ├── pricing/page.tsx          # Pricing tiers
+│   ├── profile/page.tsx          # User profile (auth-guarded)
+│   ├── error.tsx                 # Global error boundary
+│   ├── not-found.tsx             # 404 page
+│   └── page.tsx                  # Landing page
 ├── components/
-│   ├── dashboard/          # EmailGenerator component
-│   ├── layout/             # Navbar
-│   ├── profile/            # ProfileClient
-│   └── ui/                 # Button, Input, Textarea, Select
+│   ├── dashboard/
+│   │   ├── email-generator.tsx   # Generator form + result panel
+│   │   └── dashboard-content.tsx # Translated page header
+│   ├── landing/
+│   │   ├── landing-content.tsx   # All landing sections
+│   │   ├── hero-mockup.tsx       # Animated live preview mockup
+│   │   └── contact-modal.tsx     # Contact form modal
+│   ├── layout/
+│   │   ├── navbar.tsx            # Sticky navbar + mobile sidebar
+│   │   └── language-switcher.tsx # UA / EN / RU switcher
+│   ├── pricing/
+│   │   ├── pricing-content.tsx   # Plans grid
+│   │   └── checkout-modal.tsx    # Upgrade flow modal
+│   ├── profile/
+│   │   └── profile-client.tsx    # Account info + password change
+│   └── ui/
+│       ├── button.tsx            # Button variants
+│       ├── input.tsx             # Labeled input
+│       ├── select.tsx            # Labeled select
+│       ├── textarea.tsx          # Labeled textarea
+│       └── toast-notification.tsx # Toast messages
 ├── lib/
-│   ├── ai/                 # generate-email.ts (provider-agnostic)
-│   ├── supabase/           # client.ts + server.ts
+│   ├── ai/
+│   │   └── generate-email.ts     # Provider-agnostic AI layer
+│   ├── i18n/
+│   │   ├── translations.ts       # UA / EN / RU strings
+│   │   └── language-context.tsx  # React context + hook
+│   ├── supabase/
+│   │   ├── client.ts             # Browser Supabase client
+│   │   └── server.ts             # Server Supabase client (SSR)
 │   └── utils.ts
-└── middleware.ts            # Auth route protection
+└── middleware.ts                  # Auth route protection
 ```
+
+---
+
+## Key Technical Decisions
+
+**1. Next.js App Router + Server Components**  
+Auth checks happen on the server — protected pages (`/dashboard`, `/profile`) redirect unauthenticated users before any client JS runs. No client-side auth flicker.
+
+**2. Mock / Real AI via env var**  
+`src/lib/ai/generate-email.ts` contains both `generateMock()` and `generateWithClaude()`. The entry point `generateEmail()` branches on `AI_MODE`. Swapping providers requires only changing one env var.
+
+**3. Tailwind CSS v4**  
+V4 uses a CSS-first config (no `tailwind.config.js`). Some classes behave differently from v3 — inline `style` props were used for critical animations (sidebar transform, overlay opacity) where Tailwind class generation was unreliable during builds.
+
+**4. Mobile sidebar outside `<header>`**  
+The sticky header uses `backdrop-blur-md` which creates a new CSS stacking context. `position: fixed` children inside it are scoped to the header's bounds. The mobile sidebar was moved outside `<header>` into a Fragment to fix this.
+
+**5. Supabase SSR via `@supabase/ssr`**  
+Used the official `@supabase/ssr` package with separate `client.ts` (browser) and `server.ts` (server components / API routes) to correctly handle cookie-based auth in Next.js App Router.
+
+---
 
 ## Deploy to Vercel
 
-```bash
-npm i -g vercel
-vercel
-```
-
-Then add environment variables in the Vercel dashboard under **Settings → Environment Variables**.
+1. Push to GitHub
+2. Import repo at [vercel.com/new](https://vercel.com/new)
+3. Add environment variables:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `AI_MODE` = `mock` (or `claude`)
+   - `ANTHROPIC_API_KEY` (only if `AI_MODE=claude`)
+4. Deploy
 
 ---
 
 ## AI Development Report
 
+### Tools & Models Used
+
+| Tool | Purpose |
+|------|---------|
+| **Claude Code** (claude-sonnet-4-6) | Primary development assistant — architecture, code generation, debugging, refactoring |
+| **Claude API** (claude-haiku-4-5-20251001) | AI email generation in production (`AI_MODE=claude`) |
+
+The entire project was built using Claude Code as the main development driver. All code was written, reviewed, and debugged in conversation with the AI — no traditional IDE-based coding.
+
+---
+
 ### Development Process
 
-This MVP was built using an AI-first development approach with Claude Code as the primary assistant:
+The project was built over ~48 hours using a conversational, iterative approach:
 
-1. **Architecture design** — Discussed requirements and designed the system before writing code
-2. **Parallel implementation** — AI generated multiple files simultaneously (pages, components, API routes)
-3. **Provider-agnostic AI layer** — `generate-email.ts` supports both mock and real AI with a single env var switch
-4. **Iterative refinement** — Used AI to review and polish UI components for production quality
+1. **Architecture first** — Defined the tech stack, page structure, and data flow before writing code
+2. **Scaffolding** — Generated the full Next.js project structure, Supabase auth setup, and middleware in one pass
+3. **Page-by-page implementation** — Landing → Auth → Dashboard → Pricing → Profile, each reviewed visually before moving on
+4. **Mobile responsiveness pass** — Dedicated pass at 375px across all pages after desktop was complete
+5. **Bug fixing loop** — Identified build/runtime issues (Tailwind v4 quirks, backdrop-blur stacking context, Resend module-level init) and fixed iteratively
+6. **Deploy** — Vercel deploy with env var configuration
 
-### Key AI-First Design Decisions
+---
 
-- **Mock mode first** — Built and validated UI/UX before connecting real AI, reducing API costs during development
-- **Server/client separation** — Used Next.js App Router patterns correctly (server components for auth, client for interactivity)
-- **Type safety** — Full TypeScript throughout with proper interfaces for all AI params
+### 15 Key Prompts Used During Development
 
-### Time Breakdown
+**1. Initial architecture**
+> "Створи MVP AI Email Generator на Next.js з Supabase auth, Tailwind CSS, сторінками: лендінг, авторизація, дашборд, тарифи, профіль. Використай App Router, TypeScript strict mode."
 
-| Phase | Time |
-|-------|------|
-| Project setup & scaffolding | ~30 min |
-| Core UI components | ~1h |
-| Pages (Landing, Auth, Dashboard, Pricing, Profile) | ~2h |
-| AI integration layer | ~30 min |
-| Error handling & polish | ~30 min |
-| Deploy & README | ~30 min |
-| **Total** | **~5 hours** |
+**2. Supabase auth setup**
+> "Налаштуй Supabase SSR auth з @supabase/ssr — окремий client.ts для браузера і server.ts для серверних компонентів. Додай middleware для захисту маршрутів /dashboard і /profile."
 
-### What I Would Add Next
+**3. Landing page hero with live mockup**
+> "Зроби hero секцію з заголовком, підзаголовком, двома CTA кнопками і живим анімованим мокапом додатку справа. Мокап повинен показувати анімацію генерації листа — друкування тексту, стан генерації, результат."
 
-- Email history saved to Supabase DB
-- Stripe payment integration for Pro/Team plans
-- Email templates library
-- Rate limiting per user (based on plan)
-- Usage analytics dashboard
+**4. Provider-agnostic AI layer**
+> "Створи src/lib/ai/generate-email.ts з двома режимами: mock (детерміновані шаблони для UA/EN/RU) і claude (Anthropic SDK). Перемикання через AI_MODE env var. Архітектура повинна дозволяти легко додати інших провайдерів."
+
+**5. Multilingual i18n without libraries**
+> "Додай мультимовність UA/EN/RU через React context без зовнішніх бібліотек. Перемикач мови в navbar. Всі UI рядки через хук useLanguage()."
+
+**6. Features bento grid**
+> "Зроби секцію переваг у стилі bento grid: одна велика картка на 2 колонки зліва і три менших справа. Іконки, заголовки, опис. Використай градієнти і тіні для глибини."
+
+**7. FAQ accordion**
+> "Зроби FAQ секцію з акордеоном — плавна анімація відкриття/закриття через CSS transition на max-height. Без зовнішніх бібліотек анімацій."
+
+**8. Mobile hero mockup**
+> "Покажи анімований мокап на мобілі (зараз hidden lg:flex). На мобілі зроби вертикальний стек: IdeaCard зверху, кнопка Sparkles по центру, ResultCard знизу з compact варіантом."
+
+**9. Mobile sidebar with smooth animation**
+> "Переробити мобільне меню як правобічний сайдбар з плавною анімацією. Overlay з затемненням + slide-in панель справа. Плавне відкриття і закриття через CSS transitions, без Framer Motion."
+
+**10. Debug: backdrop-blur breaks fixed positioning**
+> "Мобільний сайдбар з position:fixed не відображається поверх контенту. Header має backdrop-blur-md. Як це виправити? Сайдбар всередині header."
+
+**11. Footer mobile layout**
+> "Футер на мобілі — всі посилання розтягнуті на 100% ширини. Треба два варіанти: десктоп grid-cols-3 як є, мобіль — лого зверху і посилання у 2 колонки. Використай hidden md:grid і md:hidden."
+
+**12. Responsive max-width for large screens**
+> "max-w-[1400px] на моніторі 1440px залишає нульові відступи по боках. Як зробити щоб на звичайних екранах було max-w-7xl (1280px), а на 2560px розширювалось до 1400px?"
+
+**13. Pricing Pro card mobile**
+> "На мобілі картка Pro з -translate-y-4 виглядає дивно в стопці. Застосуй підняття тільки на md+. Також зменши padding карток і відступи секцій на мобілі."
+
+**14. Debug: Vercel build crash**
+> "Vercel білд падає з помилкою 'Missing API key' на /api/contact. В route.ts є const resend = new Resend(process.env.RESEND_API_KEY) на рівні модуля. Як виправити щоб не крашило при збірці без RESEND_API_KEY?"
+
+**15. Dashboard mobile responsiveness**
+> "На мобілі grid-cols-2 для полів Тон/Довжина і Отримувач/Відправник занадто вузькі на 375px. Зроби grid-cols-1 sm:grid-cols-2. Плюс заголовок сторінки захардкоджений англійською — підключи переклади через новий DashboardContent client component."
+
+---
+
+### What I Would Improve With More Time
+
+1. **Email history** — Save generated emails to Supabase DB with full history tab in dashboard
+2. **Stripe integration** — Real payment flow for Pro/Team plans (currently a beautiful mock flow)
+3. **Rate limiting** — Enforce generation limits per plan at the API level
+4. **More AI providers** — OpenAI / Gemini alongside Claude, user picks in settings
+5. **Email templates library** — Pre-built templates for common scenarios (follow-up, cold outreach, thank you)
+6. **Tests** — Unit tests for `generate-email.ts`, integration tests for API routes
+7. **Docker** — Containerize for consistent local dev and easy self-hosting
+8. **CI/CD** — GitHub Actions: lint + typecheck on PR, auto-deploy preview on push
+9. **Usage analytics** — Track generation count per user, popular tones/languages
+10. **Tone fine-tuning controls** — Post-generation adjustments (shorter, more formal, friendlier) — partially demoed in the hero mockup
