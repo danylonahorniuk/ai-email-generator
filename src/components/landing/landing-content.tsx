@@ -337,21 +337,31 @@ export function LandingContent({ user }: LandingContentProps) {
       </section>
 
       {/* ── FAQ ── */}
-      <section id="faq" className="py-24 bg-gray-50 border-t border-gray-100">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">{t.faq.title}</h2>
-          </div>
-          <div className="space-y-3">
-            {(t.faq.items as { q: string; a: string }[]).map(({ q, a }) => (
-              <details key={q} className="group rounded-xl border border-gray-200 bg-white overflow-hidden">
-                <summary className="flex items-center justify-between px-6 py-4 cursor-pointer list-none hover:bg-gray-50 transition-colors">
-                  <span className="font-medium text-gray-900 text-sm">{q}</span>
-                  <ChevronDown className="h-4 w-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0" />
-                </summary>
-                <div className="px-6 pb-5 text-sm text-gray-500 leading-relaxed">{a}</div>
-              </details>
-            ))}
+      <section id="faq" className="py-24 bg-white border-t border-gray-100">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-16">
+
+            {/* Left */}
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">{t.faq.title}</h2>
+              <p className="text-gray-500 leading-relaxed mb-8">{(t.faq as any).subtitle}</p>
+              <a href={`mailto:danyakenobi@gmail.com`} className="inline-flex items-center gap-2 rounded-xl bg-orange-50 border border-orange-100 px-5 py-3 text-sm font-medium text-orange-600 hover:bg-orange-100 transition-colors">
+                Написати нам →
+              </a>
+            </div>
+
+            {/* Right */}
+            <div className="space-y-3">
+              {(t.faq.items as { q: string; a: string }[]).map(({ q, a }) => (
+                <details key={q} className="group rounded-xl border border-gray-200 bg-gray-50 overflow-hidden">
+                  <summary className="flex items-center justify-between px-6 py-4 cursor-pointer list-none hover:bg-gray-100 transition-colors">
+                    <span className="font-medium text-gray-900 text-sm">{q}</span>
+                    <ChevronDown className="h-4 w-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0" />
+                  </summary>
+                  <div className="px-6 pb-5 text-sm text-gray-500 leading-relaxed border-t border-gray-200 pt-4">{a}</div>
+                </details>
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -73,6 +73,7 @@ export const translations = {
     },
     faq: {
       title: 'Часті запитання',
+      subtitle: 'Не знайшли відповіді? Напишіть нам — відповімо протягом дня.',
       items: [
         { q: 'Як працює генератор листів?', a: 'Ви вказуєте контекст — мету, тон, ключові тези — і AI створює повноцінний лист за секунди. Можна скопіювати, відредагувати і відправити.' },
         { q: 'Чи безпечні мої дані?', a: 'Абсолютно. Ми ніколи не зберігаємо вміст ваших листів і не використовуємо його для навчання моделей.' },
@@ -243,6 +244,7 @@ export const translations = {
     },
     faq: {
       title: 'Frequently asked questions',
+      subtitle: "Can't find the answer? Write to us — we'll reply within a day.",
       items: [
         { q: 'How does the AI email generator work?', a: 'You provide the context — purpose, tone, key points — and our AI crafts a complete, professional email in seconds.' },
         { q: 'Is my data safe?', a: 'Absolutely. We never store your email content or use it to train models.' },
@@ -413,6 +415,7 @@ export const translations = {
     },
     faq: {
       title: 'Часто задаваемые вопросы',
+      subtitle: 'Не нашли ответа? Напишите нам — ответим в течение дня.',
       items: [
         { q: 'Как работает генератор писем?', a: 'Вы указываете контекст — цель, тон, ключевые тезисы — и AI создаёт полноценное письмо за секунды.' },
         { q: 'Безопасны ли мои данные?', a: 'Абсолютно. Мы никогда не храним содержимое ваших писем и не используем его для обучения моделей.' },
