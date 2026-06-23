@@ -80,7 +80,7 @@ export function PricingContent({ user }: Props) {
                 key={plan.key}
                 className={`rounded-2xl border p-8 relative ${
                   plan.highlighted
-                    ? 'border-orange-400 shadow-xl ring-2 ring-orange-400 bg-white'
+                    ? 'border-orange-400 shadow-xl ring-2 ring-orange-400 bg-white -translate-y-4'
                     : 'border-gray-200 bg-white shadow-md'
                 }`}
               >
