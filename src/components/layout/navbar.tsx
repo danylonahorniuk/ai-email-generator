@@ -58,7 +58,7 @@ export function Navbar({ user }: NavbarProps) {
     <>
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur-md shadow-sm">
       <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8">
-        <div className="flex h-[72px] items-center gap-8">
+        <div className="flex h-[72px] items-center justify-between">
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 lg:gap-2.5 font-bold text-gray-900">
@@ -84,7 +84,7 @@ export function Navbar({ user }: NavbarProps) {
           </nav>
 
           {/* Right side */}
-          <div className="hidden md:flex items-center gap-3 ml-auto">
+          <div className="hidden md:flex items-center gap-3">
             <LanguageSwitcher />
 
             {user ? (
@@ -147,7 +147,7 @@ export function Navbar({ user }: NavbarProps) {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 ml-auto"
+            className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100"
             onClick={() => setMobileOpen(v => !v)}
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
