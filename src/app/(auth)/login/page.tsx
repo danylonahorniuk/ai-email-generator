@@ -27,6 +27,7 @@ function LoginForm() {
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) { setError(error.message); setLoading(false); return }
     localStorage.setItem('quillai_toast', 'З поверненням!')
+    window.dispatchEvent(new Event('quillai_toast'))
     router.push(redirect)
     router.refresh()
   }

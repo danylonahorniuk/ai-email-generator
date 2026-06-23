@@ -8,13 +8,17 @@ export function ToastNotification() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    const raw = localStorage.getItem('quillai_toast')
-    if (!raw) return
-    localStorage.removeItem('quillai_toast')
-    setToast(raw)
-    setVisible(true)
-    const hide = setTimeout(() => setVisible(false), 3500)
-    return () => clearTimeout(hide)
+    function show() {
+      const raw = localStorage.getItem('quillai_toast')
+      if (!raw) return
+      localStorage.removeItem('quillai_toast')
+      setToast(raw)
+      setVisible(true)
+      setTimeout(() => setVisible(false), 3500)
+    }
+    show()
+    window.addEventListener('quillai_toast', show)
+    return () => window.removeEventListener('quillai_toast', show)
   }, [])
 
   if (!toast || !visible) return null
