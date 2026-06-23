@@ -254,11 +254,16 @@ export function LandingContent({ user }: LandingContentProps) {
             </div>
 
             {/* Right — steps */}
-            <div className="flex flex-col divide-y divide-gray-100 lg:pt-12">
-              {(t.howItWorks.steps as { number: string; title: string; desc: string }[]).map((step, i) => (
-                <div key={step.number} className="py-8 first:pt-0 last:pb-0">
-                  <div className="flex gap-6 items-start">
-                    <span className="text-4xl font-bold text-orange-500 leading-none w-14 flex-none">{step.number}</span>
+            <div className="flex flex-col lg:pt-12">
+              {(t.howItWorks.steps as { number: string; title: string; desc: string }[]).map((step, i, arr) => (
+                <div key={step.number} className="relative flex gap-6 pb-10 last:pb-0">
+                  {/* Connector line */}
+                  <div className="flex flex-col items-center flex-none w-14">
+                    <span className="text-4xl font-bold text-orange-500 leading-none">{step.number}</span>
+                    {i < arr.length - 1 && (
+                      <div className="mt-3 w-px flex-1 border-l-2 border-dashed border-orange-200 min-h-[40px]" />
+                    )}
+                  </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="text-lg font-semibold text-gray-900 mb-1">{step.title}</h3>
                       <p className="text-sm text-gray-500 mb-4">{step.desc}</p>
@@ -306,7 +311,6 @@ export function LandingContent({ user }: LandingContentProps) {
                         </div>
                       )}
                     </div>
-                  </div>
                 </div>
               ))}
             </div>
