@@ -415,18 +415,18 @@ export function LandingContent({ user }: LandingContentProps) {
             {/* Main content */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
               {/* Left */}
-              <div className="px-10 py-12">
-                <div className="flex items-center gap-2 mb-8">
+              <div className="px-10 py-8">
+                <div className="flex items-center gap-2 mb-6">
                   <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-orange-600">
                     <Sparkles className="h-4 w-4 text-white" />
                   </div>
                   <span className="font-bold text-gray-900">MailMind<span className="text-orange-600">AI</span></span>
                 </div>
-                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight mb-4">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight mb-3">
                   {t.cta.title.split((t.cta as any).titleAccent)[0]}
                   <span className="text-orange-500">{(t.cta as any).titleAccent}</span>
                 </h2>
-                <p className="text-gray-500 leading-relaxed mb-8">{t.cta.subtitle}</p>
+                <p className="text-gray-500 leading-relaxed mb-6 text-sm">{t.cta.subtitle}</p>
                 <div className="flex flex-col sm:flex-row gap-3 mb-4">
                   <Link href={user ? '/dashboard' : '/signup'}>
                     <Button size="lg">
@@ -444,35 +444,35 @@ export function LandingContent({ user }: LandingContentProps) {
               </div>
 
               {/* Right — email mockup */}
-              <div className="hidden lg:flex items-center px-8 py-10 bg-orange-50/40 border-l border-orange-100">
-                <div className="w-full rounded-2xl bg-white border border-gray-200 shadow-sm p-5">
-                  <div className="flex justify-end mb-3">
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
-                      <CheckCircle2 className="h-3.5 w-3.5" /> Готово до відправки
+              <div className="hidden lg:flex items-center px-6 py-6 bg-orange-50/40 border-l border-orange-100">
+                <div className="w-full rounded-xl bg-white border border-gray-200 shadow-sm p-4">
+                  <div className="flex justify-end mb-2">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700">
+                      <CheckCircle2 className="h-3 w-3" /> Готово до відправки
                     </span>
                   </div>
-                  <div className="space-y-1.5 mb-4 pb-4 border-b border-gray-100">
-                    <div className="flex gap-3 text-sm">
-                      <span className="text-gray-400 w-12 flex-none">Кому:</span>
+                  <div className="space-y-1 mb-3 pb-3 border-b border-gray-100">
+                    <div className="flex gap-3 text-xs">
+                      <span className="text-gray-400 w-10 flex-none">Кому:</span>
                       <span className="text-gray-700">olena.kovalenko@company.ua</span>
                     </div>
-                    <div className="flex gap-3 text-sm">
-                      <span className="text-gray-400 w-12 flex-none">Тема:</span>
+                    <div className="flex gap-3 text-xs">
+                      <span className="text-gray-400 w-10 flex-none">Тема:</span>
                       <span className="text-gray-700">Пропозиція щодо співпраці</span>
                     </div>
                   </div>
-                  <div className="text-sm text-gray-600 leading-relaxed mb-4">
+                  <div className="text-xs text-gray-600 leading-relaxed mb-3 space-y-1.5">
                     <p>Доброго дня, Олено!</p>
-                    <p className="mt-2">Дякуємо за інтерес до нашого рішення. Воно допомагає командам економити час на рутинних листах і зосереджуватись на важливому.</p>
-                    <p className="mt-2">Будемо раді показати, як MailMindAI може працювати для вас. Зручний час для короткої демо-зустрічі?</p>
-                    <p className="mt-2">З повагою,<br />Команда MailMindAI</p>
+                    <p>Дякуємо за інтерес до нашого рішення. Воно допомагає командам економити час на рутинних листах.</p>
+                    <p>Будемо раді показати, як MailMindAI може працювати для вас. Зручний час для демо-зустрічі?</p>
+                    <p>З повагою, Команда MailMindAI</p>
                   </div>
-                  <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                    <button className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-gray-600">
-                      <RefreshCw className="h-3.5 w-3.5" /> Змінити тон
+                  <div className="flex items-center justify-between pt-2.5 border-t border-gray-100">
+                    <button className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600">
+                      <RefreshCw className="h-3 w-3" /> Змінити тон
                     </button>
-                    <button className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-gray-600">
-                      <Wand2 className="h-3.5 w-3.5" /> Редагувати
+                    <button className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600">
+                      <Wand2 className="h-3 w-3" /> Редагувати
                     </button>
                   </div>
                 </div>
@@ -484,9 +484,9 @@ export function LandingContent({ user }: LandingContentProps) {
               {((t.cta as any).stats as { value: string; label: string }[]).map(({ value, label }, i) => {
                 const Icon = [Zap, Globe, Wand2][i]
                 return (
-                  <div key={label} className="flex items-center gap-3 px-8 py-5">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-50 flex-none">
-                      <Icon className="h-4 w-4 text-orange-500" />
+                  <div key={label} className="flex items-center gap-3 px-8 py-4">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-50 flex-none">
+                      <Icon className="h-3.5 w-3.5 text-orange-500" />
                     </div>
                     <div>
                       <div className="text-sm font-semibold text-gray-900">{value}</div>
