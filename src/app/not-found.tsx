@@ -29,10 +29,6 @@ export default function NotFound() {
           <span className="tracking-tight">Quill<span className="text-orange-600">AI</span></span>
         </Link>
 
-        <div className="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-3 py-1 text-xs font-medium text-orange-600 mb-6">
-          Сторінку не знайдено
-        </div>
-
         <h1 className="text-4xl font-bold text-gray-900 mb-4 leading-tight">
           Схоже, ця сторінка<br />
           <span className="text-orange-500">загубилась десь у листах</span>
