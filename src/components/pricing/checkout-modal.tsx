@@ -64,23 +64,23 @@ export function CheckoutModal({ open, onClose, plan }: CheckoutModalProps) {
         ) : (
           <>
             {/* Header */}
-            <div className="bg-gray-900 px-6 py-5 text-white">
-              <button onClick={handleClose} className="absolute right-4 top-4 p-1 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors">
+            <div className="bg-orange-50 border-b border-orange-100 px-6 py-5">
+              <button onClick={handleClose} className="absolute right-4 top-4 p-1 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
                 <X className="h-5 w-5" />
               </button>
               <div className="flex items-center gap-2 mb-1">
-                <Zap className="h-4 w-4" />
-                <span className="text-sm font-medium text-white/80">Підключення плану</span>
+                <Zap className="h-4 w-4 text-orange-500" />
+                <span className="text-sm font-medium text-orange-600">Підключення плану</span>
               </div>
               <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-bold">{plan.price}</span>
-                <span className="text-white/70 text-sm">/{plan.period}</span>
-                <span className="ml-2 text-lg font-semibold">{plan.name}</span>
+                <span className="text-3xl font-bold text-gray-900">{plan.price}</span>
+                <span className="text-gray-500 text-sm">/{plan.period}</span>
+                <span className="ml-2 text-lg font-semibold text-gray-900">{plan.name}</span>
               </div>
               <div className="flex flex-wrap gap-x-4 gap-y-1 mt-3">
                 {plan.features.slice(0, 3).map(f => (
-                  <span key={f} className="text-xs text-white/80 flex items-center gap-1">
-                    <CheckCircle2 className="h-3 w-3" /> {f}
+                  <span key={f} className="text-xs text-gray-500 flex items-center gap-1">
+                    <CheckCircle2 className="h-3 w-3 text-orange-400" /> {f}
                   </span>
                 ))}
               </div>
