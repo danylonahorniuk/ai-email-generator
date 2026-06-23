@@ -409,30 +409,29 @@ export function LandingContent({ user }: LandingContentProps) {
       </section>
 
       {/* ── CTA ── */}
-      <section className="bg-gray-50 py-16 border-t border-gray-200">
+      <section className="bg-gray-100 py-16 border-t border-gray-200">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-gradient-to-br from-gray-800 to-gray-900 px-10 py-14 text-center shadow-lg ring-1 ring-white/5">
-            <p className="text-xs font-semibold text-orange-500 uppercase tracking-widest mb-4">
+          <div className="rounded-3xl bg-gradient-to-br from-orange-500 to-orange-600 px-10 py-14 text-center shadow-md">
+            <p className="text-xs font-semibold text-orange-100 uppercase tracking-widest mb-4">
               {t.cta.subtitle}
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 leading-tight">
-              {t.cta.title.split(' ').slice(0, -2).join(' ')}{' '}
-              <span className="text-orange-500">{t.cta.title.split(' ').slice(-2).join(' ')}</span>
+              {t.cta.title}
             </h2>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link href={user ? '/dashboard' : '/signup'}>
-                <Button size="lg">
+                <Button size="lg" className="bg-white text-orange-600 hover:bg-orange-50 focus:ring-white shadow-sm">
                   {user ? t.cta.buttonDashboard : t.cta.button}
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
               <Link href="/pricing">
-                <Button variant="ghost" size="lg" className="text-gray-400 hover:text-white hover:bg-white/10">
+                <Button variant="ghost" size="lg" className="text-white hover:bg-white/15">
                   {t.cta.viewPlans}
                 </Button>
               </Link>
             </div>
-            <p className="mt-5 text-sm text-gray-500">{t.hero.noCreditCard}</p>
+            <p className="mt-5 text-sm text-orange-100">{t.hero.noCreditCard}</p>
           </div>
         </div>
       </section>
