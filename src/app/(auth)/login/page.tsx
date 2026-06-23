@@ -32,9 +32,11 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-gray-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 font-bold text-xl text-gray-900 mb-6">
-            <Image src="/logo.png" alt="QuillAI" width={36} height={36} className="rounded-xl" />
-            Quill<span className="text-orange-600">AI</span>
+          <Link href="/" className="inline-flex items-center gap-2.5 font-bold text-xl text-gray-900 mb-6">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-orange-500 bg-white overflow-hidden flex-none">
+              <Image src="/logo.png" alt="QuillAI" width={64} height={64} className="scale-150 object-contain" />
+            </div>
+            <span className="text-xl tracking-tight">Quill<span className="text-orange-600">AI</span></span>
           </Link>
           <h1 className="text-2xl font-bold text-gray-900">{t.auth.welcomeBack}</h1>
           <p className="mt-2 text-gray-600">{t.auth.signInSubtitle}</p>
