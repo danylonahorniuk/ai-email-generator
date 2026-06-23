@@ -203,7 +203,7 @@ export function LandingContent({ user }: LandingContentProps) {
             </div>
 
             {/* Right — steps */}
-            <div className="flex flex-col divide-y divide-gray-100 lg:pt-16">
+            <div className="flex flex-col divide-y divide-gray-100 lg:pt-4">
               {(t.howItWorks.steps as { number: string; title: string; desc: string }[]).map((step, i) => (
                 <div key={step.number} className="py-8 first:pt-0 last:pb-0">
                   <div className="flex gap-6 items-start">
