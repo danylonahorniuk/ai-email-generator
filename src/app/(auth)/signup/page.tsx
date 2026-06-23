@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import Link from 'next/link'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -9,7 +10,10 @@ import { useLanguage } from '@/lib/i18n/language-context'
 import { CheckCircle2 } from 'lucide-react'
 import Image from 'next/image'
 
-export default function SignupPage() {
+function SignupForm() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const redirect = searchParams.get('redirect') || '/dashboard'
   const { t } = useLanguage()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -27,7 +31,7 @@ export default function SignupPage() {
     const supabase = createClient()
     const { error } = await supabase.auth.signUp({
       email, password,
-      options: { emailRedirectTo: `${window.location.origin}/dashboard` },
+      options: { emailRedirectTo: `${window.location.origin}${redirect}` },
     })
     if (error) { setError(error.message); setLoading(false); return }
     setSuccess(true)
@@ -46,7 +50,9 @@ export default function SignupPage() {
             </div>
             <h2 className="text-2xl font-bold text-gray-900 mb-2">{t.auth.checkEmail}</h2>
             <p className="text-gray-600 mb-6">{t.auth.confirmSent} <strong>{email}</strong>. {t.auth.confirmClick}</p>
-            <Link href="/login"><Button variant="outline" className="w-full">{t.auth.backToSignIn}</Button></Link>
+            <Link href={`/login${redirect !== '/dashboard' ? `?redirect=${redirect}` : ''}`}>
+              <Button variant="outline" className="w-full">{t.auth.backToSignIn}</Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -76,11 +82,24 @@ export default function SignupPage() {
           </form>
           <p className="mt-6 text-center text-sm text-gray-600">
             {t.auth.haveAccount}{' '}
-            <Link href="/login" className="font-medium text-orange-600 hover:text-orange-700">{t.auth.signIn}</Link>
+            <Link
+              href={`/login${redirect !== '/dashboard' ? `?redirect=${redirect}` : ''}`}
+              className="font-medium text-orange-600 hover:text-orange-700"
+            >
+              {t.auth.signIn}
+            </Link>
           </p>
         </div>
         <p className="mt-4 text-center text-xs text-gray-500">{t.auth.terms}</p>
       </div>
     </div>
+  )
+}
+
+export default function SignupPage() {
+  return (
+    <Suspense>
+      <SignupForm />
+    </Suspense>
   )
 }

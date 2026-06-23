@@ -133,7 +133,7 @@ export function PricingContent({ user }: Props) {
                     {CTA[plan.key as keyof typeof CTA][locale]}
                   </Button>
                 ) : (
-                  <Link href={user ? '/dashboard' : plan.href}>
+                  <Link href={user ? '/dashboard' : plan.key === 'free' ? plan.href : '/login?redirect=/pricing'}>
                     <Button className="w-full" size="lg" variant={plan.highlighted ? 'primary' : 'outline'}>
                       {user && plan.key === 'free' ? t.pricing.currentPlan : CTA[plan.key as keyof typeof CTA][locale]}
                     </Button>

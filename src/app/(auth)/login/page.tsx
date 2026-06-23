@@ -1,16 +1,18 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useLanguage } from '@/lib/i18n/language-context'
 import Image from 'next/image'
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const redirect = searchParams.get('redirect') || '/dashboard'
   const { t } = useLanguage()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -24,7 +26,7 @@ export default function LoginPage() {
     const supabase = createClient()
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) { setError(error.message); setLoading(false); return }
-    router.push('/dashboard')
+    router.push(redirect)
     router.refresh()
   }
 
@@ -50,10 +52,23 @@ export default function LoginPage() {
           </form>
           <p className="mt-6 text-center text-sm text-gray-600">
             {t.auth.noAccount}{' '}
-            <Link href="/signup" className="font-medium text-orange-600 hover:text-orange-700">{t.auth.signUpFree}</Link>
+            <Link
+              href={`/signup${redirect !== '/dashboard' ? `?redirect=${redirect}` : ''}`}
+              className="font-medium text-orange-600 hover:text-orange-700"
+            >
+              {t.auth.signUpFree}
+            </Link>
           </p>
         </div>
       </div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginForm />
+    </Suspense>
   )
 }
