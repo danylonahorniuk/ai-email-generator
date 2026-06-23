@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="uk">
+    <html lang="uk" className="scroll-smooth">
       <body className={`${inter.className} antialiased min-h-full flex flex-col`}>
         <LanguageProvider>{children}</LanguageProvider>
         <ToastNotification />
