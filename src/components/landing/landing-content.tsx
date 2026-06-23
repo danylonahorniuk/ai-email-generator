@@ -196,7 +196,7 @@ export function LandingContent({ user }: LandingContentProps) {
       </section>
 
       {/* ── FEATURES ── */}
-      <section id="features" className="py-24 bg-gray-50 border-t border-gray-100">
+      <section id="features" className="py-24 bg-gradient-to-b from-white to-gray-50 border-t border-gray-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">{t.features.title}</h2>
