@@ -39,12 +39,15 @@ export const translations = {
       previewRegen: 'Регенерувати',
     },
     howItWorks: {
-      title: 'Як це працює',
-      subtitle: 'Три кроки до ідеального листа',
+      title: 'Від думки до готового листа за три кроки',
+      subtitle: 'Вам не потрібно складати ідеальний запит. Просто опишіть ситуацію своїми словами — MailMindAI зробить решту.',
+      subtitle2: 'Сервіс допомагає швидко формулювати природні, доречні листи для щоденної комунікації.',
+      label: 'ЯК ЦЕ ПРАЦЮЄ',
+      perks: ['Економить час', 'Підвищує результативність', 'Зберігає ваш стиль'],
       steps: [
-        { number: '01', title: 'Опишіть', desc: 'Коротко напишіть що хочете сказати. Чим більше деталей — тим точніший результат.' },
-        { number: '02', title: 'Налаштуйте', desc: 'Оберіть тон, мову та довжину листа під ваші потреби.' },
-        { number: '03', title: 'Згенеруйте', desc: 'Отримайте готовий лист який можна одразу надіслати або відредагувати.' },
+        { number: '01', title: 'Опишіть ситуацію', desc: 'Коротко напишіть, що потрібно сказати. Чим більше деталей — тим точніший результат.' },
+        { number: '02', title: 'Оберіть подачу', desc: 'Налаштуйте тон, мову та довжину листа під ваші потреби.' },
+        { number: '03', title: 'Отримайте готовий лист', desc: 'Відредагуйте за потреби та надішліть.' },
       ],
     },
     stats: {
@@ -206,12 +209,15 @@ export const translations = {
       previewRegen: 'Regenerate',
     },
     howItWorks: {
-      title: 'How it works',
-      subtitle: 'Three steps to a perfect email',
+      title: 'From idea to ready email in three steps',
+      subtitle: 'You don\'t need to craft the perfect prompt. Just describe the situation in your own words — MailMindAI handles the rest.',
+      subtitle2: 'The service helps you quickly write natural, appropriate emails for everyday communication.',
+      label: 'HOW IT WORKS',
+      perks: ['Saves time', 'Boosts productivity', 'Preserves your style'],
       steps: [
-        { number: '01', title: 'Describe', desc: 'Briefly write what you want to say. More details mean a more accurate result.' },
-        { number: '02', title: 'Configure', desc: 'Choose the tone, language, and length that fit your needs.' },
-        { number: '03', title: 'Generate', desc: 'Get a ready-to-send email you can use immediately or edit.' },
+        { number: '01', title: 'Describe the situation', desc: 'Briefly write what you need to say. More details mean a more accurate result.' },
+        { number: '02', title: 'Choose your style', desc: 'Set the tone, language, and length to fit your needs.' },
+        { number: '03', title: 'Get your email', desc: 'Edit if needed and send.' },
       ],
     },
     stats: {
@@ -373,12 +379,15 @@ export const translations = {
       previewRegen: 'Регенерировать',
     },
     howItWorks: {
-      title: 'Как это работает',
-      subtitle: 'Три шага к идеальному письму',
+      title: 'От мысли до готового письма за три шага',
+      subtitle: 'Вам не нужно составлять идеальный запрос. Просто опишите ситуацию своими словами — MailMindAI сделает остальное.',
+      subtitle2: 'Сервис помогает быстро формулировать естественные, уместные письма для повседневной коммуникации.',
+      label: 'КАК ЭТО РАБОТАЕТ',
+      perks: ['Экономит время', 'Повышает результативность', 'Сохраняет ваш стиль'],
       steps: [
-        { number: '01', title: 'Опишите', desc: 'Коротко напишите что хотите сказать. Больше деталей — точнее результат.' },
-        { number: '02', title: 'Настройте', desc: 'Выберите тон, язык и длину письма под ваши нужды.' },
-        { number: '03', title: 'Сгенерируйте', desc: 'Получите готовое письмо которое можно сразу отправить или отредактировать.' },
+        { number: '01', title: 'Опишите ситуацию', desc: 'Коротко напишите, что нужно сказать. Больше деталей — точнее результат.' },
+        { number: '02', title: 'Выберите подачу', desc: 'Настройте тон, язык и длину письма под ваши нужды.' },
+        { number: '03', title: 'Получите готовое письмо', desc: 'Отредактируйте при необходимости и отправьте.' },
       ],
     },
     stats: {

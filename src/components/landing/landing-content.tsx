@@ -1,9 +1,10 @@
 'use client'
 
+import React from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/lib/i18n/language-context'
-import { ArrowRight, Star, ChevronDown, Zap, Shield, Globe, Clock, Sparkles, Users, ShoppingBag, Heart, Headphones, UserCheck, Copy, RefreshCw, Wand2, Scissors } from 'lucide-react'
+import { ArrowRight, Star, ChevronDown, Zap, Shield, Globe, Clock, Sparkles, Users, ShoppingBag, Heart, Headphones, UserCheck, Copy, RefreshCw, Wand2, Scissors, TrendingUp, Send, CheckCircle2 } from 'lucide-react'
 
 const FEATURE_ICONS = [Zap, Sparkles, Globe, Shield, Clock, Users]
 const INDUSTRY_ICONS = [ShoppingBag, Heart, Headphones, UserCheck]
@@ -175,22 +176,90 @@ export function LandingContent({ user }: LandingContentProps) {
 
 
       {/* ── HOW IT WORKS ── */}
-      <section id="how-it-works" className="py-24 bg-gradient-to-b from-orange-50 to-white relative overflow-hidden">
+      <section id="how-it-works" className="py-24 bg-gradient-to-b from-orange-50 to-white overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">{t.howItWorks.title}</h2>
-            <p className="mt-3 text-lg text-gray-500">{t.howItWorks.subtitle}</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {(t.howItWorks.steps as { number: string; title: string; desc: string }[]).map((step) => (
-              <div key={step.number} className="relative rounded-2xl border border-orange-100 bg-white p-8 shadow-sm hover:shadow-md transition-shadow duration-200">
-                <div className="text-5xl font-bold text-orange-200 leading-none mb-4 select-none">
-                  {step.number}
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h3>
-                <p className="text-gray-500 leading-relaxed">{step.desc}</p>
+          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-16 items-start">
+
+            {/* Left */}
+            <div className="lg:sticky lg:top-24">
+              <p className="text-xs font-bold text-orange-600 uppercase tracking-widest mb-4">{(t.howItWorks as any).label}</p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight mb-6">{t.howItWorks.title}</h2>
+              <p className="text-gray-500 leading-relaxed mb-4">{t.howItWorks.subtitle}</p>
+              <p className="text-gray-500 leading-relaxed mb-10">{(t.howItWorks as any).subtitle2}</p>
+
+              <div className="flex flex-col gap-5">
+                {([
+                  { icon: Clock, label: (t.howItWorks as any).perks?.[0] },
+                  { icon: TrendingUp, label: (t.howItWorks as any).perks?.[1] },
+                  { icon: Shield, label: (t.howItWorks as any).perks?.[2] },
+                ] as { icon: React.ElementType; label: string }[]).map(({ icon: Icon, label }) => (
+                  <div key={label} className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-orange-100 bg-white shadow-sm">
+                      <Icon className="h-5 w-5 text-orange-500" />
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">{label}</span>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Right — steps */}
+            <div className="flex flex-col divide-y divide-gray-100">
+              {(t.howItWorks.steps as { number: string; title: string; desc: string }[]).map((step, i) => (
+                <div key={step.number} className="py-8 first:pt-0 last:pb-0">
+                  <div className="flex gap-6 items-start">
+                    <span className="text-4xl font-bold text-orange-500 leading-none w-14 flex-none">{step.number}</span>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-1">{step.title}</h3>
+                      <p className="text-sm text-gray-500 mb-4">{step.desc}</p>
+
+                      {/* Step mockup */}
+                      {i === 0 && (
+                        <div className="rounded-xl border border-gray-200 bg-white shadow-sm p-4">
+                          <p className="text-sm text-gray-700 leading-relaxed">
+                            Треба нагадати клієнту про оплату, але{' '}
+                            <em className="not-italic underline decoration-orange-400">ввічливо</em>{' '}
+                            й{' '}
+                            <em className="not-italic underline decoration-orange-400">без тиску</em>.
+                          </p>
+                          <div className="flex justify-end mt-3">
+                            <Send className="h-4 w-4 text-gray-300" />
+                          </div>
+                        </div>
+                      )}
+                      {i === 1 && (
+                        <div className="flex flex-wrap gap-2">
+                          {[
+                            { icon: '🙂', label: 'Дружній' },
+                            { icon: '🌐', label: 'Українська' },
+                            { icon: '≡', label: 'Короткий' },
+                          ].map(opt => (
+                            <div key={opt.label} className="flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 shadow-sm">
+                              <span>{opt.icon}</span>
+                              <span>{opt.label}</span>
+                              <ChevronDown className="h-3.5 w-3.5 text-gray-400 ml-0.5" />
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      {i === 2 && (
+                        <div className="rounded-xl border border-gray-200 bg-white shadow-sm p-4">
+                          <p className="text-xs font-semibold text-orange-500 mb-2">Нагадування щодо оплати</p>
+                          <p className="text-xs text-gray-600 leading-relaxed mb-3">
+                            Доброго дня!<br />
+                            Нагадуємо, що оплата за рахунком №124 від 02.05.2024 ще не надійшла. Будемо вдячні, якщо зможете здійснити оплату найближчим часом.
+                          </p>
+                          <div className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
+                            <CheckCircle2 className="h-3.5 w-3.5" />
+                            Готово до відправки
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
