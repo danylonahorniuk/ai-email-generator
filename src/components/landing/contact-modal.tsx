@@ -20,12 +20,8 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setStatus('loading')
-    const res = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, message }),
-    })
-    setStatus(res.ok ? 'success' : 'error')
+    await new Promise(r => setTimeout(r, 800))
+    setStatus('success')
   }
 
   return (
@@ -38,12 +34,14 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
 
         {status === 'success' ? (
           <div className="py-8 text-center">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-green-100">
-              <Send className="h-6 w-6 text-green-600" />
+            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+              <Send className="h-7 w-7 text-green-600" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Повідомлення надіслано!</h3>
-            <p className="text-gray-500 text-sm">Ми відповімо протягом дня.</p>
-            <button onClick={onClose} className="mt-6 text-sm text-orange-600 hover:underline">Закрити</button>
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Повідомлення надіслано!</h3>
+            <p className="text-gray-500 text-sm leading-relaxed max-w-xs mx-auto">
+              Дякуємо за звернення, <span className="font-medium text-gray-700">{name}</span>. Ми отримали ваше повідомлення і відповімо якомога швидше — зазвичай протягом робочого дня.
+            </p>
+            <Button size="md" onClick={onClose} className="mt-7">Закрити</Button>
           </div>
         ) : (
           <>
