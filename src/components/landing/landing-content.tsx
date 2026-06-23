@@ -296,33 +296,33 @@ export function LandingContent({ user }: LandingContentProps) {
       </section>
 
       {/* ── CTA ── */}
-      <section className="bg-orange-50 py-16 border-t border-orange-100">
+      <section className="bg-orange-50 py-12 lg:py-16 border-t border-orange-100">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-white shadow-sm border border-orange-100 overflow-hidden">
+          <div className="rounded-2xl lg:rounded-3xl bg-white shadow-sm border border-orange-100 overflow-hidden">
             {/* Main content */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
               {/* Left */}
-              <div className="px-10 py-8">
-                <div className="flex items-center gap-2 mb-6">
+              <div className="px-6 py-7 lg:px-10 lg:py-8">
+                <div className="flex items-center gap-2 mb-4 lg:mb-6">
                   <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-orange-600">
                     <Sparkles className="h-4 w-4 text-white" />
                   </div>
                   <span className="font-bold text-gray-900">Quill<span className="text-orange-600">AI</span></span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight mb-3">
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight mb-3">
                   {t.cta.title.split((t.cta as any).titleAccent)[0]}
                   <span className="text-orange-500">{(t.cta as any).titleAccent}</span>
                 </h2>
-                <p className="text-gray-500 leading-relaxed mb-6 text-sm">{t.cta.subtitle}</p>
+                <p className="text-gray-500 leading-relaxed mb-5 text-sm">{t.cta.subtitle}</p>
                 <div className="flex flex-col sm:flex-row gap-3 mb-4">
                   <Link href={user ? '/dashboard' : '/signup'}>
-                    <Button size="md" className="whitespace-nowrap">
+                    <Button size="md" className="w-full sm:w-auto whitespace-nowrap">
                       {user ? t.cta.buttonDashboard : t.cta.button}
                       <ArrowRight className="h-4 w-4" />
                     </Button>
                   </Link>
                   <Link href="/pricing">
-                    <Button variant="outline" size="md" className="whitespace-nowrap">
+                    <Button variant="outline" size="md" className="w-full sm:w-auto whitespace-nowrap">
                       {t.cta.viewPlans} →
                     </Button>
                   </Link>
@@ -330,7 +330,7 @@ export function LandingContent({ user }: LandingContentProps) {
                 <p className="text-sm text-gray-400">{t.hero.noCreditCard}</p>
               </div>
 
-              {/* Right — email mockup */}
+              {/* Right — email mockup, desktop only */}
               <div className="hidden lg:flex items-center px-6 py-6 bg-white border-l border-orange-100">
                 <div className="w-full rounded-2xl border border-gray-200 bg-white shadow-md p-5">
                   <div className="flex items-center justify-between mb-4">
@@ -370,13 +370,13 @@ export function LandingContent({ user }: LandingContentProps) {
               {((t.cta as any).stats as { value: string; label: string }[]).map(({ value, label }, i) => {
                 const Icon = [Zap, Globe, Wand2][i]
                 return (
-                  <div key={label} className="flex items-center gap-3 px-8 py-4">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-50 flex-none">
-                      <Icon className="h-3.5 w-3.5 text-orange-500" />
+                  <div key={label} className="flex items-center gap-2 lg:gap-3 px-3 lg:px-8 py-3 lg:py-4">
+                    <div className="flex h-7 w-7 lg:h-8 lg:w-8 items-center justify-center rounded-lg bg-orange-50 flex-none">
+                      <Icon className="h-3 w-3 lg:h-3.5 lg:w-3.5 text-orange-500" />
                     </div>
-                    <div>
-                      <div className="text-sm font-semibold text-gray-900">{value}</div>
-                      <div className="text-xs text-gray-400">{label}</div>
+                    <div className="min-w-0">
+                      <div className="text-xs lg:text-sm font-semibold text-gray-900 truncate">{value}</div>
+                      <div className="text-[10px] lg:text-xs text-gray-400 leading-tight">{label}</div>
                     </div>
                   </div>
                 )
