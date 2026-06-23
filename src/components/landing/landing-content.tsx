@@ -148,9 +148,8 @@ export function LandingContent({ user }: LandingContentProps) {
               <div className="rounded-2xl border border-gray-200 bg-white shadow-md p-5 flex-1 relative">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-sm font-semibold text-gray-800">{t.hero.previewYourEmail}</span>
-                  <span className="flex items-center gap-1.5 text-[11px] text-green-600 font-medium">
-                    <span className="h-2 w-2 rounded-full bg-green-500 inline-block" />
-                    {t.hero.previewGenStatus}
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-[11px] font-medium text-green-700">
+                    <CheckCircle2 className="h-3 w-3" /> Готово до відправки
                   </span>
                 </div>
                 <div className="text-xs font-semibold text-gray-800 mb-3">
@@ -407,34 +406,33 @@ export function LandingContent({ user }: LandingContentProps) {
 
               {/* Right — email mockup */}
               <div className="hidden lg:flex items-center px-6 py-6 bg-white border-l border-orange-100">
-                <div className="w-full rounded-xl bg-white border border-gray-200 shadow-sm p-4">
-                  <div className="flex justify-end mb-2">
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700">
+                <div className="w-full rounded-2xl border border-gray-200 bg-white shadow-md p-5">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-sm font-semibold text-gray-800">Ваш лист</span>
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-[11px] font-medium text-green-700">
                       <CheckCircle2 className="h-3 w-3" /> Готово до відправки
                     </span>
                   </div>
-                  <div className="space-y-1 mb-3 pb-3 border-b border-gray-100">
-                    <div className="flex gap-3 text-xs">
-                      <span className="text-gray-400 w-10 flex-none">Кому:</span>
-                      <span className="text-gray-700">olena.kovalenko@company.ua</span>
-                    </div>
-                    <div className="flex gap-3 text-xs">
-                      <span className="text-gray-400 w-10 flex-none">Тема:</span>
-                      <span className="text-gray-700">Пропозиція щодо співпраці</span>
-                    </div>
+                  <div className="text-xs font-semibold text-gray-800 mb-3">
+                    Тема: Пропозиція щодо співпраці
                   </div>
-                  <div className="text-xs text-gray-600 leading-relaxed mb-3 space-y-1.5">
-                    <p>Доброго дня, Олено!</p>
-                    <p>Дякуємо за інтерес до нашого рішення. Воно допомагає командам економити час на рутинних листах.</p>
-                    <p>Будемо раді показати, як MailMindAI може працювати для вас. Зручний час для демо-зустрічі?</p>
-                    <p>З повагою, Команда MailMindAI</p>
+                  <div className="text-[13px] text-gray-500 leading-relaxed mb-5">
+                    Доброго дня, Олено!<br /><br />
+                    Дякуємо за інтерес до нашого рішення. Воно допомагає командам економити час на рутинних листах.<br /><br />
+                    З повагою, Команда MailMindAI
                   </div>
-                  <div className="flex items-center justify-between pt-2.5 border-t border-gray-100">
-                    <button className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600">
-                      <RefreshCw className="h-3 w-3" /> Змінити тон
+                  <div className="grid grid-cols-2 gap-2">
+                    <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
+                      <Copy className="h-3.5 w-3.5" /> Копіювати
                     </button>
-                    <button className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600">
-                      <Wand2 className="h-3 w-3" /> Редагувати
+                    <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
+                      <RefreshCw className="h-3.5 w-3.5" /> Регенерувати
+                    </button>
+                    <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
+                      <Wand2 className="h-3.5 w-3.5" /> Ввічливіше
+                    </button>
+                    <button className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2 hover:bg-gray-50 flex items-center justify-center gap-1.5">
+                      <Scissors className="h-3.5 w-3.5" /> Коротше
                     </button>
                   </div>
                 </div>
