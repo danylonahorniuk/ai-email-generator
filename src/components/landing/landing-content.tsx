@@ -266,20 +266,36 @@ export function LandingContent({ user }: LandingContentProps) {
       {/* ── FEATURES ── */}
       <section id="features" className="py-24 bg-gray-50 border-t border-gray-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">{t.features.title}</h2>
             <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">{t.features.subtitle}</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          {/* Bento grid */}
+          <div className="grid grid-cols-3 gap-4 auto-rows-[minmax(160px,auto)]">
             {(t.features.items as { title: string; description: string }[]).map((feature, i) => {
               const Icon = FEATURE_ICONS[i]
+              // wide: 0, 3, 5 → col-span-2; narrow: 1, 2, 4 → col-span-1
+              const wide = i === 0 || i === 3 || i === 5
+              const featured = i === 0
               return (
-                <div key={feature.title} className="rounded-2xl border border-gray-200 bg-white p-6 hover:border-orange-200 hover:shadow-md transition-all duration-200">
-                  <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50">
-                    <Icon className="h-5 w-5 text-orange-600" />
+                <div
+                  key={feature.title}
+                  className={[
+                    'rounded-2xl border p-7 flex flex-col justify-between transition-all duration-200 hover:shadow-md',
+                    wide ? 'col-span-2' : 'col-span-1',
+                    featured
+                      ? 'bg-gradient-to-br from-orange-500 to-orange-600 border-orange-400 text-white'
+                      : 'bg-white border-gray-200 hover:border-orange-200',
+                  ].join(' ')}
+                >
+                  <div className={`mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl ${featured ? 'bg-white/20' : 'bg-orange-50'}`}>
+                    <Icon className={`h-5 w-5 ${featured ? 'text-white' : 'text-orange-600'}`} />
                   </div>
-                  <h3 className="text-base font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">{feature.description}</p>
+                  <div>
+                    <h3 className={`text-base font-semibold mb-1.5 ${featured ? 'text-white' : 'text-gray-900'}`}>{feature.title}</h3>
+                    <p className={`text-sm leading-relaxed ${featured ? 'text-orange-100' : 'text-gray-500'}`}>{feature.description}</p>
+                  </div>
                 </div>
               )
             })}
