@@ -69,7 +69,7 @@ export function Navbar({ user }: NavbarProps) {
           </Link>
 
           {/* Nav links */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-6">
             {navLinks.map(link => (
               <Link
                 key={link.href}
@@ -84,7 +84,7 @@ export function Navbar({ user }: NavbarProps) {
           </nav>
 
           {/* Right side */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <LanguageSwitcher />
 
             {user ? (
@@ -147,7 +147,7 @@ export function Navbar({ user }: NavbarProps) {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100"
+            className="lg:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100"
             onClick={() => setMobileOpen(v => !v)}
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -159,7 +159,7 @@ export function Navbar({ user }: NavbarProps) {
 
     {/* Mobile sidebar — always rendered, animated via CSS */}
     <div
-      className="fixed inset-0 z-50 md:hidden flex justify-end"
+      className="fixed inset-0 z-50 lg:hidden flex justify-end"
       style={{
         pointerEvents: mobileOpen ? 'auto' : 'none',
         visibility: mobileOpen ? 'visible' : 'hidden',

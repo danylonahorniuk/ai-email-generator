@@ -89,13 +89,13 @@ export function PricingContent({ user }: Props) {
 
       <section className="py-12 lg:py-20 bg-white">
         <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
             {PLANS.map(plan => (
               <div
                 key={plan.key}
                 className={`rounded-2xl border p-6 lg:p-8 relative ${
                   plan.highlighted
-                    ? 'border-orange-400 shadow-xl ring-2 ring-orange-400 bg-white md:-translate-y-4'
+                    ? 'border-orange-400 shadow-xl ring-2 ring-orange-400 bg-white lg:-translate-y-4'
                     : 'border-gray-200 bg-white shadow-md'
                 }`}
               >

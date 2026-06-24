@@ -391,7 +391,7 @@ export function LandingContent({ user }: LandingContentProps) {
         <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
 
           {/* Desktop: 3-col | Mobile: brand + 2-col links */}
-          <div className="hidden md:grid md:grid-cols-[2fr_1fr_1fr] gap-10">
+          <div className="hidden lg:grid lg:grid-cols-[2fr_1fr_1fr] gap-10">
             <div>
               <div className="flex items-center gap-2.5 font-bold text-white mb-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-orange-500 bg-white overflow-hidden flex-none">
@@ -421,7 +421,7 @@ export function LandingContent({ user }: LandingContentProps) {
           </div>
 
           {/* Mobile: brand on top, 2-col links below */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <div className="flex items-center gap-2.5 font-bold text-white mb-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-orange-500 bg-white overflow-hidden flex-none">
                 <Image src="/logo.png" alt="Quill" width={64} height={64} className="scale-150 object-contain" />
