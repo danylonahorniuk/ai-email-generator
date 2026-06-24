@@ -222,7 +222,7 @@ export function HeroMockup() {
             <div className="text-xs font-semibold text-gray-800 mb-2">
               {t.hero.previewSubject}: {sc.subject}
             </div>
-            <div className="text-[13px] text-gray-500 leading-relaxed whitespace-pre-line">
+            <div className={`text-[13px] text-gray-500 leading-relaxed whitespace-pre-line ${compact ? 'line-clamp-4' : ''}`}>
               {emailBodyText}
               {isTypingEmail && <span className="animate-pulse text-orange-500 font-light">|</span>}
             </div>
