@@ -12,15 +12,15 @@ export const metadata: Metadata = {
     default: 'QuillAI',
     template: '%s | QuillAI',
   },
-  description: 'Generate professional, personalized emails in seconds using AI. Save time, communicate better.',
-  keywords: 'AI email generator, email writing, professional emails, AI writing assistant',
+  description: 'Генеруйте професійні персоналізовані листи за секунди за допомогою AI. Економте час, спілкуйтесь краще.',
+  keywords: 'AI генератор листів, написання листів, професійні листи, AI асистент',
   icons: {
     icon: '/favicon.ico',
     apple: '/logo.png',
   },
   openGraph: {
-    title: 'QuillAI — AI Email Generator',
-    description: 'Generate professional, personalized emails in seconds using AI.',
+    title: 'QuillAI — AI генератор листів',
+    description: 'Генеруйте професійні персоналізовані листи за секунди за допомогою AI.',
     type: 'website',
   },
 }
