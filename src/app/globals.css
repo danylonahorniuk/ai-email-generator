@@ -10,6 +10,11 @@ body {
   color: var(--foreground);
 }
 
+/* Remove 300ms tap delay on mobile */
+a, button, [role="button"], input, select, textarea, label {
+  touch-action: manipulation;
+}
+
 /* Smooth open/close for details/summary */
 details > summary {
   user-select: none;
