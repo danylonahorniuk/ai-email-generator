@@ -8,11 +8,14 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'QuillAI — AI-Powered Email Generator',
+  title: {
+    default: 'QuillAI',
+    template: '%s | QuillAI',
+  },
   description: 'Generate professional, personalized emails in seconds using AI. Save time, communicate better.',
   keywords: 'AI email generator, email writing, professional emails, AI writing assistant',
   openGraph: {
-    title: 'QuillAI — AI-Powered Email Generator',
+    title: 'QuillAI — AI Email Generator',
     description: 'Generate professional, personalized emails in seconds using AI.',
     type: 'website',
   },

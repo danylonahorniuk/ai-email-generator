@@ -1,5 +1,8 @@
+import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+
+export const metadata: Metadata = { title: 'Profile' }
 import { Navbar } from '@/components/layout/navbar'
 import { ProfileClient } from '@/components/profile/profile-client'
 

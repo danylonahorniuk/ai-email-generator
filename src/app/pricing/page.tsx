@@ -1,6 +1,9 @@
+import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
 import { Navbar } from '@/components/layout/navbar'
 import { PricingContent } from '@/components/pricing/pricing-content'
+
+export const metadata: Metadata = { title: 'Pricing' }
 
 export default async function PricingPage() {
   const supabase = await createClient()
