@@ -192,10 +192,13 @@ Used the official `@supabase/ssr` package with separate `client.ts` (browser) an
 
 | Tool | Purpose |
 |------|---------|
-| **Claude Code** (claude-sonnet-4-6) | Primary development assistant — architecture, code generation, debugging, refactoring |
+| **Claude Code** (claude-sonnet-4-6) | Primary development tool — architecture, code generation, debugging, refactoring, all implementation |
+| **Google Stitch** | Initial project structure planning and approximate UI layout design |
+| **ChatGPT** | Brainstorming features, copy writing, and design direction before coding |
+| **Ideogram** | Logo generation for the QuillAI brand |
 | **Claude API** (claude-haiku-4-5-20251001) | AI email generation in production (`AI_MODE=claude`) |
 
-The entire project was built using Claude Code as the main development driver. All code was written, reviewed, and debugged in conversation with the AI — no traditional IDE-based coding.
+The development followed an AI-first workflow: Google Stitch and ChatGPT were used in the planning phase to define structure and visual direction, Ideogram generated the brand logo, and Claude Code drove all implementation — every line of code was written, reviewed, and debugged through conversation with the AI.
 
 ---
 
