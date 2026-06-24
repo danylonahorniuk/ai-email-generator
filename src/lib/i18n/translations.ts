@@ -129,6 +129,8 @@ export const translations = {
       body: 'Текст',
       purposeRequired: 'Будь ласка, опишіть мету вашого листа.',
       copyEmail: 'Копіювати лист',
+      readyToSend: 'Готово до відправки',
+      download: 'Завантажити',
     },
     pricing: {
       title: 'Проста і прозора ціна',
@@ -309,6 +311,8 @@ export const translations = {
       body: 'Body',
       purposeRequired: 'Please describe the purpose of your email.',
       copyEmail: 'Copy email',
+      readyToSend: 'Ready to send',
+      download: 'Download',
     },
     pricing: {
       title: 'Simple, transparent pricing',
@@ -489,6 +493,8 @@ export const translations = {
       body: 'Текст',
       purposeRequired: 'Пожалуйста, опишите цель вашего письма.',
       copyEmail: 'Копировать письмо',
+      readyToSend: 'Готово к отправке',
+      download: 'Скачать',
     },
     pricing: {
       title: 'Простая и прозрачная цена',

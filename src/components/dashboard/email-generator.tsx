@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select } from '@/components/ui/select'
 import { useLanguage } from '@/lib/i18n/language-context'
-import { Sparkles, Copy, RotateCcw, CheckCheck, Download } from 'lucide-react'
+import { Sparkles, Copy, RotateCcw, CheckCheck, Download, CheckCircle2 } from 'lucide-react'
 
 interface GeneratedEmail {
   subject: string
@@ -166,21 +166,17 @@ export function EmailGenerator() {
 
       {/* Result */}
       <div className="bg-white rounded-2xl border border-gray-200 shadow-md p-6 flex flex-col">
-        <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
+        <div className="flex items-center justify-between mb-5">
           <h2 className="text-lg font-semibold text-gray-900">{t.dashboard.resultTitle}</h2>
           {result && (
-            <div className="flex flex-wrap gap-2">
-              <Button variant="ghost" size="sm" onClick={() => setResult(null)}>
-                <RotateCcw className="h-4 w-4" /> {t.dashboard.clear}
-              </Button>
-              <Button variant="outline" size="sm" onClick={handleDownload}>
-                <Download className="h-4 w-4" />
-              </Button>
-              <Button variant={copied ? 'secondary' : 'primary'} size="sm" onClick={handleCopy}>
-                {copied ? <CheckCheck className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                {copied ? t.dashboard.copied : t.dashboard.copy}
-              </Button>
-            </div>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-[11px] font-medium text-green-700">
+              <CheckCircle2 className="h-3 w-3" /> {t.dashboard.readyToSend}
+            </span>
+          )}
+          {loading && (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-orange-200 bg-orange-50 px-2.5 py-0.5 text-[11px] font-medium text-orange-600">
+              <span className="h-1.5 w-1.5 rounded-full bg-orange-400 animate-pulse inline-block" /> {t.dashboard.generating}
+            </span>
           )}
         </div>
 
@@ -209,23 +205,27 @@ export function EmailGenerator() {
         )}
 
         {!loading && result && (
-          <div className="flex-1 space-y-4">
-            <div className="rounded-lg bg-orange-50 border border-orange-100 px-4 py-3">
-              <div className="text-xs font-medium text-orange-500 uppercase tracking-wide mb-1">{t.dashboard.subject}</div>
-              <div className="text-sm font-semibold text-gray-900">{result.subject}</div>
+          <div className="flex-1 flex flex-col">
+            <div className="text-sm font-semibold text-gray-800 mb-2">
+              {t.dashboard.subject}: {result.subject}
             </div>
-            <div className="rounded-lg bg-gray-50 border border-gray-100 px-4 py-4">
-              <div className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-3">{t.dashboard.body}</div>
-              <pre className="text-sm text-gray-700 whitespace-pre-wrap font-sans leading-relaxed">{result.body}</pre>
+            <div className="flex-1 text-sm text-gray-500 leading-relaxed whitespace-pre-line mb-4">
+              {result.body}
             </div>
-            <div className="flex gap-2">
-              <Button className="flex-1" onClick={handleCopy} variant={copied ? 'secondary' : 'primary'}>
-                {copied ? <CheckCheck className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                {copied ? t.dashboard.copied : t.dashboard.copyEmail}
-              </Button>
-              <Button variant="outline" onClick={handleGenerate} disabled={loading}>
-                <RotateCcw className="h-4 w-4" /> {t.dashboard.regenerate}
-              </Button>
+            <div className="grid grid-cols-2 gap-2">
+              <button onClick={handleCopy} className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2.5 hover:bg-gray-50 flex items-center justify-center gap-1.5 transition-colors">
+                {copied ? <CheckCheck className="h-3.5 w-3.5 text-green-500" /> : <Copy className="h-3.5 w-3.5" />}
+                {copied ? t.dashboard.copied : t.dashboard.copy}
+              </button>
+              <button onClick={handleGenerate} disabled={loading} className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2.5 hover:bg-gray-50 flex items-center justify-center gap-1.5 transition-colors disabled:opacity-50">
+                <RotateCcw className="h-3.5 w-3.5" /> {t.dashboard.regenerate}
+              </button>
+              <button onClick={handleDownload} className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2.5 hover:bg-gray-50 flex items-center justify-center gap-1.5 transition-colors">
+                <Download className="h-3.5 w-3.5" /> {t.dashboard.download}
+              </button>
+              <button onClick={() => setResult(null)} className="rounded-lg border border-gray-200 text-xs text-gray-600 py-2.5 hover:bg-gray-50 flex items-center justify-center gap-1.5 transition-colors">
+                <RotateCcw className="h-3.5 w-3.5" /> {t.dashboard.clear}
+              </button>
             </div>
           </div>
         )}
