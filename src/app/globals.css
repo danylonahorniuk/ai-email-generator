@@ -10,9 +10,10 @@ body {
   color: var(--foreground);
 }
 
-/* Remove 300ms tap delay on mobile */
+/* Remove 300ms tap delay on mobile + fix iOS Safari first-tap issue */
 a, button, [role="button"], input, select, textarea, label {
   touch-action: manipulation;
+  cursor: pointer;
 }
 
 /* Smooth open/close for details/summary */

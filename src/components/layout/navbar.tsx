@@ -162,7 +162,8 @@ export function Navbar({ user }: NavbarProps) {
       className="fixed inset-0 z-50 md:hidden flex justify-end"
       style={{
         pointerEvents: mobileOpen ? 'auto' : 'none',
-        transition: 'background 280ms ease',
+        visibility: mobileOpen ? 'visible' : 'hidden',
+        transition: 'background 280ms ease, visibility 280ms ease',
         background: mobileOpen ? 'rgba(0,0,0,0.4)' : 'rgba(0,0,0,0)',
       }}
       onClick={() => setMobileOpen(false)}
