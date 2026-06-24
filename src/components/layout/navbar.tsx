@@ -69,7 +69,7 @@ export function Navbar({ user }: NavbarProps) {
           </Link>
 
           {/* Nav links */}
-          <nav className="hidden lg:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
             {navLinks.map(link => (
               <Link
                 key={link.href}
@@ -84,7 +84,7 @@ export function Navbar({ user }: NavbarProps) {
           </nav>
 
           {/* Right side */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-2 xl:gap-3">
             <LanguageSwitcher />
 
             {user ? (

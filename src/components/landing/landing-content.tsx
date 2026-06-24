@@ -80,17 +80,17 @@ export function LandingContent({ user }: LandingContentProps) {
       {/* ── HERO ── */}
       <section className="bg-gray-50 min-h-[calc(100vh-64px)] flex items-center overflow-hidden py-10 lg:py-0">
         <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8 lg:gap-14 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8 lg:gap-8 xl:gap-14 items-center">
 
             {/* Left */}
             <div>
-              <h1 className="text-3xl sm:text-5xl lg:text-[52px] font-bold text-gray-900 leading-[1.12] mb-4 lg:mb-6">
+              <h1 className="text-3xl sm:text-5xl lg:text-[42px] xl:text-[52px] font-bold text-gray-900 leading-[1.12] mb-4 lg:mb-4 xl:mb-6">
                 {t.hero.title}{' '}
                 <span className="text-orange-600">{t.hero.titleAccent}</span>
                 {t.hero.titleEnd ? <>{' '}{t.hero.titleEnd}</> : null}
               </h1>
 
-              <p className="text-base lg:text-lg text-gray-500 leading-relaxed mb-6 lg:mb-8 max-w-md">
+              <p className="text-base lg:text-base xl:text-lg text-gray-500 leading-relaxed mb-6 lg:mb-6 xl:mb-8 max-w-md">
                 {t.hero.subtitle}
               </p>
 
@@ -119,13 +119,13 @@ export function LandingContent({ user }: LandingContentProps) {
 
 
       {/* ── HOW IT WORKS ── */}
-      <section id="how-it-works" className="py-16 lg:py-24 bg-gradient-to-b from-orange-50 to-white overflow-hidden">
+      <section id="how-it-works" className="py-16 lg:py-16 xl:py-24 bg-gradient-to-b from-orange-50 to-white overflow-hidden">
         <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 lg:gap-10 xl:gap-16 items-start">
 
             {/* Left */}
             <div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4 lg:mb-6">{t.howItWorks.title}</h2>
+              <h2 className="text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-bold text-gray-900 leading-tight mb-4 lg:mb-4 xl:mb-6">{t.howItWorks.title}</h2>
               <p className="text-gray-500 leading-relaxed mb-3 lg:mb-4">{t.howItWorks.subtitle}</p>
               <p className="text-gray-500 leading-relaxed mb-6 lg:mb-10">{(t.howItWorks as any).subtitle2}</p>
 
@@ -206,11 +206,11 @@ export function LandingContent({ user }: LandingContentProps) {
       </section>
 
       {/* ── FEATURES ── */}
-      <section id="features" className="py-16 lg:py-24 bg-gray-100 border-t border-gray-200">
+      <section id="features" className="py-16 lg:py-16 xl:py-24 bg-gray-100 border-t border-gray-200">
         <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 lg:mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">{t.features.title}</h2>
-            <p className="mt-3 text-base lg:text-lg text-gray-500 max-w-2xl mx-auto">{t.features.subtitle}</p>
+          <div className="text-center mb-8 lg:mb-8 xl:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-bold text-gray-900">{t.features.title}</h2>
+            <p className="mt-3 text-base lg:text-base xl:text-lg text-gray-500 max-w-2xl mx-auto">{t.features.subtitle}</p>
           </div>
 
           {/* Bento grid */}
@@ -245,10 +245,10 @@ export function LandingContent({ user }: LandingContentProps) {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section id="testimonials" className="py-16 lg:py-24 bg-orange-50 border-t border-orange-100">
+      <section id="testimonials" className="py-16 lg:py-16 xl:py-24 bg-orange-50 border-t border-orange-100">
         <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 lg:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">{t.testimonials.title}</h2>
+          <div className="text-center mb-8 lg:mb-10 xl:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-3">{t.testimonials.title}</h2>
             <p className="text-sm lg:text-base text-gray-500 max-w-xl mx-auto">{(t.testimonials as any).subtitle}</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
@@ -276,14 +276,14 @@ export function LandingContent({ user }: LandingContentProps) {
       </section>
 
       {/* ── FAQ ── */}
-      <section id="faq" className="py-16 lg:py-24 bg-white border-t border-gray-100">
+      <section id="faq" className="py-16 lg:py-16 xl:py-24 bg-white border-t border-gray-100">
         <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8 lg:gap-10 xl:gap-16">
 
             {/* Left */}
             <div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 lg:mb-4">{t.faq.title}</h2>
-              <p className="text-sm lg:text-base text-gray-500 leading-relaxed mb-6 lg:mb-8">{(t.faq as any).subtitle}</p>
+              <h2 className="text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-3 lg:mb-3 xl:mb-4">{t.faq.title}</h2>
+              <p className="text-sm lg:text-sm xl:text-base text-gray-500 leading-relaxed mb-6 lg:mb-6 xl:mb-8">{(t.faq as any).subtitle}</p>
               <Button size="md" onClick={() => setContactOpen(true)}>
                 Написати нам <ArrowRight className="h-4 w-4" />
               </Button>
