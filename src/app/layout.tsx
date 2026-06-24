@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   },
   description: 'Generate professional, personalized emails in seconds using AI. Save time, communicate better.',
   keywords: 'AI email generator, email writing, professional emails, AI writing assistant',
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
   openGraph: {
     title: 'QuillAI — AI Email Generator',
     description: 'Generate professional, personalized emails in seconds using AI.',
