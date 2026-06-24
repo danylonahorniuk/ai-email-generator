@@ -75,6 +75,16 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000)
 
+### 5. Run with Docker
+
+```bash
+docker compose up --build
+```
+
+Open [http://localhost:3000](http://localhost:3000)
+
+> Requires `.env.local` with Supabase keys in the project root.
+
 ---
 
 ## AI Mode
