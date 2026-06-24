@@ -304,8 +304,8 @@ export function LandingContent({ user }: LandingContentProps) {
               {/* Left */}
               <div className="px-6 py-7 lg:px-10 lg:py-8">
                 <div className="flex items-center gap-2 mb-4 lg:mb-6">
-                  <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-orange-600">
-                    <Sparkles className="h-4 w-4 text-white" />
+                  <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-orange-500 bg-white overflow-hidden flex-none">
+                    <Image src="/logo.png" alt="QuillAI" width={32} height={32} className="scale-150 object-contain" />
                   </div>
                   <span className="font-bold text-gray-900">Quill<span className="text-orange-600">AI</span></span>
                 </div>
