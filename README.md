@@ -271,8 +271,6 @@ The project was built over ~48 hours using a conversational, iterative approach:
 3. **Rate limiting** — Enforce generation limits per plan at the API level
 4. **More AI providers** — OpenAI / Gemini alongside Claude, user picks in settings
 5. **Email templates library** — Pre-built templates for common scenarios (follow-up, cold outreach, thank you)
-6. **Tests** — Unit tests for `generate-email.ts`, integration tests for API routes
-7. **Docker** — Containerize for consistent local dev and easy self-hosting
-8. **CI/CD** — GitHub Actions: lint + typecheck on PR, auto-deploy preview on push
-9. **Usage analytics** — Track generation count per user, popular tones/languages
-10. **Tone fine-tuning controls** — Post-generation adjustments (shorter, more formal, friendlier) — partially demoed in the hero mockup
+6. **Usage analytics** — Track generation count per user, popular tones/languages
+7. **Tone fine-tuning controls** — Post-generation adjustments (shorter, more formal, friendlier) — partially demoed in the hero mockup
+8. **shadcn/ui migration** — Replace custom UI components with shadcn/ui for better accessibility and consistency
