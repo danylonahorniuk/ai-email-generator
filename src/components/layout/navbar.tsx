@@ -45,9 +45,9 @@ export function Navbar({ user }: NavbarProps) {
         { href: '/pricing', label: t.nav.pricing },
       ]
     : [
-        { href: '/#how-it-works', label: (t.nav as any).howItWorks },
+        { href: '/#how-it-works', label: t.nav.howItWorks },
         { href: '/#features', label: t.nav.features },
-        { href: '/#testimonials', label: (t.nav as any).testimonials },
+        { href: '/#testimonials', label: t.nav.testimonials },
         { href: '/#faq', label: t.nav.faq },
         { href: '/pricing', label: t.nav.pricing },
       ]

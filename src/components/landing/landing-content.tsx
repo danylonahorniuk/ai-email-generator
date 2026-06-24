@@ -127,13 +127,13 @@ export function LandingContent({ user }: LandingContentProps) {
             <div>
               <h2 className="text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-bold text-gray-900 leading-tight mb-4 lg:mb-4 xl:mb-6">{t.howItWorks.title}</h2>
               <p className="text-gray-500 leading-relaxed mb-3 lg:mb-4">{t.howItWorks.subtitle}</p>
-              <p className="text-gray-500 leading-relaxed mb-6 lg:mb-10">{(t.howItWorks as any).subtitle2}</p>
+              <p className="text-gray-500 leading-relaxed mb-6 lg:mb-10">{t.howItWorks.subtitle2}</p>
 
               <div className="flex flex-col gap-3 lg:gap-5">
                 {([
-                  { icon: Clock, label: (t.howItWorks as any).perks?.[0] },
-                  { icon: TrendingUp, label: (t.howItWorks as any).perks?.[1] },
-                  { icon: Shield, label: (t.howItWorks as any).perks?.[2] },
+                  { icon: Clock, label: t.howItWorks.perks[0] },
+                  { icon: TrendingUp, label: t.howItWorks.perks[1] },
+                  { icon: Shield, label: t.howItWorks.perks[2] },
                 ] as { icon: React.ElementType; label: string }[]).map(({ icon: Icon, label }) => (
                   <div key={label} className="flex items-center gap-3">
                     <div className="flex h-9 w-9 lg:h-10 lg:w-10 items-center justify-center rounded-xl border border-orange-100 bg-white shadow-sm flex-none">
@@ -249,7 +249,7 @@ export function LandingContent({ user }: LandingContentProps) {
         <div className="mx-auto max-w-7xl 2xl:max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 lg:mb-10 xl:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-3">{t.testimonials.title}</h2>
-            <p className="text-sm lg:text-base text-gray-500 max-w-xl mx-auto">{(t.testimonials as any).subtitle}</p>
+            <p className="text-sm lg:text-base text-gray-500 max-w-xl mx-auto">{t.testimonials.subtitle}</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
             {testimonials.map(tm => (
@@ -283,7 +283,7 @@ export function LandingContent({ user }: LandingContentProps) {
             {/* Left */}
             <div>
               <h2 className="text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-3 lg:mb-3 xl:mb-4">{t.faq.title}</h2>
-              <p className="text-sm lg:text-sm xl:text-base text-gray-500 leading-relaxed mb-6 lg:mb-6 xl:mb-8">{(t.faq as any).subtitle}</p>
+              <p className="text-sm lg:text-sm xl:text-base text-gray-500 leading-relaxed mb-6 lg:mb-6 xl:mb-8">{t.faq.subtitle}</p>
               <Button size="md" onClick={() => setContactOpen(true)}>
                 Написати нам <ArrowRight className="h-4 w-4" />
               </Button>
@@ -310,8 +310,8 @@ export function LandingContent({ user }: LandingContentProps) {
                   <span className="font-bold text-gray-900">Quill<span className="text-orange-600">AI</span></span>
                 </div>
                 <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight mb-3">
-                  {t.cta.title.split((t.cta as any).titleAccent)[0]}
-                  <span className="text-orange-500">{(t.cta as any).titleAccent}</span>
+                  {t.cta.title.split(t.cta.titleAccent)[0]}
+                  <span className="text-orange-500">{t.cta.titleAccent}</span>
                 </h2>
                 <p className="text-gray-500 leading-relaxed mb-5 text-sm">{t.cta.subtitle}</p>
                 <div className="flex flex-col sm:flex-row gap-3 mb-4">
@@ -367,7 +367,7 @@ export function LandingContent({ user }: LandingContentProps) {
 
             {/* Stats row */}
             <div className="grid grid-cols-3 divide-x divide-gray-100 border-t border-gray-100">
-              {((t.cta as any).stats as { value: string; label: string }[]).map(({ value, label }, i) => {
+              {(t.cta.stats as { value: string; label: string }[]).map(({ value, label }, i) => {
                 const Icon = [Zap, Globe, Wand2][i]
                 return (
                   <div key={label} className="flex items-center gap-2 lg:gap-3 px-3 lg:px-8 py-3 lg:py-4">
@@ -404,9 +404,9 @@ export function LandingContent({ user }: LandingContentProps) {
             <div>
               <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Продукт</p>
               <ul className="space-y-3 text-sm">
-                <li><Link href="/#how-it-works" className="hover:text-white transition-colors">{(t.nav as any).howItWorks}</Link></li>
+                <li><Link href="/#how-it-works" className="hover:text-white transition-colors">{t.nav.howItWorks}</Link></li>
                 <li><Link href="/#features" className="hover:text-white transition-colors">{t.nav.features}</Link></li>
-                <li><Link href="/#testimonials" className="hover:text-white transition-colors">{(t.nav as any).testimonials}</Link></li>
+                <li><Link href="/#testimonials" className="hover:text-white transition-colors">{t.nav.testimonials}</Link></li>
                 <li><Link href="/pricing" className="hover:text-white transition-colors">{t.nav.pricing}</Link></li>
               </ul>
             </div>
@@ -433,9 +433,9 @@ export function LandingContent({ user }: LandingContentProps) {
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Продукт</p>
                 <ul className="space-y-3 text-sm">
-                  <li><Link href="/#how-it-works" className="hover:text-white transition-colors">{(t.nav as any).howItWorks}</Link></li>
+                  <li><Link href="/#how-it-works" className="hover:text-white transition-colors">{t.nav.howItWorks}</Link></li>
                   <li><Link href="/#features" className="hover:text-white transition-colors">{t.nav.features}</Link></li>
-                  <li><Link href="/#testimonials" className="hover:text-white transition-colors">{(t.nav as any).testimonials}</Link></li>
+                  <li><Link href="/#testimonials" className="hover:text-white transition-colors">{t.nav.testimonials}</Link></li>
                   <li><Link href="/pricing" className="hover:text-white transition-colors">{t.nav.pricing}</Link></li>
                 </ul>
               </div>
