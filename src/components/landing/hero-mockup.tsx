@@ -165,7 +165,7 @@ export function HeroMockup() {
   const showEmailContent = phase === 'typing-email' || phase === 'reading' || (phase === 'erasing-email' && emailLen > 0)
 
   const IdeaCard = ({ compact }: { compact?: boolean }) => (
-    <div className={`rounded-2xl border border-gray-200 bg-white shadow-md flex-1 ${compact ? 'p-4' : 'p-5'}`}>
+    <div className={`rounded-2xl border border-gray-200 bg-white shadow-md flex-1 overflow-hidden ${compact ? 'p-4 h-[272px]' : 'p-5'}`}>
       <div className="flex items-center justify-between mb-3">
         <span className="text-sm font-semibold text-gray-800">{t.hero.previewYourIdea}</span>
         <span className="text-[11px] text-gray-400">{ideaLen}/300</span>
@@ -195,7 +195,7 @@ export function HeroMockup() {
   )
 
   const ResultCard = ({ compact }: { compact?: boolean }) => (
-    <div className={`rounded-2xl border border-gray-200 bg-white shadow-md flex-1 relative ${compact ? 'p-4' : 'p-5'}`}>
+    <div className={`rounded-2xl border border-gray-200 bg-white shadow-md flex-1 relative overflow-hidden ${compact ? 'p-4 h-[248px]' : 'p-5'}`}>
       <div className="flex items-center justify-between mb-3">
         <span className="text-sm font-semibold text-gray-800">{t.hero.previewYourEmail}</span>
         {showEmailContent ? (
