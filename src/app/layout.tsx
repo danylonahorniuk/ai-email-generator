@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: 'Generate professional, personalized emails in seconds using AI. Save time, communicate better.',
   keywords: 'AI email generator, email writing, professional emails, AI writing assistant',
   icons: {
-    icon: '/logo.png',
+    icon: '/favicon.ico',
     apple: '/logo.png',
   },
   openGraph: {
