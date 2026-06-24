@@ -79,8 +79,47 @@ describe('generateEmail — lengths', () => {
     expect(short.body.length).toBeLessThan(long.body.length)
   })
 
-  it('generates medium length', async () => {
-    const result = await generateEmail({ ...baseParams, length: 'medium' })
+  it('medium email is shorter than long email', async () => {
+    const medium = await generateEmail({ ...baseParams, length: 'medium' })
+    const long = await generateEmail({ ...baseParams, length: 'long' })
+    expect(medium.body.length).toBeLessThan(long.body.length)
+  })
+
+  it('generates all three lengths without error', async () => {
+    const lengths = ['short', 'medium', 'long'] as const
+    for (const length of lengths) {
+      const result = await generateEmail({ ...baseParams, length })
+      expect(result.subject.length).toBeGreaterThan(0)
+      expect(result.body.length).toBeGreaterThan(0)
+    }
+  })
+})
+
+describe('generateEmail — optional fields', () => {
+  it('works without recipientName — uses placeholder', async () => {
+    const result = await generateEmail({ ...baseParams, recipientName: undefined })
+    expect(result.body).toContain('[Recipient]')
+  })
+
+  it('works without senderName — uses placeholder', async () => {
+    const result = await generateEmail({ ...baseParams, senderName: undefined })
+    expect(result.body).toContain('[Your Name]')
+  })
+
+  it('includes keyPoints in body when provided', async () => {
+    const result = await generateEmail({ ...baseParams, keyPoints: 'discuss budget and timeline' })
+    expect(result.body).toContain('discuss budget and timeline')
+  })
+
+  it('works without keyPoints', async () => {
+    const result = await generateEmail({ ...baseParams, keyPoints: undefined })
+    expect(result.subject).toBeTruthy()
     expect(result.body).toBeTruthy()
+  })
+
+  it('includes purpose in body', async () => {
+    const purpose = 'negotiate contract renewal'
+    const result = await generateEmail({ ...baseParams, purpose })
+    expect(result.body).toContain(purpose)
   })
 })
