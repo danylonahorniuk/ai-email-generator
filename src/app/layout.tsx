@@ -22,6 +22,11 @@ export const metadata: Metadata = {
     title: 'QuillAI — AI генератор листів',
     description: 'Генеруйте професійні персоналізовані листи за секунди за допомогою AI.',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1731, height: 909, alt: 'QuillAI — AI генератор листів' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/og-image.png'],
   },
 }
 
